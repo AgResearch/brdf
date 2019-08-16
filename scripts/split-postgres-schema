@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+#
+# split a postgres schema by tables, functions, etc
+
+import os
+import os.path
+import re
+import sys
+
+def stderr(msg):
+    sys.stderr.write("%s: %s\n" % (os.path.basename(sys.argv[0]), msg))
+
+class SectionReader:
+    """Sections are separated by at least one blank line"""
+
+    def __init__(self, schema_name, f, spec):
+        self._schema_name = schema_name
+        self._f = f
+        self._linenum = 0
+        self._spec = spec
+        self._regex = [ re.compile(s['match']) for s in spec ]
+
+        self._section = "db"    # first section is db header
+        self._included = {}     # what SQL files have been included at top level
+        self._buf = []
+        self._blanks = []
+        self._comment = []
+        self._post_comment_blanks = []
+        self._init_outdir()
+
+    def _init_outdir(self):
+        os.makedirs(schema_name, exist_ok=True)
+        # delete all sql files from outdir, as we append
+        for filename in os.listdir(self._schema_name):
+            if filename.endswith('.sql'):
+                os.unlink('%s/%s' % (self._schema_name, filename))
+
+    def _flush_blanks(self):
+        if self._blanks:
+            self._buf.extend(self._blanks)
+            self._blanks = []
+
+    def _flush_comment(self):
+        self._buf.extend(self._blanks)
+        self._buf.extend(self._comment)
+        self._buf.extend(self._post_comment_blanks)
+        self._blanks = []
+        self._comment = []
+        self._post_comment_blanks = []
+
+    def _write(self):
+        if self._section is not None:
+            with open("%s/%s.sql" % (self._schema_name, self._section), 'a') as sql_f:
+                for line in self._buf:
+                    sql_f.write(line)
+                self._buf = []
+            if self._section != 'db' and self._section not in self._included:
+                # include this file in the overall schema
+                with open("%s/%s.sql" % (self._schema_name, 'db'), 'a') as sql_f:
+                    sql_f.write("\\i %s.sql\n" % self._section)
+                self._included[self._section] = True
+        else:
+            stderr("WARNING: flushing buf with no section at line %d" % self._linenum)
+
+    def read(self):
+        for line in self._f:
+            self._linenum += 1
+            if line.startswith('--'):
+                if self._comment and self._post_comment_blanks:
+                    self._flush_comment()
+                self._comment.append(line)
+            elif line == '\n':
+                if self._comment:
+                    self._post_comment_blanks.append(line)
+                else:
+                    self._blanks.append(line)
+            else:
+                for i, r in enumerate(self._regex):
+                    m = re.match(r, line)
+                    if m:
+                        # write the previously buffered section
+                        self._flush_blanks()
+                        self._write()
+
+                        # start new section
+                        section_type = self._spec[i]['type']
+                        if m.group(1):
+                            self._section = "%s.%s" % (section_type, m.group(1))
+                        else:
+                            self._section = "%s" % section_type
+                        break
+                self._flush_comment()
+                self._buf.append(line)
+        self._flush_comment()
+        self._write()
+
+if len(sys.argv) != 2:
+    stderr("usage: %s <schema.sql>" % os.path.basename(sys.argv[0]))
+    sys.exit(1)
+
+with open(sys.argv[1], 'r') as schema_f:
+    d, basename = os.path.split(sys.argv[1])
+    schema_name, ext = os.path.splitext(basename)
+    sr = SectionReader(schema_name, schema_f, [
+        {
+            "match": "CREATE FUNCTION (\w+)",
+            "type": "fn",
+        },
+        {
+            "match": "CREATE AGGREGATE (\w+)",
+            "type": "agg",
+        },
+        {
+            "match": "CREATE TABLE \"?(\w+)\"?",
+            "type": "tbl",
+        },
+        {
+            "match": "ALTER TABLE ONLY (\w+)",
+            "type": "alt",
+        },
+        {
+            "match": "REVOKE ALL ON SCHEMA()",
+            "type": "acl-schema",
+        },
+        {
+            "match": "REVOKE ALL ON TABLE (\w+)",
+            "type": "acl",
+        },
+        {
+            "match": "SET ()",
+            "type": "db",
+        },
+    ])
+    sr.read()
