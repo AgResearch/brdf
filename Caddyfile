@@ -3,3 +3,8 @@
   root /srv/html
   cgi /cgi-bin/*.py /srv/{match}
 }
+
+:80/node_modules {
+  tls off
+  root /srv/node_modules
+}
