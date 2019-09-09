@@ -1,0 +1,687 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-nz">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Plant Genomics Consortium FTP Da</title>
+<style>
+<!--
+h2           { margin-top: 6; margin-left:4 }
+label        { font-family: Times New Roman; font-size: 12pt; font-weight: bold }
+h3           { margin-top: 6 }
+.required	 {text-indent: 5px; font-weight: 1500; color: red }
+INPUT.submit_button {background-color:red; font-size: 14pt; font-weight: bold; red;color: yellow }
+--></style>
+<script type="text/javascript">
+
+//================================================================//
+var primer_count = 1;
+
+function primer_information_text(id){ return '<input name="PIT_'+id+'">';}
+
+function primer_sequence_text(id){ return '<input  name="PST_'+id+'">';}
+
+function primer_information(id){ return '<select name="PI_'+id+'">'+
+				'<option selected>Forward Primer</option>'+
+				'<option>Reverse Primer</option>'+
+				'</select>';
+				}
+
+  function addPrimersRow(tableID) {
+    var table = document.getElementById(tableID);
+    var row = table.insertRow(table.rows.length);
+        var cell = row.insertCell(0);
+        cell.vAlign="top"
+        cell.innerHTML = primer_information(primer_count);
+        var cell = row.insertCell(1);
+        cell.vAlign="top"
+        cell.innerHTML = primer_information_text(primer_count);
+        var cell = row.insertCell(2);
+        cell.vAlign="top"
+        cell.innerHTML = primer_sequence_text(primer_count);
+        primer_count++;
+ }
+
+//================================================================//
+
+var vector_count = 1;
+
+function vector_information_text(id){ return '<input name="VIT_'+id+'">';}
+
+function vector_information(id){ return '<input name="VI_'+id+'">';}
+
+  function addVectorRow(tableID) {
+    var table = document.getElementById(tableID);
+    var row = table.insertRow(table.rows.length);
+        var cell = row.insertCell(0);
+        cell.vAlign="top"
+        cell.innerHTML = vector_information(vector_count);
+        var cell = row.insertCell(1);
+        cell.vAlign="top"
+        cell.innerHTML = vector_information_text(vector_count);
+        vector_count++;
+ }
+
+//================================================================//
+
+var source_count = 1;
+
+function source_modifier_text(id){ return '<input name="SMV_0">';}
+
+function source_modifier(id){ return '<select name="SM_'+id+'">'+
+				'<option value="NONE" selected>&nbsp;</option>'+
+				'<option>Anamorph</option>'+
+				'<option>Authority</option>'+
+				'<option>Biotype</option>'+
+				'<option>Biovar</option>'+
+				'<option>Breed</option>'+
+				'<option>Cell-line</option>'+
+				'<option>Cell-type</option>'+
+				'<option>Chemovar</option>'+
+				'<option>Clone</option>'+
+				'<option>Clone-lib</option>'+
+				'<option>Collected By</option>'+
+				'<option>Collection Date</option>'+
+				'<option>Country</option>'+
+				'<option>Cultivar</option>'+
+				'<option>Dev-stage</option>'+
+				'<option>Ecotype</option>'+
+				'<option>Forma</option>'+
+				'<option>Forma Specialis</option>'+
+				'<option>Frequency</option>'+
+				'<option>Genotype</option>'+
+				'<option>Germline</option>'+
+				'<option>Haplotype</option>'+
+				'<option>Identified By</option>'+
+				'<option>Isolate</option>'+
+				'<option>Lab-host</option>'+
+				'<option>Lat-Lon</option>'+
+				'<option>Natural-host</option>'+
+				'<option>Pathovar</option>'+
+				'<option>Plasmid-name</option>'+
+				'<option>Plastid-name</option>'+
+				'<option>Pop-variant</option>'+
+				'<option>Proviral</option>'+
+				'<option>Rearranged</option>'+
+				'<option>Segment</option>'+
+				'<option>Serogroup</option>'+
+				'<option>Serotype</option>'+
+				'<option>Serovar</option>'+
+				'<option>Sex</option>'+
+				'<option>Specimen-voucher</option>'+
+				'<option>Strain</option>'+
+				'<option>Sub-species</option>'+
+				'<option>Subclone</option>'+
+				'<option>Substrain</option>'+
+				'<option>Subtype</option>'+
+				'<option>Synonym</option>'+
+				'<option>Teleomorph</option>'+
+				'<option>Tissue-lib</option>'+
+				'<option>Tissue-type</option>'+
+				'<option>Type</option>'+
+				'<option>Variety</option>'+
+				'</select>';
+}
+
+  function addSourceModifiersRow(tableID) {
+    var table = document.getElementById(tableID);
+    var row = table.insertRow(table.rows.length);
+        var cell = row.insertCell(0);
+        cell.vAlign="top"
+        cell.innerHTML = source_modifier(source_count);
+        var cell = row.insertCell(1);
+        cell.vAlign="top"
+        cell.innerHTML = source_modifier_text(source_count);
+        source_count++;
+ }
+
+ //================================================================//
+
+var feature_count = 1;
+
+function feature_strand(id){
+	return 'forward <input type="radio" value="V_'+id+'" checked name="forward_reverse_'+id+'"> reverse <input type="radio" value="V_'+id+'" name="forward_reverse_'+id+'"></b>';
+}
+
+function feature_loc(id){
+	return 'start <input type=text name="feature_start_'+id+'" width=40> stop <input type=text width=40 name="feature_stop_'+id+'" size="20">';
+}
+
+function feature_type(id){ return '<select name="feature_type_'+id+'" onchange="addSpecifyInput(\'feature_type_'+id+'\',\'cds_extra_'+id+'\',\'cds\')"  >'+
+		'<option>attenuator</option>'+
+		'<option>C_region</option>'+
+		'<option>CAAT_signal</option>'+
+		'<option value="cds">CDS</option>'+
+		'<option>conflict</option>'+
+		'<option>D-loop</option>'+
+		'<option>D_segment</option>'+
+		'<option>enhancer</option>'+
+		'<option selected>exon</option>'+
+		'<option>gap</option>'+
+		'<option>GC_signal</option>'+
+		'<option>gene</option>'+
+		'<option>iDNA</option>'+
+		'<option>intron</option>'+
+		'<option>J_segment</option>'+
+		'<option>LTR</option>'+
+		'<option>mat_peptide</option>'+
+		'<option>misc_binding</option>'+
+		'<option>misc_difference</option>'+
+		'<option>misc_feature</option>'+
+		'<option>misc_recomb</option>'+
+		'<option>misc_RNA</option>'+
+		'<option>misc_signal</option>'+
+		'<option>misc_structure</option>'+
+		'<option>modified_base</option>'+
+		'<option>mRNA</option>'+
+		'<option>N_region</option>'+
+		'<option>old_sequence</option>'+
+		'<option>operon</option>'+
+		'<option>oriT</option>'+
+		'<option>polyA_signal</option>'+
+		'<option>polyA_site</option>'+
+		'<option>precursor_RNA</option>'+
+		'<option>prim_transcript</option>'+
+		'<option>primer_bind</option>'+
+		'<option>promoter</option>'+
+		'<option>protein_bind</option>'+
+		'<option>RBS</option>'+
+		'<option>repeat_region</option>'+
+		'<option>repeat_unit</option>'+
+		'<option>rep_origin</option>'+
+		'<option>rRNA</option>'+
+		'<option>S_region</option>'+
+		'<option>satellite</option>'+
+		'<option>scRNA</option>'+
+		'<option>sig_peptide</option>'+
+		'<option>snRNA</option>'+
+		'<option>snoRNA</option>'+
+		'<option>source</option>'+
+		'<option>stem_loop</option>'+
+		'<option>STS</option>'+
+		'<option>TATA_signal</option>'+
+		'<option>terminator</option>'+
+		'<option>transit_peptide</option>'+
+		'<option>tRNA</option>'+
+		'<option>unsure</option>'+
+		'<option>V_region</option>'+
+		'<option>V_segment</option>'+
+		'<option>variation</option>'+
+		'<option>3&#39;clip</option>'+
+		'<option>3&#39;UTR</option>'+
+		'<option>5&#39;clip</option>'+
+		'<option>5&#39;UTR</option>'+
+		'<option>-10_signal</option>'+
+		'<option>-35_signal</option>'+
+		'</select>'+
+		'<span id="cds_extra_'+id+'" style="display:none;">'+
+		'<table width="25%">'+
+		'<tr><td width="18%">Gene Name:</td><td><input type=text name="geneName_'+id+'" width=40></td></tr>'+
+		'<tr><td width="18%">Allele:</td><td><input type=text name="allele_'+id+'" width=40></td></tr>'+
+		'<tr><td width="18%">Gene Description:</td><td><input type=text name="geneDesc_'+id+'" width=40></td></tr>'+
+		'<tr><td width="18%">PseudoGene?:</td><td><input type=checkbox name="pseudogene_'+id+'"></td></tr>'+
+		'<tr><td width="18%">Partial Ends:</td><td><select name="partial_'+id+'"><option selected>no</option><option>3&#39;</option><option>5&#39;</option><option>both</option></select></td></tr>'+
+		'<tr><td colspan=2 ><em>A complete coding region includes both a valid start codon and the stop codon. If the coding region is not complete, select the appropriate partial end.</em></td></tr>'+
+		'</table>'
+		'</span>';
+	}
+
+
+ function addFeatureRow(tableID) {
+  var table = document.getElementById(tableID);
+    var row = table.insertRow(table.rows.length);
+        var cell = row.insertCell(0);
+        cell.vAlign="top"
+        cell.innerHTML = feature_type(feature_count);
+        var cell = row.insertCell(1);
+        cell.vAlign="top"
+        cell.innerHTML = feature_strand(feature_count);
+        var cell = row.insertCell(2);
+        cell.vAlign="top"
+        cell.innerHTML = feature_loc(feature_count);
+        feature_count++;
+ }
+
+//================================================================//
+
+
+
+ function addSpecifyInput(selOpt,id, term){
+  sel = document.getElementById(selOpt);
+ el = document.getElementById(id)//;
+ 	if(sel.value == term){
+	  el.style.display = '';
+ 	}else{
+ 	el.style.display = 'none';
+ 	}
+ }
+
+    function toggle(id){
+	  el = document.getElementById(id);
+	  var display = el.style.display ? '' : 'none';
+	  el.style.display = display;
+    }
+
+</script>
+</head>
+
+<body bgcolor="#f7f5e0">
+
+<table border="true" id="table7" cellpadding="0" style="border-collapse: collapse" width="100%" cellspacing="4">
+	<tr>
+		<td colspan="2">
+		<h1 class="title">Plant Genomics Consortium FTP Data Submission</h1>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" cellspacing="0" cellpadding="0" width="100%" bgcolor="#336699">
+		<h2><a name="add_info2"><font color="#FFCC66">General Submission Information</font></a></h2>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" ><span style="letter-spacing: 1pt"><i><b><font size="4">Fields in red are required!!</font></b></i></span></td>
+	</tr>
+	<tr>
+		<td class="required" width="18%"><label>Your name:</label> </td>
+		<td class="input"><input size="50" name="submittedby"> </td>
+	</tr>
+	<tr>
+		<td class="required" width="18%"><label>Your email address:</label></td>
+		<td class="input"><input size="50" name="emailaddress"> </td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%" valign="top"><label>Milestone this submission
+		relates to</label><b>:<br>
+&nbsp;</b></td>
+		<td class="input" valign="top">
+		<select name="project" onchange="addSpecifyInput('project','milestone_specify', 'other')">
+		<option selected value="76" name="76">76</option>
+		<option value="77" name="77">77</option>
+		<option value="77A" name="77A">77A</option>
+		<option value="78" name="78">78</option>
+		<option value="79" name="79">79</option>
+		<option value="80" name="80">80</option>
+		<option value="81" name="81">81</option>
+		<option value="82" name="82">82</option>
+		<option value="83" name="83">83</option>
+		<option value="84" name="84">84</option>
+		<option value="85" name="85">85</option>
+		<option value="86" name="86">86</option>
+		<option value="87" name="87">87</option>
+		<option value="88" name="88">88</option>
+		<option value="89" name="89">89</option>
+		<option value="90" name="90">90</option>
+		<option value="91" name="91">91</option>
+		<option value="92" name="92">92</option>
+		<option value="93" name="93">93</option>
+		<option value="94" name="94">94</option>
+		<option value="95" name="95">95</option>
+		<option value="96" name="96">96</option>
+		<option value="97" name="97">97</option>
+		<option value="98" name="98">98</option>
+		<option value="99" name="99">99</option>
+		<option value="100" name="100">100</option>
+		<option value="101" name="101">101</option>
+		<option value="102" name="102">102</option>
+		<option value="103" name="103">103</option>
+		<option value="104" name="104">104</option>
+		<option value="105" name="105">105</option>
+		<option value="106" name="106">106</option>
+		<option value="107" name="107">107</option>
+		<option value="other">Other.....</option>
+		</select><span id="milestone_specify" style="display:none;"> Please specify:
+		<input class="detail" size="30" name="projectother"></span> </td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" cellspacing="0" cellpadding="0" width="100%" bgcolor="#336699">
+		<h2><a name="add_info1"><font color="#FFCC66">Source Information</font></a></h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" valign="top">
+		<h3>Sequence Summary/Definition Information</h3>
+		<p><label>Sequence Name:</label><a name="pmod0"><input size="91" name="source_note0"></a></p>
+		<p><b>Sequence Description:</b><textarea name="dna_definition" cols="75" rows="1"></textarea></p>
+		<p><label>Examples:</label> <select name="example_only" size="1">
+		<option>Arabidopsis thaliana mitochondrial pyruvate dehydrogenase E1 alpha
+		subunit mRNA, complete cds; nuclear gene for mitochondrial product.
+		</option>
+		<option>Cloning vector pRB223, complete sequence</option>
+		<option>Arabidopsis thaliana ecotype Columbia microsatellite CT12 sequence
+		</option>
+		</select> <br>
+&nbsp;</p>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Molecule Type</h3>
+		<a><label>What kind of molecule did you sequence?</label>
+		<select name="mol_type" onchange="addSpecifyInput('mol_type','mol_type_specify','other')">
+		<option value selected>Please select one</option>
+		<option>genomic DNA</option>
+		<option>cDNA to mRNA</option>
+		<option>genomic RNA</option>
+		<option>pre-mRNA</option>
+		<option>tRNA</option>
+		<option>rRNA</option>
+		<option>snRNA</option>
+		<option>scRNA</option>
+		<option value="other">Other.....</option>
+		</select> <span id="mol_type_specify" style="display:none;">Please specify:
+		<input class="detail" size="30" name="mol_type_other"> </span></a>
+		<p><a name="topology"><label>Topology:</label> <select name="topology">
+		<option value selected>Linear</option>
+		<option>Circular</option>
+		</select> </a></p>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Source Organism Name</h3>
+		<p><a name="org">Click on the organism name in the list below.&nbsp; If
+		your organism is not in the list, enter its name in the box provided.
+		</a></p>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" valign="top"><a name="org" class="required">
+		<label>Organism name:</label>&nbsp; </a><br>
+&nbsp;</td>
+		<td class="fieldname" valign="top"><a name="org">
+		<select size="1" name="org_name" onchange="addSpecifyInput('org_name','organism_specify', 'other')">
+		<option>Trifolium arvense</option>
+		<option>Trifolium occidentale</option>
+		<option>Trifolium pratense</option>
+		<option selected>Trifolium repens</option>
+		<option value="other">Other.....</option>
+		</select></a><span id="organism_specify" style="display:none;">Please specify:<input size="40" name="org2_name"></span></td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" valign="top">
+		<p><b>Note:</b> Please enter <strong>either</strong> the binomial &#39;Genus
+		species&#39; name <strong>or</strong> a complete descriptive name. Any additional
+		source organism description (clone, isolate, strain, cultivar, etc) should
+		be entered using the modifiers below. </p>
+		<p><b>Note:</b> If sequence is identical in multiple sources (ie: different
+		geographies/specimens/isolates/strains),<br>
+		then each sequence from each source must be a <b>separate submission</b>.
+		</p>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Source Modifiers</h3>
+				<button onclick="addSourceModifiersRow('modifier_table');">Add More Modifiers</button>
+		<table id="modifier_table">
+			<tr>
+				<th nowrap align=left><label>Source Modifier</label></th>
+				<th nowrap align=left><label>Value</label></th>
+			</tr>
+			<tr>
+				<td>
+				<script>document.write(source_modifier('0'));</script>
+				</td>
+				<td>
+				<script>document.write(source_modifier_text('0'));</script>
+				</td>
+			</tr>
+		</table>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Primer Information</h3>
+				<button onclick="addPrimersRow('primers_table');">Add More Primers</button>
+		<table id="primers_table">
+			<tr>
+				<th nowrap align=left><label>Primer Type</label></th>
+				<th nowrap align=left><label>Primer Name</label></th>
+				<th nowrap align=left><label>Primer Sequence <em>&nbsp;&nbsp;( please ensure these are submitted in the 5' to 3' direction )</em></label></th>
+			</tr>
+			<tr>
+				<td>
+				<script>document.write(primer_information('0'));</script>
+				</td>
+				<td>
+				<script>document.write(primer_information_text('0'));</script>
+				</td>
+				<td>
+				<script>document.write(primer_sequence_text('0'));</script>
+				</td>
+			</tr>
+		</table>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Vector Information</h3>
+		<button onclick="addVectorRow('vectors_table');">Add More Vectors</button>
+		<table id="vectors_table">
+			<tr>
+				<th nowrap align=left><label>Vector Name</label></th>
+				<th nowrap align=left><label>Priming Information</label></th>
+			</tr>
+			<tr>
+				<td>
+				<script>document.write(vector_information('0'));</script>
+				</td>
+				<td>
+				<script>document.write(vector_information_text('0'));</script>
+				</td>
+			</tr>
+		</table>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Source Description <br>
+		(Lineage, Organelles, Chromosome, Map)</h3>
+		<p><label>Organelle:</label><b> <select name="organelle">
+		<option value="NONE" selected>&nbsp;</option>
+		<option>mitochondrion</option>
+		<option>nucleomorph</option>
+		<option>plastid</option>
+		<option>mitochondrion: kinetoplast</option>
+		<option>plastid: chloroplast</option>
+		<option>plastid: apicoplast</option>
+		<option>plastid: chromoplast</option>
+		<option>plastid: cyanelle</option>
+		<option>plastid: leucoplast</option>
+		<option>plastid: protoplastid</option>
+		</select> </p>
+		</b>
+		<p><label>Other Locations:</label><b> <select name="modifier">
+		<option value="NONE" selected>&nbsp;</option>
+		<option>macronuclear</option>
+		<option>extrachrom</option>
+		<option>proviral</option>
+		<option>virion</option>
+		</select> </b>
+		<!--
+		<p></a><a name="gen_code"><label>Genetic Code for translation:</label><b>
+		<select name="gen_code">
+		<option selected>Standard</option>
+		<option>Vertebrate Mitochondrial</option>
+		<option>Yeast Mitochondrial</option>
+		<option>Mold, Protozoan, Coelenterate Mitochondrial and Mycoplasma/Spiroplasma
+		</option>
+		<option>Invertebrate Mitochondrial</option>
+		<option>Ciliate, Dasycladacean and Hexamita Nuclear</option>
+		<option>Echinoderm and Flatworm Mitochondrial</option>
+		<option>Euplotid Nuclear</option>
+		<option>Bacterial and Plant Plastid</option>
+		<option>Alternative Yeast Nuclear</option>
+		<option>Ascidian Mitochondrial</option>
+		<option>Alternative Flatworm Mitochondrial</option>
+		<option>Blepharisma Nuclear</option>
+		<option>Chlorophycean Mitochondrial</option>
+		<option>Trematode Mitochondrial</option>
+		<option>Scenedesmus obliquus mitochondrial</option>
+		<option>Thraustochytrium Mitochondrial</option>
+		</select> </b></a><b></p>
+		</b>
+		--></p>
+		<p><label>Other Source Information (e.g. taxonomic classification):</label><b>
+		<input size="40" name="source_note"> </b>
+		</p>
+		<p><label>If known, what is the location of your sequence in the genome?</label>
+		<br>
+		<label>Chromosome:</label><b><input name="chromosome"> </b>(e.g. 1, 2, 3,
+		... I, II, or III) <b><br>
+		</b><label>Map location:</label><b> <input name="map_location"> </b>(e.g.
+		&quot;1q31-q32&quot; or &quot;between CYS3 and MAK16&quot;) </p>
+
+		<hr color="#336699" width="75%" size="1">
+		<b>
+		<h3>Coding Region and Sequence Features</h3>
+		<div align="left">
+			<button onclick="addFeatureRow('feature_table');">Add More Features</button>
+			<table border="0" width="100%" id="feature_table">
+				<tr>
+					<td valign="top" width="25%">
+					<b>Feature type:</b></td>
+					<td valign="top" width="25%">
+					<b>Strand: </b>
+					</td>
+					<td valign="top" width="50%">
+					<b>Feature Location:</b></td>
+				</tr>
+				<tr>
+					<td valign="top" width="25%">
+					<script>document.write(feature_type('0'));</script>
+					</td>
+					<td valign="top" width="25%">
+					<script>document.write(feature_strand('0'));</script>
+					</td>
+					<td valign="top" width="50%">
+					<script>document.write(feature_loc('0'));</script>
+					</td>
+				</tr>
+			</table>
+
+		<hr color="#336699" width="75%" size="1">
+		</div>
+		</b>
+		</td>
+		<p></p>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" cellspacing="0" cellpadding="0" width="100%" bgcolor="#336699">
+		<h2><a name="add_info0"><font color="#FFCC66">Input Data Sequence</font></a></h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2">
+		<h3>Enter DNA Sequence</h3>
+		<i><b>Important</b></i><font color="red">:</font>
+		<ul>
+			<li>Use single letter IUPAC code, raw sequence only. </li>
+			<li>Sequence must be at least 50 bp in length </li>
+			<li>Sequence must be biologically contiguous and not contain any internal
+			unknown/unsequenced spacers. </li>
+		</ul>
+		<p><a name="seqlen"><label>Sequence length in nucleotides:</label>
+		<input value="100" name="DNAsq_length"> </a><b><br>
+		</b><textarea name="description1" rows="10" cols="75"></textarea> </p>
+
+		<hr color="#336699" width="75%" size="1">
+		<h3>Additional Information</h3>
+		<p>Enter any other biological information for which there is no place on
+		the form or any pertinent instructions that will help AgResearch and AgResearch
+		annotators process your submission in this field. </p>
+		<p><textarea name="contact_comments" rows="4" cols="75"></textarea> </p>
+		<p class="fieldname">&nbsp;</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2" cellspacing="0" cellpadding="0" width="100%" bgcolor="#336699">
+		<h2><a name="add_info"><font color="#FFCC66">Post-Processing</font></a></h2>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%">
+		<p><label>Do you need an ftp directory to upload files?</label><b> </b>
+		</p>
+		</td>
+		<td class="input"><select size="1" name="ftpdir_yes_no">
+		<option value="Yes">Yes</option>
+		<option selected value="No">No</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%"><label>Number of files you will upload:</label></td>
+		<td class="input"><input size="5" value="0" name="filecount"></td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%">
+		<p><label>Reasons for submission of data to ftp site</label><b> </b></p>
+		</td>
+		<td class="input">
+		<table class="input" id="table10">
+			<tr>
+				<td>pass on data to colleague </td>
+				<td class="input">
+				<input type="checkbox" value="false" name="submission_colleague">
+				</td>
+			</tr>
+			<tr>
+				<td>archive files on server </td>
+				<td class="input">
+				<input type="checkbox" value="false" name="submission_archive">
+				</td>
+			</tr>
+			<tr>
+				<td>data to be imported into relational database </td>
+				<td class="input">
+				<input type="checkbox" value="false" name="submission_import">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">if other specify :
+				<input class="detail" size="50" name="reasonother"> </td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%">
+		<p><label>Post-processing instructions for this data </label></p>
+		</td>
+		<td class="input">
+		<input type="checkbox" checked value="blastagainst_NCBInr" name="C1"> Blast
+		against NCBI NR Protein
+		<input type="checkbox" checked value="blastagainst_nt" name="C2"> Blast
+		against NCBI nt
+		<p><input type="checkbox" value="tracks_medicago" name="C3"> Display as
+		track on Medicago Genome Browser </p>
+		<p>Notes:<br>
+&nbsp;<textarea name="processing_instructions" rows="3" cols="50"></textarea>
+		</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldname" width="18%">
+		<p><label>Notification addresses for this data</label><b> <br>
+		</b>The following addresses will receive notification of this submission,
+		including description and processing instructions. Clear , replace or add
+		addresses as required, one per line.<br>
+		Emails will be sent <b>5 minutes</b> after submission.</p>
+		</td>
+		<td class="input"><textarea rows="6" cols="50" name="S1">anar.khan@agresearch.co.nz
+</textarea></td>
+	</tr>
+	<tr>
+		<td class="fieldname" colspan="2"><hr>When you have completed the form,
+		click the button below. If you have pasted in sequence data this be uploaded
+		and processed as you have requested. If you have asked for an ftp directory
+		for file upload , then a folder will be created on the server specifically
+		for your submission, and a web page will be returned displaying a link to
+		the new folder. Clicking on this link should open a file explorer window.
+		You can then copy and paste your files straight into the new folder. (Or
+		you may use some other ftp client if you prefer)
+		<p>Once you have submitted your files to the server, they will be backed
+		up to tape within 24 hours of the submission. This includes files submitted
+		solely for the purpose of exchange with a colleague. </p>
+		<p>The information you have provided on this form will also be recorded
+		in the AgResearch relational database </p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<input type="submit" value="Submit" class="submit_button">
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

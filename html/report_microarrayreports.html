@@ -1,0 +1,122 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en"><html>
+<head>
+<title> Sheep Genomics New Zealand Data Reporting </title>
+<link rel="stylesheet" type="text/css" href="css/forms.css">
+</head>
+<body>
+<form name="simplereport" method="post" enctype="multipart/form-data" action="/cgi-bin/Sheep Genomics/report.py" target="simpleReportListing" >
+<table border="true">
+<tr> 
+   <td colspan="2"> 
+      <h1 class="top"> Sheep Genomics New Zealand Reporting</h1>
+      <h2>Spots and Genes Report Menu</h2>
+   </td>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Choose a report      </p>
+   </td>
+   <td class="input">
+      <select name="reportmenu">
+         <option value="defaultreport"> Expression Summary
+      </select><br/>
+   </td>
+</tr>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Choose either a spot list or gene list </p>
+   </td>
+   <td class="input">
+      <ul>
+      <li> Spots :
+       <select name="spotlistid">
+         <option value="">
+         <option value="408301"> listid 408301 : Search Result - Microarray Spots for Phospholipid (103 hits) 
+       </select>
+      <li> Genes : 
+       <select name="genelistid">
+         <option value="">
+         <option value="408301"> listid 408301 : Search Result - Microarray Spots for Phospholipid (103 hits) 
+       </select>
+      </li>
+      </ul>
+      <p/>
+      <font size="-1"> <i> (note - lists are automatically created simply by using the search page) </i> </font>
+   </td>
+</tr>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Choose an experiment list </p>
+   </td>
+   <td class="input">
+       <select name="experimentlistid">
+         <option value="">
+         <option value="408301"> listid 408301 : Search Result - Microarray Spots for Phospholipid (103 hits) 
+       </select>
+      <p/>
+      <font size="-1"> <i> (note - lists are automatically created simply by using the search page) </i> </font>
+   </td>
+</tr>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Report Parameters (if applicable)
+   </td>
+   <td  class="input">
+   parameter1 <input name="parameter1" value="" size="8" type="text"/>
+   parameter2 <input name="parameter2" value="" size="8" type="text"/>
+</tr>
+<tr> 
+   <td class="fieldname"> <p class="fieldname"> Output options
+   </td>
+   <td  class="input">
+   <ul>
+      <li> send output to broswer :
+   <input name="outputtobrowser" type="checkbox" value="outputtobrowser" checked/>
+      <li> 
+   send output file to folder on ftp site (you will receive a link to output folder) 
+   <input name="outputtofile" type="checkbox" value="outputtofile"/> 
+</tr>
+    <tr>
+      <td class="fieldname">
+         <p class="fieldname">Notification instructions for this report 
+      </td>
+      <td class="input">
+         <table  class="input">
+            <tr>
+            <td class="input">
+            <p>
+            The following addresses will receive notification of this report, including
+            location of the output file on the Sheep Genpomics ftp site
+            </p>
+            Clear , replace or add addresses as required, one per line
+            </td>
+            </tr>
+            <tr>
+            <td class="input">
+               <textarea rows="6" cols="50">
+santa.claus@north.pole.planet
+               </textarea>
+            </td>
+	    <tr>
+            <td class="input">
+            Emails will be sent 
+            <select name="emaildelay">
+            <option value="0" selected> on completion of the report
+            <option value="5"> 5 minutes after completion of the report
+            <option value="30"> 30 minutes after completion of the report
+            <option value="60"> 60 minutes after completion of the report
+            </select>
+            </td>
+            </tr>
+            </tr>
+         </table>
+      </td>
+    </tr>
+<tr>
+   <td colspan="2">
+   <p class="footer">
+   <input type="submit" value="Run report"/>
+   </p>
+    </td>
+</tr>
+</table>
+
+<a href="mailto:bioinformatics@somewhere"/> Contact us </a>
+</form>
+</body>
+</html>

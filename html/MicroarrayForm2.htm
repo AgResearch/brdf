@@ -1,0 +1,620 @@
+<html>
+<head>
+<title>AgResearch Bioinformatics - Microarray Upload Form</title>
+<!--link rel="stylesheet" type="text/css" href="css/forms.css"-->
+<style>
+body		{margin-top: 1cm ; margin-bottom: 1cm; margin-left: 5%; margin-right: 5%; 
+		font-family: arial, helvetica, geneva, sans-serif;BACKGROUND: #f0f9ff}
+
+p		{margin-top: .3cm ; margin-bottom: .3cm; margin-left: .4cm; margin-right: .4cm; 
+		font-family: arial, helvetica, geneva, sans-serif}
+p.fieldname 	{margin-top: .3cm ; margin-bottom: .3cm; margin-left: .4cm; margin-right: .4cm; 
+		font-family: arial, helvetica, geneva, sans-serif}
+p.footer	{text-align: center ; margin-top: 0.5cm ; margin-bottom: 0.5cm; font-family: arial, helvetica, geneva, sans-serif}
+
+b.b		{font-family: arial, helvetica, geneva, sans-serif; font-weight: 700; color: #424b50}
+ul		{font-family: arial, helvetica, geneva, sans-serif}
+ol		{font-family: arial, helvetica, geneva, sans-serif}
+dl		{font-family: arial, helvetica, geneva, sans-serif}
+
+th              {font-family: arial, helvetica, geneva, sans-serif; font-weight: 400}
+
+h1		{text-align: center; color: #388fbd; 
+		font-family: arial, helvetica, geneva, sans-serif}
+h1.new          {text-align: center; color: #4d585e;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.b1           {margin-top: 0.5cm; text-align: center; color:#2d59b2;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.b2           {margin-top: 0.5cm; text-align: center; color:#1d7db5;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.top		{margin-top: 0.5cm; text-align: center; color: blue;
+		font-family: arial, helvetica, geneva, sans-serif}
+
+h2		{text-align: center; font-family: arial, helvetica, geneva, sans-serif}
+h3		{font-family: arial, helvetica, geneva, sans-serif}
+h4		{font-family: arial, helvetica, geneva, sans-serif}
+h5		{font-family: arial, helvetica, geneva, sans-serif}
+h6		{font-family: arial, helvetica, geneva, sans-serif}
+a 		{font-family: arial, helvetica, geneva, sans-serif}
+
+table   	{background-color: antiquewhite}
+
+input.detail   	{margin-left: 1cm}
+
+textarea.detail	{margin-left: 1cm}
+
+td		{font-family: arial, helvetica, geneva, sans-serif}
+td.fieldname	{font-family: arial, helvetica, geneva, sans-serif}
+
+tr      	{background-color: #FFDA92}
+.topTable    	{background-color: #FFDA92}
+.plainTable    	{background-color: lightblue}
+a:hover 	{color: blue; text-decoration: underline }
+
+.color0          {border: solid black; border-width: 5px; width: 80; height: 80}
+.color1          {background-color: #FF9292; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color2          {background-color: #FFDA92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color3          {background-color: #FFFF92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color4          {background-color: #B1FF92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color5          {background-color: #92E7FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color6          {background-color: #9C92FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color7          {background-color: #F392FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+
+.arrow           {font-size: 200%; width: 40}
+</style>
+<script language="JavaScript">
+
+var bgColour = "";
+var alreadySubmitted = false;
+
+function checkAll() {
+   // make sure we have not already submitted this form
+   if(alreadySubmitted) {
+      window.alert("This Form has already been submitted, please wait");
+      return false;
+   }
+
+   // check the protocolName is populated, and doesn't match any existing ones
+   var duplicatedName = false;
+   ar = arrayform.protocol;
+   for (i=0; i < ar.length; i++) {
+      if (ar[i].value == arrayform.protocolName.value) {
+         duplicatedName = true;
+      }
+   }
+   if (duplicatedName) {
+      highLight(arrayform.protocolName,"You must specify a unique Protocol name.");
+      return false;
+   }
+   else {
+      lowLight(arrayform.protocolName);
+   }
+
+   // check the protocolType is selected, and if "Other", then the "Other Type" field is populated.
+   if (arrayform.protocolType.value == "" && arrayform.otherType.value == "") {
+      lowLight(arrayform.otherType);
+      highLight(arrayform.protocolType,"You must select a Protocol type.");
+      return false;
+   }
+   else if (arrayform.protocolType.value == "Other" && arrayform.otherType.value == "") {
+      lowLight(arrayform.protocolType);
+      highLight(arrayform.otherType,"You must enter a new Protocol type.");
+      return false;
+   }
+   else if (arrayform.protocolType.value != "Other" && arrayform.otherType.value != "") {
+      lowLight(arrayform.otherType);
+      highLight(arrayform.protocolType,"If entering a new Protocol type, you need to select \"Other\" from the list.");
+      return false;
+   }
+   else {
+      lowLight(arrayform.protocolType);
+      lowLight(arrayform.otherType);
+   }
+   
+   //check that they've entered something into the description field.
+   if (arrayform.protocolDesc.value == "(Please enter a description here)") {
+      highLight(arrayform.protocolDesc,"Please enter a description of the Protocol.");
+      return false;
+   }else if (arrayform.protocolDesc.value .length <= 30) {
+      highLight(arrayform.protocolDesc,"Please enter a longer description of the Protocol (i.e. > 30 characters).");
+      return false;
+   }
+   else {
+      lowLight(arrayform.protocolDesc);
+   }   
+
+   // finally , set the submitted flag
+   alreadySubmitted = true;
+   return false;
+}
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   //eval("item.style.background = '" + bgColour + "'");
+   eval("item.style.background = 'white'");
+}
+
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+
+
+var file_count = 1
+
+function addFile(tableID) {
+   var table = document.getElementById(tableID);
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileDescText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.colSpan="2";
+      cell.innerHTML = FileDescField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = "&nbsp";
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.innerHTML = FileField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeText(file_count+1);
+      var cell = row.insertCell(3);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeField(file_count+1);
+      file_count++;
+      setFileCount(file_count);   
+}
+
+function setChannelNumber(comboID, tableID) {
+   var box = document.getElementById(comboID);
+   var pos = box[box.selectedIndex].value;
+
+   var table = document.getElementById(tableID);
+   
+   if (pos < 10) { //1-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "none";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "none";
+      }
+   }
+   else if (pos < 20) { //2-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "none";
+      }
+   }
+   else if (pos < 30) { //4-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "";
+      }
+   }
+}
+
+function goToPage(pageName) {
+   return location.href=pageName;
+}
+
+
+//================================================================//
+
+var subject_att_count = 1;
+
+function subject_Att_Time(id){ return '<input name="SAT_'+id+'">';}
+
+function subject_Att_Val(id){ return '<input name="SAV_'+id+'">';}
+
+function subject_Att_Name(id){ return '<select name="SAN_'+id+'">'+
+				'<option value="NONE" selected>&nbsp;</option>'+
+				'<option>Anamorph</option>'+
+				'<option>Authority</option>'+
+				'<option>Biotype</option>'+
+				'<option>Biovar</option>'+
+				'<option>Breed</option>'+
+				'<option>Cell-line</option>'+
+				'<option>Cell-type</option>'+
+				'<option>Chemovar</option>'+
+				'<option>Clone</option>'+
+				'<option>Clone-lib</option>'+
+				'<option>Collected By</option>'+
+				'<option>Collection Date</option>'+
+				'<option>Country</option>'+
+				'<option>Cultivar</option>'+
+				'<option>Dev-stage</option>'+
+				'<option>Ecotype</option>'+
+				'<option>Forma</option>'+
+				'<option>Forma Specialis</option>'+
+				'<option>Frequency</option>'+
+				'<option>Genotype</option>'+
+				'<option>Germline</option>'+
+				'<option>Haplotype</option>'+
+				'<option>Identified By</option>'+
+				'<option>Isolate</option>'+
+				'<option>Lab-host</option>'+
+				'<option>Lat-Lon</option>'+
+				'<option>Natural-host</option>'+
+				'<option>Pathovar</option>'+
+				'<option>Phenotype</option>'+
+				'<option>Plasmid-name</option>'+
+				'<option>Plastid-name</option>'+
+				'<option>Pop-variant</option>'+
+				'<option>Proviral</option>'+
+				'<option>Rearranged</option>'+
+				'<option>Segment</option>'+
+				'<option>Serogroup</option>'+
+				'<option>Serotype</option>'+
+				'<option>Serovar</option>'+
+				//'<option>Sex</option>'+
+				'<option>Specimen-voucher</option>'+
+				'<option>Strain</option>'+
+				'<option>Sub-species</option>'+
+				'<option>Subclone</option>'+
+				'<option>Substrain</option>'+
+				'<option>Subtype</option>'+
+				'<option>Synonym</option>'+
+				'<option>Teleomorph</option>'+
+				'<option>Tissue-lib</option>'+
+				'<option>Tissue-type</option>'+
+				'<option>Type</option>'+
+				'<option>Variety</option>'+
+				'</select>';
+}
+
+function addAttributeRow(tableID) {
+   var table = document.getElementById(tableID);
+   var row = table.insertRow(table.rows.length);
+   var cell = row.insertCell(0);
+   cell.vAlign="top"
+   cell.innerHTML = subject_Att_Name(subject_att_count);
+   //Check that the col doesn't need any new attributes added!
+   var cell = row.insertCell(1);
+   cell.vAlign="top"
+   cell.innerHTML = subject_Att_Val(subject_att_count);
+   var cell = row.insertCell(2);
+   cell.vAlign="top"
+   cell.innerHTML = subject_Att_Time(subject_att_count);
+   subject_att_count++;
+}
+
+function showAttForm() {
+   if (attForm.style.display == "none") {
+   window.alert("Sorry! This button is not yet fully-functional. When it's complete, " + 
+   "new attributes will be added to the drop-down box after creation in the form below.");
+      attForm.style.display = "";
+      attForm.attSubmit.focus();
+      attForm.newAttName.focus();
+   } else {
+      attForm.style.display = "none";
+      if (subject_att_count == 1) {
+         arrayform.SAN_0.focus();
+      }else if (subject_att_count == 2) {
+         arrayform.SAN_1.focus();
+      }else if (subject_att_count == 3) {
+         arrayform.SAN_2.focus();
+      }else if (subject_att_count == 4) {
+         arrayform.SAN_3.focus();
+      }else if (subject_att_count == 5) {
+         arrayform.SAN_4.focus(); 
+      }else if (subject_att_count == 6) {
+         arrayform.SAN_5.focus();
+      }else if (subject_att_count == 7) {
+         arrayform.SAN_6.focus();
+      }else if (subject_att_count == 8) {
+         arrayform.SAN_7.focus();
+      }else if (subject_att_count == 9) {
+         arrayform.SAN_8.focus();
+      }else if (subject_att_count == 10) {
+         arrayform.SAN_9.focus();
+      }
+   }
+}
+
+//================================================================//
+
+</script>
+</head><body>
+<FORM name="arrayform" onSubmit="return false;" METHOD="POST" ENCTYPE="multipart/form-data" ACTION="/cgi-bin/sheepgenomics/form.py" >
+   <input type="HIDDEN" name="IMPORT_LEVEL" value="0"/> 
+   <input type="HIDDEN" name="WRITE_IMPORT_LEVEL" value="0"/> 
+   <input type="HIDDEN" name = "INPUT_PATH" value=""/>
+   <input type="HIDDEN" name="INPUT_FILE" value="test.gpr"/>
+   <input type="HIDDEN" name="INPUT_SOURCE" value="SOCKET"/>
+   <input type="HIDDEN" name="SERVICE" value="ORACLEIMPORT"/>
+   <input type="HIDDEN" name="SKIP" value="0"/>
+   <input type="HIDDEN" name="CLIENT_TIMEOUT" value="1"/>
+   <input type="HIDDEN" name="RUN_LATER" value="true"/> 
+   <input type="HIDDEN" name="ADDITIONAL_PARAMETER_NAMES" value="experiment_series,array_productid,experiment_name,experiment_description,external_filename,jpeg_external_filename,dataSubmittedBy,checkSum,checkSumType,CY5SampleDescr,CY5TissueDescr,CY5TreatmentDescr,CY3SampleDescr,CY3TissueDescr,CY3TreatmentDescr"/>
+   
+<table border="true" id="Top_table" width=100%>
+   <tr> 
+      <td colspan="2"> 
+         <h1 class="top">AgResearch Microarray Upload Form</h1>
+         <font color=crimson size=+2><b>This Form is not functional; it is here for users to provide feedback on.</b></font>
+      </td>
+   </tr>
+   <tr> 
+      <td colspan="2"> 
+         <table align=center class=topTable style="border-width: 0">
+            <tr align=center valign=middle>
+               <td class=color1 title="Define one or more protocols if required" onclick="goToPage('MicroarrayForm1.htm');">
+                  <img src="images/protocol.gif" border="0" height="42" width="42"/>
+                  <br>Protocol
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color0 title="Define one or more experimental subjects if required">
+                  <img src="images/organism.gif" border="0" height="42" width="42"/>
+                  <br>Subject
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color3 title="Define one or more samples if required" onclick="goToPage('MicroarrayForm3.htm');">
+                  <img src="images/eppendorf.gif" border="0" height="42" width="42"/>
+                  <br>Sample
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color4 title="Submit Files" onclick="goToPage('MicroarrayForm4.htm');">
+                  <img src="images/microarray.jpg" border="0" height="42" width="42"/>
+                  <br>Files
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color5 title="Define Series" onclick="goToPage('MicroarrayForm5.htm');">
+                  <img src="images/series.gif" border="0" height="42" width="42"/>
+                  <br>Series
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color6 title="Define contrasts" onclick="goToPage('MicroarrayForm6.htm');">
+                  <img src="images/contrast.gif" border="0" height="42" width="42"/>
+                  <br>Contrasts
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color7 title="Submit related documents (if any)" onclick="goToPage('MicroarrayForm7.htm');">
+                  <img src="images/documents.gif" border="0" height="42" width="42"/>
+                  <br>Documents
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+
+<br>
+
+<table border="true" id="Outer_table" width=100%>
+   <tr>
+      <td colspan=2 >
+         <div style="text-align: center; font-size: 150%; font-weight: bold; line-height: 2">Subject</div>
+         <div style="text-align: left; font-size: 90%; font-weight: normal;">
+            Define any experimental subjects you have used with this form. If your subjects are in the list below, 
+            click Next to go to the next form</div>
+      </td>
+   </tr>
+   
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Existing subjects:</b>
+      </td>
+      <td width=83%>
+          <select name="subject" size=10>
+             <option value="">
+             <option value="Subject A">Subject A
+             <option value="Subject B">Subject B
+             <option value="Subject C">Subject C
+             <option value="Subject D">Subject D
+          </select>
+          <button style="margin: 70 10;" type=button onClick="goToPage('MicroarrayForm3.htm')">Next &gt;</button>
+      </td>
+   </tr>
+
+
+   <tr>
+      <td colspan=2>
+         <p style="text-align: left; font-size: 120%; font-weight: bold; text-decoration: underline;">New Subject</p>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Subject Id:</b>
+      </td>
+      <td class="input" width=83%>
+          <input name="SubjectId" value="" size="50" type="text"/>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Species:</b>
+      </td>
+      <td class="input" width=83%>
+         <input name="species" value="" size="50" type="text"/>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Sex:</b>
+      </td>
+      <td class="input" width=83%>
+          <select name="sex">
+             <option value="">
+             <option value="M">Male
+             <option value="F">Female
+             <option value="U">Unknown
+          </select>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Age:</b>
+      </td>
+      <td class="input" width=83%>
+         <input name="age" value="" size="10" type="text"/>
+      </td>
+   </tr>    
+
+   <tr>
+      <td>
+         <p><b>Subject attributes:</b>
+      </td>
+      <td>
+	 <table id="attributes_table" class=topTable>
+	    <tr>
+	       <th nowrap align=left><label>Attribute Name</label></th>
+	       <th nowrap align=left><label>Attribute Value</label></th>
+	       <th nowrap align=left><label>Attribute Time Stamp</label></th>
+	       </tr>
+	    <tr>
+	       <td>
+	       <script>document.write(subject_Att_Name('0'));</script>
+	       </td>
+	       <td>
+	       <script>document.write(subject_Att_Val('0'));</script>
+	       </td>
+	       <td>
+	       <script>document.write(subject_Att_Time('0'));</script>
+	       </td>
+	    </tr>
+	 </table>
+         <button type=button onclick="addAttributeRow('attributes_table');">Record More Attributes</button>
+         <button type=button onclick="showAttForm();">Define a new Attribute</button>
+      </td>
+   </tr>
+   
+
+   <tr>
+      <td colspan=2>
+         <p><i>Please <a href="mailto:alan.mcculloch@agresearch.co.nz;jason.mitchell@agresearch.co.nz?subject=Microarray Suggestion">email us</a> with any suggestions for improvements to this form.</i>
+      </td>
+   </tr>
+   <tr>
+      <td colspan=2 align=center>
+         <p><input type="submit" value="Submit Subject">
+      </td>
+   </tr>
+</table>
+</FORM>
+<FORM name="attForm" style="display: none;" onSubmit="showAttForm(); reset(); return false;" METHOD="POST" ENCTYPE="multipart/form-data" ACTION="/cgi-bin/sheepgenomics/admin.py?pagename=adminmenu">
+<table border="true">
+   <tr>
+      <td colspan=2 align=center>
+         <p style="text-align: center; font-size: 120%; font-weight: bold; text-decoration: underline;">Define a new Attribute</p>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname"><b>Attribute Name:</b>
+      </td>
+      <td class="input">
+         <input name="newAttName" value="" size="20" type="text"/>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname"><b>Attribute Unit:</b>
+      </td>
+      <td class="input">
+         <select name="newAttUnit">
+            <option value="NONE" selected>
+            <option value="string">Text-string
+            <option value="date">Date
+            <option value="integer">Whole-number
+            <option value="number">Decimal-number
+            <option value="kilograms">Kilograms
+            <option value="grams">Grams
+            <option value="milligrams">Milligrams
+            <option value="celsius">Celsius
+            <option value="millilitres">Millilitres
+            <option value="microlitres">Microlitres
+            <option value="millimetres">Millimetres
+            <option value="milliseconds">Milliseconds
+            <option value="ratio">Ratio
+            <option value="ng/ul">ng/ul
+            <option value="Other">Other
+         </select>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname"><b>Attribute Desc:</b>
+      </td>
+      <td class="input">
+	 <textarea name="newAttDesc" title="Please enter a description here" type="textarea" rows="4" cols="40">(Please enter a description here)</textarea> 
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname"><b>Allowable Values:</b>
+      </td>
+      <td class="input">
+	 <textarea name="newAttAllowable" title="Enter each value on a new line" type="textarea" rows="4" cols="40">(Enter each value
+On a new line)</textarea> 
+      </td>
+   </tr>
+   <tr>
+      <td colspan=2 align=center>
+         <p><input name="attSubmit" type="submit" value="Add Attribute">
+      </td>
+   </tr>
+</table>
+</FORM>
+</body>
+</html>

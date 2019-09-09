@@ -1,0 +1,174 @@
+A:link {
+	COLOR: #3d5466; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #3d5466; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+A.banner {
+	FONT-SIZE: small; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.bblue {
+	FONT-SIZE: small; COLOR: #ffffff; BACKGROUND-COLOR: #9999ff; TEXT-ALIGN: center
+}
+A.bred {
+	FONT-SIZE: small; COLOR: #ffffff; BACKGROUND-COLOR: #ff6666; TEXT-ALIGN: center
+}
+A.download {
+	COLOR: #3d5466
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: small; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; FONT-FAMILY: sans-serif; BACKGROUND-COLOR: #ffffff
+}
+H1 {
+	COLOR: #1219bb; FONT-FAMILY: sans-serif
+}
+H2 {
+	COLOR: #1219bb; FONT-FAMILY: sans-serif
+}
+H3 {
+	COLOR: #1219bb; FONT-FAMILY: sans-serif
+}
+H4 {
+	COLOR: #1219bb; FONT-FAMILY: sans-serif
+}
+P {
+	FONT-FAMILY: sans-serif
+}
+TABLE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 0px; spacing: 0
+}
+.datatable1 {
+	
+}
+.datatable2 {
+	
+}
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: small; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; FONT-FAMILY: sans-serif
+}
+.nav_selection {
+	BACKGROUND-COLOR: #8ca9ba
+}
+TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: small; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; FONT-FAMILY: sans-serif
+}
+.datatitle {
+	BACKGROUND-COLOR: #a6bac9
+}
+.datatitle1 {
+	BACKGROUND-COLOR: #a6bac9
+}
+.datatitle2 {
+	BACKGROUND-COLOR: #c6d3dc
+}
+.databody {
+	BACKGROUND-COLOR: #ffffff
+}
+.subdatatitle {
+	BACKGROUND-COLOR: #a6bac9
+}
+.subdatatitle1 {
+	BACKGROUND-COLOR: #a6bac9
+}
+.subdatatitle2 {
+	BACKGROUND-COLOR: #b6d2c2
+}
+.subdatabody {
+	BACKGROUND-COLOR: #a6bac9
+}
+.searchtitle {
+	FONT-SIZE: small; BACKGROUND-COLOR: #ffffff
+}
+.searchbody {
+	FONT-SIZE: small; BACKGROUND-COLOR: #8ca9ba
+}
+.settingstitle {
+	FONT-SIZE: small; BACKGROUND-COLOR: #6689a3
+}
+.settingsbody {
+	FONT-SIZE: small; BACKGROUND-COLOR: #8ca9ba
+}
+.uploadtitle {
+	FONT-SIZE: small; BACKGROUND-COLOR: #6689a3
+}
+.uploadbody {
+	FONT-SIZE: small; BACKGROUND-COLOR: #8ca9ba
+}
+.technicalinfo {
+	BACKGROUND-COLOR: #ffffff
+}
+.toggle {
+	COLOR: #3366ff
+}
+.error {
+	COLOR: red
+}
+.note {
+	COLOR: red
+}
+.pre {
+	FONT-FAMILY: monospace
+}
+TH.dlheader {
+	BACKGROUND-COLOR: #acc1cd; TEXT-ALIGN: center
+}
+TD.dllink {
+	BACKGROUND-COLOR: #bccdd7; TEXT-ALIGN: center
+}
+TD.dllink:hover {
+	BACKGROUND-COLOR: #dce5ea
+}
+TD.chromosome {
+	BACKGROUND-COLOR: #acc1cd; TEXT-ALIGN: center
+}
+A.service {
+	COLOR: #e6ebef
+}
+A.serviceselected {
+	COLOR: #e6ebef
+}
+TD.bin1_1 {
+	BACKGROUND-COLOR: #ffcccc
+}
+TD.bin1_2 {
+	BACKGROUND-COLOR: #ff9999
+}
+TD.bin1_3 {
+	BACKGROUND-COLOR: #ff6666
+}
+TD.bin2_1 {
+	BACKGROUND-COLOR: #ccffcc
+}
+TD.bin2_2 {
+	BACKGROUND-COLOR: #99ff99
+}
+TD.bin2_3 {
+	BACKGROUND-COLOR: #66ff66
+}
+TD.bin3_1 {
+	BACKGROUND-COLOR: #ccffff
+}
+TD.bin3_2 {
+	BACKGROUND-COLOR: #99ffff
+}
+TD.bin3_3 {
+	BACKGROUND-COLOR: #66ffff
+}
+TD.indHeader {
+	BACKGROUND-COLOR: #cccccc
+}
+TD.snpHeader {
+	BACKGROUND-COLOR: #cccccc
+}
+TD.genotype {
+	BACKGROUND-COLOR: #dddddd
+}
+TD.ind {
+	BACKGROUND-COLOR: #cccccc
+}
+TD.compare {
+	BACKGROUND-COLOR: yellow
+}

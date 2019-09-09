@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>            
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link id="themeStyles" rel="stylesheet" href="js/dojo-release-1.4.1/dijit/themes/soria/soria.css"> 
+      
+
+       <script type="text/javascript" src="js/dojo-release-1.4.1/dojo/dojo.js" 
+                    djConfig="parseOnLoad: true, isDebug: false, debugAtAllCosts: false" >
+       </script>
+       <script type="text/javascript"> 
+                    //dojo.require("dojo.parser");
+                    //dojo.require("dijit.form.parser");
+                    //dojo.require("dijit.form.TextBox");
+                    //dojo.require("dojo.widget.button");
+
+		    dojo.require("dijit.layout.BorderContainer");
+		    dojo.require("dijit.layout.ContentPane");
+ 		    dojo.require("dijit.layout.AccordionContainer");
+                    dojo.require("dijit.layout.AccordionPane");
+       </script>
+       <style type="text/css">
+                    @import "js/dojo-release-1.4.1/dojo/resources/dojo.css";
+                    @import "js/dojo-release-1.4.1/dijit/themes/soria/soria.css";
+                    html, body { height: 90%; width: 90%; padding: 5px; margin: 5px; border: 0; }
+                    #main { height: 100%; width: 100%; border: 0; }
+                    #header { margin: 0px; }
+                    #leftAccordion { width: 25%; }
+                    #bottomTabs { height: 40%; }
+
+       </style>
+       </head>
+    <body class="soria">
+<div dojoType="dijit.layout.BorderContainer" style="width: 100%; height: 100%">
+     <div dojoType="dijit.layout.ContentPane" region="top">Top pane</div>
+
+     <!-- <div dojoType="dijit.layout.ContentPane" region="leading">Leading pane</div> -->
+     <div dojoType="dijit.layout.AccordionContainer" region="leading">
+          <div dojoType="dijit.layout.AccordionPane" title="pane #1">accordion pane #1
+<table style="BORDER-COLLAPSE: collapse" bordercolor="#388FBD" cellpadding="4" border="1">
+<tr>
+<td>
+hello
+</td>
+</tr>
+</table>
+          </div>
+          <div dojoType="dijit.layout.AccordionPane" title="pane #2">accordion pane #2</div>
+          <div dojoType="dijit.layout.AccordionPane" title="pane #3">accordion pane #3</div>
+     </div>
+
+
+     <script type="text/javascript"> 
+          dojo.require("dijit.layout.TabContainer");
+     </script>
+
+     <!-- <div dojoType="dijit.layout.ContentPane" region="center">Center pane</div> -->
+     <div dojoType="dijit.layout.TabContainer" region="center">
+          <div dojoType="dijit.layout.ContentPane" title="tab #1">tab pane #1</div>
+          <div dojoType="dijit.layout.ContentPane" title="tab #2">tab pane #2</div>
+          <div dojoType="dijit.layout.ContentPane" title="tab #3">tab pane #3</div>
+     </div>
+
+
+
+
+     <div dojoType="dijit.layout.ContentPane" region="trailing">Trailing pane</div>
+     <div dojoType="dijit.layout.ContentPane" region="bottom">Bottom pane</div>
+
+</div>
+
+    </body>
+    </html>
+    
+

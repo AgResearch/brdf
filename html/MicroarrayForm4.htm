@@ -1,0 +1,716 @@
+<html>
+<head>
+<title>AgResearch Bioinformatics - Microarray Upload Form</title>
+<!--link rel="stylesheet" type="text/css" href="css/forms.css"-->
+<style>
+body		{margin-top: 1cm ; margin-bottom: 1cm; margin-left: 5%; margin-right: 5%; 
+		font-family: arial, helvetica, geneva, sans-serif;BACKGROUND: #f0f9ff}
+
+p		{margin-top: .3cm ; margin-bottom: .3cm; margin-left: .4cm; margin-right: .4cm; 
+		font-family: arial, helvetica, geneva, sans-serif}
+p.fieldname 	{margin-top: .3cm ; margin-bottom: .3cm; margin-left: .4cm; margin-right: .4cm; 
+		font-family: arial, helvetica, geneva, sans-serif}
+p.footer	{text-align: center ; margin-top: 0.5cm ; margin-bottom: 0.5cm; font-family: arial, helvetica, geneva, sans-serif}
+
+b.b		{font-family: arial, helvetica, geneva, sans-serif; font-weight: 700; color: #424b50}
+ul		{font-family: arial, helvetica, geneva, sans-serif}
+ol		{font-family: arial, helvetica, geneva, sans-serif}
+dl		{font-family: arial, helvetica, geneva, sans-serif}
+
+th              {font-family: arial, helvetica, geneva, sans-serif; font-weight: 400}
+
+h1		{text-align: center; color: #388fbd; 
+		font-family: arial, helvetica, geneva, sans-serif}
+h1.new          {text-align: center; color: #4d585e;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.b1           {margin-top: 0.5cm; text-align: center; color:#2d59b2;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.b2           {margin-top: 0.5cm; text-align: center; color:#1d7db5;
+                font-family: arial, helvetica, geneva, sans-serif}
+h1.top		{margin-top: 0.5cm; text-align: center; color: blue;
+		font-family: arial, helvetica, geneva, sans-serif}
+
+h2		{text-align: center; font-family: arial, helvetica, geneva, sans-serif}
+h3		{font-family: arial, helvetica, geneva, sans-serif}
+h4		{font-family: arial, helvetica, geneva, sans-serif}
+h5		{font-family: arial, helvetica, geneva, sans-serif}
+h6		{font-family: arial, helvetica, geneva, sans-serif}
+a 		{font-family: arial, helvetica, geneva, sans-serif}
+
+table   	{background-color: antiquewhite}
+
+input.detail   	{margin-left: 1cm}
+
+textarea.detail	{margin-left: 1cm}
+
+td		{font-family: arial, helvetica, geneva, sans-serif}
+td.fieldname	{font-family: arial, helvetica, geneva, sans-serif}
+
+tr      	{background-color: #B1FF92}
+.plainTable    	{background-color: #B1FF92}
+a:hover 	{color: blue; text-decoration: underline }
+
+.color0          {border: solid black; border-width: 5px; width: 80; height: 80}
+.color1          {background-color: #FF9292; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color2          {background-color: #FFDA92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color3          {background-color: #FFFF92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color4          {background-color: #B1FF92; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color5          {background-color: #92E7FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color6          {background-color: #9C92FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+.color7          {background-color: #F392FF; border: solid black; border-width: 1px; cursor: pointer; width: 88; height: 88}
+
+.arrow           {font-size: 200%; width: 40}
+</style>
+<script language="JavaScript">
+
+var bgColour = "";
+var alreadySubmitted = false;
+
+function checkAll() {
+   // make sure we have not already submitted this form
+   if(alreadySubmitted) {
+      window.alert("This Form has already been submitted, please wait");
+      return false;
+   }
+
+   // check the gpr filename out
+   var file = arrayform.external_filename.value;
+   if (file == "") {
+      highLight(arrayform.external_filename,"You must specify a file");
+      return false;
+   }
+   else {
+      lowLight(arrayform.external_filename)
+   }
+
+
+   // finally , set the submitted flag
+   alreadySubmitted = true;
+}
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   //eval("item.style.background = '" + bgColour + "'");
+   eval("item.style.background = 'white'");
+}
+
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+
+
+var file_count = 1
+
+function addFile(tableID) {
+   var table = document.getElementById(tableID);
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileDescText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.colSpan="2";
+      cell.innerHTML = FileDescField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = "&nbsp";
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.innerHTML = FileField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeText(file_count+1);
+      var cell = row.insertCell(3);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeField(file_count+1);
+      file_count++;
+      setFileCount(file_count);   
+}
+
+function setChannelNumber(comboID, tableID) {
+   var box = document.getElementById(comboID);
+   var pos = box[box.selectedIndex].value;
+
+   var table = document.getElementById(tableID);
+   
+   if (pos < 10) { //1-channel array
+      var row = table.rows[0];
+      var col = row.cells[1];
+      col.style.display = "none";
+      col = row.cells[2];
+      col.style.display = "none";
+      col = row.cells[3];
+      col.style.display = "none";
+      row = table.rows[1];
+      col = row.cells[1];
+      col.style.display = "none";
+      col = row.cells[2];
+      col.style.display = "none";
+      col = row.cells[3];
+      col.style.display = "none";
+   }
+   else if (pos < 20) { //2-channel array
+      var row = table.rows[0];
+      var col = row.cells[1];
+      col.style.display = "";
+      col = row.cells[2];
+      col.style.display = "none";
+      col = row.cells[3];
+      col.style.display = "none";
+      row = table.rows[1];
+      col = row.cells[1];
+      col.style.display = "";
+      col = row.cells[2];
+      col.style.display = "none";
+      col = row.cells[3];
+      col.style.display = "none";
+   }
+   else if (pos < 30) { //4-channel array
+      var row = table.rows[0];
+      var col = row.cells[1];
+      col.style.display = "";
+      col = row.cells[2];
+      col.style.display = "";
+      col = row.cells[3];
+      col.style.display = "";
+      row = table.rows[1];
+      col = row.cells[1];
+      col.style.display = "";
+      col = row.cells[2];
+      col.style.display = "";
+      col = row.cells[3];
+      col.style.display = "";
+   }
+}
+
+function goToPage(pageName) {
+   return location.href=pageName;
+}
+
+</script>
+</head><body>
+<FORM name="arrayform" onSubmit="return false" METHOD="POST" ENCTYPE="multipart/form-data" ACTION="/cgi-bin/sheepgenomics/form.py" >
+<table border="true" id="Top_table" width=100%>
+   <tr> 
+      <td colspan="2"> 
+         <h1 class="top">AgResearch Microarray Upload Form</h1>
+         <font color=crimson size=+2><b>This Form is not functional; it is here for users to provide feedback on.</b></font>
+      </td>
+   </tr>
+   <tr> 
+      <td colspan="2"> 
+         <table align=center class=plainTable style="border-width: 0">
+            <tr align=center valign=middle>
+               <td class=color1 title="Define one or more protocols if required" onclick="goToPage('MicroarrayForm1.htm');">
+                  <img src="images/protocol.gif" border="0" height="42" width="42"/>
+                  <br>Protocol
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color2 title="Define one or more experimental subjects if required" onclick="goToPage('MicroarrayForm2.htm');">
+                  <img src="images/sheep.gif" border="0" height="42" width="42"/>
+                  <br>Subject
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color3 title="Define one or more samples if required" onclick="goToPage('MicroarrayForm3.htm');">
+                  <img src="images/eppendorf.gif" border="0" height="42" width="42"/>
+                  <br>Sample
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color0 title="Submit Files">
+                  <img src="images/microarray.jpg" border="0" height="42" width="42"/>
+                  <br>Files
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color5 title="Define Series" onclick="goToPage('MicroarrayForm5.htm');">
+                  <img src="images/series.gif" border="0" height="42" width="42"/>
+                  <br>Series
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color6 title="Define contrasts" onclick="goToPage('MicroarrayForm6.htm');">
+                  <img src="images/contrast.gif" border="0" height="42" width="42"/>
+                  <br>Contrasts
+               </td>
+               <td class=arrow>
+                  &rarr;
+               </td>
+               <td class=color7 title="Submit related documents (if any)" onclick="goToPage('MicroarrayForm7.htm');">
+                  <img src="images/documents.gif" border="0" height="42" width="42"/>
+                  <br>Documents
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+
+<br>
+
+<table border="true" id="Outer_table" width=100%>
+   <tr>
+      <td colspan=2 >
+         <div style="text-align: center; font-size: 150%; font-weight: bold; line-height: 2">Microarray</div>
+         <div style="text-align: left; font-size: 90%; font-weight: normal;">
+            Upload data-files and related image-files using this form</div>
+      </td>
+   </tr>
+   
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Your name:</b>
+      </td>
+      <td class="input" width=83%>
+          <!--input name="submittedby" value="__submitted_by__" size="50" type="text"/-->
+          <input name="submittedby" value="" size="50" type="text"/>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Your email address:</b>
+      </td>
+      <td class="input" width=83%>
+          <!--input name="emailaddress" value="__submitter_email_address__" size="50" type="text"/-->
+          <input name="emailaddress" value="" size="50" type="text"/>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Project ID:</b>
+      </td>
+      <td class="input" width=83%>
+         <select name="projectID" >
+            <option value="" selected>
+            <option value="SFG.005A">SFG.005A
+            <option value="SFP.017">SFP.017
+            <option value="SG.117">SG.117
+            <option value="SG.206">SG.206
+            <option value="SG.109">SG.109
+            <option value="SGP.014">SGP.014
+            <option value="SGP.205">SGP.205
+            <!--__EXISTING_PROJECTS__-->
+            <option value="Other">Other
+         </select>
+         &nbsp;&nbsp; Other project (not in list): 
+         <input name="otherProject" value="" size="40"/>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Sub-Program:</b>
+      </td>
+      <td class="input" width=83%>
+         <SELECT name="subProgram">
+            <OPTION value="" selected>
+            <OPTION value="Coretech">Coretech
+            <OPTION value="Muscle">Muscle
+            <OPTION value="Parasite">Parasite
+            <OPTION value="Wool">Wool
+            <OPTION value="Reproduction">Reproduction
+         </SELECT>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Experiment Name:</b>
+      </td>
+      <td class="input" width=83%>
+         <SELECT name="expName">
+            <OPTION value="" selected>
+            <OPTION value="new">New Experiment
+         </SELECT><br>
+         New Name (if not in list): 
+         <input name="otherExp" value="" size="115"/>
+      </td>
+   </tr>
+
+
+
+   <tr>
+      <td colspan=2>
+         <span style="font-size: 150%; font-weight: bold; line-height: 2">Microarray File Details:</span>
+      </td>
+   </tr>
+   
+   <tr>
+      <td colspan=2>
+         <p align=right><button type="button" id="addButton" onclick="">Add Another File</button> <!--onclick="addFile(\'File_table\');"--></p>
+         <table align=center width=90% id='File_table'>
+	   
+	    <tr>
+	       <td>
+		  <p><b>Type of Microarray:</b>
+	       </td>
+	       <td>
+	          <select id="arrayCombo1" name="arrayType1" SIZE=1 onChange="setChannelNumber('arrayCombo1', 'channels1');">
+		     <option value="">
+		     <!--option value="11"> Affy Bovine Genome Array
+		     <option value="12"> Spotted long oligonucleotide array
+		     <option value="13"> Ovine 20K Array
+		     <option value="14"> SNP Microarray-->
+		     <option value="05"> Other single-channel array
+		     <option value="16"> Other two-channel array
+		     <option value="27"> Other four-channel array
+
+	          </select>
+	          <br>Which Array?:
+	          <select id="arrayCombo1" name="arrayName1" SIZE=1>
+			<OPTION value="" selected>
+			<OPTION value="A-AFFY-16">Affymetrix GeneChip® Arabidopsis Genome [AG1]
+			<OPTION value="A-AFFY-2">Affymetrix GeneChip® Arabidopsis Genome [ATH1-121501]
+			<OPTION value="A-AGIL-4">Agilent Arabidopsis 2 Oligo Microarray [G4136A]
+			<OPTION value="A-AGIL-12">Agilent Arabidopsis 3 Oligo Microarray [G4142A]
+			<OPTION value="A-AFFY-60">Affymetrix GeneChip® C. elegans Genome Array [Celegans]
+			<OPTION value="A-AFFY-38">Affymetrix GeneChip® Zebrafish Genome Array [Zebrafish]
+			<OPTION value="A-AFFY-17">Affymetrix GeneChip® Drosophila Genome [DrosGenome1]
+			<OPTION value="A-AFFY-35">Affymetrix GeneChip® Drosophila Genome 2.0 Array [Drosophila_2]
+			<OPTION value="A-AFFY-50">Affymetrix GeneChip® Drosophila Tiling Array Set - Forward Array (G6 scanner)
+			<OPTION value="A-AFFY-52">Affymetrix GeneChip® Drosophila Tiling Array Set - Forward Array [Dm35b_MF_v02]
+			<OPTION value="A-AFFY-53">Affymetrix GeneChip® Drosophila Tiling Array Set - Reverse Array [Dm35b_MR_v02]
+			<OPTION value="A-AFFY-29">Affymetrix GeneChip® E.coli Antisense Genome Array [Ecoli_ASv2]
+			<OPTION value="A-AFFY-28">Affymetrix GeneChip® E.coli Genome (Sense) [Ecoli]
+			<OPTION value="A-AFFY-56">Affymetrix GeneChip® E.coli Genome 2.0 Array [E_coli_2]
+			<OPTION value="A-MEXP-129">MWG E. coli K12 V2 Array
+			<OPTION value="A-TOXM-10">[ILSI] Clontech Atlas Glass Human 1.0 [#7900]
+			<OPTION value="A-AFFY-65">Affymetrix GeneChip Human Mapping 10K 2.0 Array Xba 142
+			<OPTION value="A-AFFY-64">Affymetrix GeneChip Human Mapping 10K Array Xba 131
+			<OPTION value="A-AFFY-32">Affymetrix GeneChip® HuGeneFL Array [HuGeneFL]
+			<OPTION value="A-AFFY-41">Affymetrix GeneChip® Human Genome Focus Array [HG-Focus]
+			<OPTION value="A-AFFY-33">Affymetrix GeneChip® Human Genome HG-U133A [HG-U133A]
+			<OPTION value="A-AFFY-34">Affymetrix GeneChip® Human Genome HG-U133B [HG-U133B]
+			<OPTION value="A-AFFY-44">Affymetrix GeneChip® Human Genome U133 Plus 2.0 [HG-U133_Plus_2]
+			<OPTION value="A-AFFY-37">Affymetrix GeneChip® Human Genome U133A 2.0 [HG-U133A_2]
+			<OPTION value="A-AFFY-9">Affymetrix GeneChip® Human Genome U95A [HG_U95A]
+			<OPTION value="A-AFFY-1">Affymetrix GeneChip® Human Genome U95Av2 [HG_U95Av2]
+			<OPTION value="A-AFFY-10">Affymetrix GeneChip® Human Genome U95B [HG_U95B]
+			<OPTION value="A-AFFY-11">Affymetrix GeneChip® Human Genome U95C [HG_U95C]
+			<OPTION value="A-AFFY-12">Affymetrix GeneChip® Human Genome U95D [HG_U95D]
+			<OPTION value="A-AFFY-13">Affymetrix GeneChip® Human Genome U95E [HG_U95E]
+			<OPTION value="A-AFFY-54">Affymetrix GeneChip® Human X3P Array [U133_X3P]
+			<OPTION value="A-MEXP-287">Agilent Human 1 cDNA Microarray - Langland layout
+			<OPTION value="A-MEXP-132">Agilent Human 1 cDNA Microarray [G4100A]
+			<OPTION value="A-AGIL-9">Agilent Human 1A Microarray(V2)[G4110B]
+			<OPTION value="A-AGIL-7">Agilent Human 1B Microarray [G4111A]
+			<OPTION value="A-MEXP-97">Agilent Human Oligo 22K Array 60-25mer
+			<OPTION value="A-AGIL-11">Agilent Whole Human Genome Oligo Microarray [G4112A]
+			<OPTION value="A-MEXP-218">Agilent Whole Human Genome Oligo Microarray [G4112A] (non-Agilent scanners)
+			<OPTION value="A-AGIL-14">Agilent® Human 1A Oligo (60-mer) Microarray (2004 annotation) [G4110A]
+			<OPTION value="A-AGIL-3">Agilent® Human 1A Oligo (60-mer) Microarray (pre 2004 annotation) [G4110A]
+			<OPTION value="A-MEXP-166">Amersham CodeLink UniSet Human 10K II Bioarray
+			<OPTION value="A-MEXP-162">Amersham CodeLink™ UniSet Human 10K I Bioarray
+			<OPTION value="A-MEXP-131">Clontech Atlas Glass Human 3.8 Array
+			<OPTION value="A-MEXP-304">Dessen Agilent Whole Human Genome oligo array
+			<OPTION value="A-GEHB-1">GE Healthcare/Amersham Biosciences CodeLink™ Human Whole Genome Bioarray
+			<OPTION value="A-GEHB-2">GE Healthcare/Amersham Biosciences CodeLink™ UniSet Human 20K I Bioarray
+			<OPTION value="A-MEXP-196">IGR Agilent P_IGR_001 Human 22K v1
+			<OPTION value="A-MEXP-133">MWG Pan Human 10K Array A
+			<OPTION value="A-MEXP-126">RFCGR_HGMP_Human_Hs_Clone_Av1
+			<OPTION value="A-MEXP-63">RFCGR_HGMP_Human_Hs_Clone_Av2
+			<OPTION value="A-MEXP-52">RFCGR_HGMP_Human_Hs_SGC_Av1
+			<OPTION value="A-MEXP-53">RFCGR_HGMP_Human_Hs_SGC_Bv1
+			<OPTION value="A-MEXP-265">Sanger H. sapiens Encode chip 25.3K ENCODE1.1.1
+			<OPTION value="A-MEXP-510">Sanger H. sapiens Whole Genome Tile Path 26.6k v1
+			<OPTION value="A-MEXP-511">Sanger H. sapiens Whole Genome Tile Path 26.6k v2
+			<OPTION value="A-SNGR-5">Sanger Institute H. sapiens 10K array, Hver1.2.1
+			<OPTION value="A-MEXP-522">Sanger Institute H. sapiens 10K array, Hver1.3.1
+			<OPTION value="A-MEXP-210">Sanger Institute H. sapiens 15K array, Hver2.1.1
+			<OPTION value="A-SNGR-3">Sanger Institute H. sapiens 5K-1 array, Hver1.1.1
+			<OPTION value="A-SNGR-4">Sanger Institute H. sapiens 5K-2 array, Hver1.1.2
+			<OPTION value="A-MEXP-204">Sanger Institute H. sapiens Chr1-TP-2 12k v2
+			<OPTION value="A-MEXP-156">Sanger Institute H. sapiens Encode chip 21.6K ENCODE2.1.1
+			<OPTION value="A-MEXP-215">Sanger Institute H. sapiens Encode chip 31.2K ENCODE3.1.1
+			<OPTION value="A-MEXP-345">Sanger-Nimblegen Human array painting array_Case 1
+			<OPTION value="A-MEXP-344">Sanger-Nimblegen Human array painting array_Cases 2-4
+			<OPTION value="A-UHNC-4">UHN Homo sapiens 1.7k2 array
+			<OPTION value="A-UHNC-1">UHN Homo sapiens 1.7k3 array
+			<OPTION value="A-UHNC-2">UHN Homo sapiens 1.7k4 array
+			<OPTION value="A-UHNC-8">UHN Homo sapiens 1.7k7 array
+			<OPTION value="A-UHNC-7">UHN Homo sapiens 1.7k8 array
+			<OPTION value="A-UHNC-5">UHN Homo sapiens 19k4 array
+			<OPTION value="A-UHNC-6">UHN Homo sapiens 19k6 array
+			<OPTION value="A-UHNC-13">UHN Homo sapiens CGI12k1
+			<OPTION value="A-UHNC-9">UHN Homo sapiens DSH19k2 Part A
+			<OPTION value="A-UHNC-10">UHN Homo sapiens DSH19k2 Part B
+			<OPTION value="A-UHNC-11">UHN Homo sapiens DSH19k3 Part A
+			<OPTION value="A-UHNC-12">UHN Homo sapiens DSH19k3 Part B
+			<OPTION value="A-AFFY-31">Affymetrix GeneChip® Barley Genome [Barley1]
+			<OPTION value="A-MEXP-174">Washington Rhesus Macaque 11K Agilent oligo array
+			<OPTION value="A-AFFY-23">Affymetrix GeneChip® Mouse Expression Array MOE430A [MOE430A]
+			<OPTION value="A-AFFY-24">Affymetrix GeneChip® Mouse Expression Array MOE430B [MOE430B]
+			<OPTION value="A-AFFY-45">Affymetrix GeneChip® Mouse Genome 430 2.0 [Mouse430_2]
+			<OPTION value="A-AFFY-36">Affymetrix GeneChip® Mouse Genome 430A 2.0 [Mouse430A_2]
+			<OPTION value="A-AFFY-14">Affymetrix GeneChip® Murine 11K Genome [Mu11KsubA]
+			<OPTION value="A-AFFY-15">Affymetrix GeneChip® Murine 11K Genome [Mu11KsubB]
+			<OPTION value="A-AFFY-3">Affymetrix GeneChip® Murine Genome U74A [MG_U74A]
+			<OPTION value="A-AFFY-6">Affymetrix GeneChip® Murine Genome U74Av2 [MG_U74Av2]
+			<OPTION value="A-AFFY-4">Affymetrix GeneChip® Murine Genome U74B [MG_U74B]
+			<OPTION value="A-AFFY-7">Affymetrix GeneChip® Murine Genome U74Bv2 [MG_U74Bv2]
+			<OPTION value="A-AFFY-5">Affymetrix GeneChip® Murine Genome U74C [MG_U74C]
+			<OPTION value="A-AFFY-8">Affymetrix GeneChip® Murine Genome U74Cv2 [MG_U74Cv2]
+			<OPTION value="A-MEXP-72">Agilent cDNA 10K Mouse Array (G4104A)
+			<OPTION value="A-AGIL-8">Agilent Mouse Microarray [G4121A]
+			<OPTION value="A-MEXP-89">Agilent Mouse Oligo (Tox) G4121A
+			<OPTION value="A-AGIL-13">Agilent Whole Mouse Genome [G4122A]
+			<OPTION value="A-AGIL-2">Agilent® Mouse (Development) Oligo (60-mer) Microarray [G4120A]
+			<OPTION value="A-MEXP-73">Amersham CodeLink Uniset Mouse I Bioarray
+			<OPTION value="A-MEXP-32">HGMP, M.musculus 6.1k array 1
+			<OPTION value="A-CBIL-5">Incyte MouseGEM 1.14, 1.16, 1.26
+			<OPTION value="A-MEXP-198">NIA Agilent Mouse 22K Microarray v2.0 (Development 60-mer Oligo)
+			<OPTION value="A-MEXP-199">NIA Agilent Mouse 44K Microarray v1.0 (Development-Toxicology 60-mer Oligo)
+			<OPTION value="A-MEXP-163">NIA Agilent Mouse 44K Microarray v2.0 (Whole Genome 60-mer Oligo)
+			<OPTION value="A-MEXP-200">NIA Agilent Mouse 44K Microarray v2.1 (Whole Genome 60-mer Oligo)
+			<OPTION value="A-MEXP-62">RFCGR_HGMP_Mouse_Mm_Immuno_Av2
+			<OPTION value="A-MEXP-64">RFCGR_HGMP_Mouse_Mm_NIA_Av2
+			<OPTION value="A-MEXP-65">RFCGR_HGMP_Mouse_Mm_NIA_Bv2
+			<OPTION value="A-MEXP-165">RFCGR_HGMP_Mouse_Mm_SGC_Av1
+			<OPTION value="A-MEXP-54">RFCGR_HGMP_Mouse_Mm_SGC_Av2
+			<OPTION value="A-SNGR-16">Sanger Institute M. musculus array, Mver1.1.1
+			<OPTION value="A-SNGR-17">Sanger Institute M. musculus array, Mver1.2.1
+			<OPTION value="A-UHNC-14">UHN Mus musculus 15kv1 array
+			<OPTION value="A-UHNC-3">UHN Mus musculus 15kv3 array
+			<OPTION value="A-AGIL-10">Agilent Rice Microarray [G4138A]
+			<OPTION value="A-AFFY-30">Affymetrix GeneChip® P. aeruginosa Genome[Pae_G1a]
+			<OPTION value="A-MEXP-34">RFCGR_HGMP_Rat_Rn_SGC_Av1
+			<OPTION value="A-AFFY-42">Affymetrix GeneChip® S. cerevisiae Tiling
+			<OPTION value="A-SGRP-1">Sanger Institute PSU Salmonella Enterica. Array
+			<OPTION value="A-AFFY-46">Affymetrix GeneChip® SARS Resequencing Array
+			<OPTION value="A-SGRP-2">Sanger Institute PSU Schistosoma mansoni EST Array
+			<OPTION value="A-SNGR-6">Sanger Institute S. pombe array 1 template 1.2
+			<OPTION value="A-SNGR-7">Sanger Institute S. pombe array 2.1.1 template 2.2
+			<OPTION value="A-SNGR-8">Sanger Institute S. pombe array 2.2.1 template 3.2
+			<OPTION value="A-SNGR-9">Sanger Institute S. pombe array 3.1.1 template 4
+			<OPTION value="A-SNGR-10">Sanger Institute S. pombe array 3.1.1 template 4.1
+			<OPTION value="A-SNGR-11">Sanger Institute S. pombe array 3.1.1 template 4.2
+			<OPTION value="A-SNGR-12">Sanger Institute S. pombe array 3.1.1 template 4.3
+			<OPTION value="A-SNGR-13">Sanger Institute S. pombe array 3.1.1 template 5.1
+			<OPTION value="A-SNGR-14">Sanger Institute S. pombe array 3.1.1 template 5.2
+			<OPTION value="A-SNGR-15">Sanger Institute S. pombe array 3.1.1 template 5.3
+			<OPTION value="A-MEXP-528">Sanger Institute S. pombe array 3.1.1 template 5.4
+			<OPTION value="A-MEXP-529">Sanger Institute S. pombe array 3.1.1 template 5.5
+			<OPTION value="A-MEXP-530">Sanger Institute S. pombe array 3.1.1 template 5.6
+			<OPTION value="A-MEXP-531">Sanger Institute S. pombe array 3.1.1 template 5.7
+			<OPTION value="A-SNGR-2">Sanger Institute S. pombe array version 2, Pver2.1.1
+			<OPTION value="A-SNGR-1">Sanger Institute S. pombe array version 2.2.1
+			<OPTION value="A-AFFY-57">Affymetrix GeneChip® Wheat Genome Array [wheat]
+			<OPTION value="A-AFFY-62">Affymetrix GeneChip® Xenopus laevis Genome Array [Xenopus_laevis]
+			<OPTION value="A-MEXP-349">Sanger T31 Xenopus tropicalis 6528 v2.1
+			<OPTION value="A-AFFY-61">Affymetrix GeneChip® ENCODE01 Forward Array
+			<OPTION value="A-AFFY-67">Affymetrix GeneChip® ENCODE01 Reverse Array
+			<OPTION value="A-MEXP-328">CNIO-Agilent_Hs_CLL_1.9K
+			<OPTION value="A-TOXM-9">[ILSI] Clontech Atlas Rat Toxicology II [#7732]
+			<OPTION value="A-TOXM-7">[ILSI] Incyte Rat GEM 1.04 Microarray
+			<OPTION value="A-TOXM-6">[ILSI] Incyte Rat GEM 3.03 Microarray
+			<OPTION value="A-MEXP-47">AAT Rat HepatoChip
+			<OPTION value="A-AFFY-25">Affymetrix GeneChip® Rat Expression Array RAE230A [RAE230A]
+			<OPTION value="A-AFFY-26">Affymetrix GeneChip® Rat Expression Array RAE230B [RAE230B]
+			<OPTION value="A-AFFY-43">Affymetrix GeneChip® Rat Genome 230 2.0 [Rat230_2]
+			<OPTION value="A-AFFY-18">Affymetrix GeneChip® Rat Genome U34A [RG_U34A]
+			<OPTION value="A-AFFY-19">Affymetrix GeneChip® Rat Genome U34B [RG_U34B]
+			<OPTION value="A-AFFY-20">Affymetrix GeneChip® Rat Genome U34C [RG_U34C]
+			<OPTION value="A-AFFY-22">Affymetrix GeneChip® Rat Neurobiology U34 [RN_U34]
+			<OPTION value="A-AFFY-21">Affymetrix GeneChip® Rat Toxicology U34 [RT_U34]
+			<OPTION value="A-AGIL-6">Agilent ® Rat Oligo Microarray [G4130A]
+			<OPTION value="A-MEXP-338">Agilent Rat Oligo Microarray G4130A non-Agilent scanner
+			<OPTION value="A-MEXP-124">Amersham CodeLink UniSet Rat I Bioarray
+			<OPTION value="A-MEXP-22">Incyte RatGEM 1.01
+			<OPTION value="A-MEXP-11">Incyte RatGEM 1.04
+			<OPTION value="A-MEXP-18">Incyte RatGEM 1.05
+			<OPTION value="A-AFFY-47">Affymetrix GeneChip® Yeast Genome 2.0 Array [Yeast_2]
+			<OPTION value="A-AFFY-27">Affymetrix GeneChip® Yeast Genome S98 [YG_S98]
+	          </select>
+	      </td>
+	   </tr>
+
+	   <tr><td colspan=2>
+	      <table width=100% id="channels1">
+	         <tr>
+	            <th bgcolor="pink" width=25%>
+	               CY5 sample
+	            </th>
+	            <th bgcolor="lightgreen" width=25% style="display: none">
+	               CY3 sample
+	            </th>
+	            <th bgcolor="deepskyblue" width=25% style="display: none">
+	               Blue sample
+	            </th>
+	            <th bgcolor="#FFFF60" width=25% style="display: none">
+	               Yellow sample
+	            </th>
+	         </tr>
+	         <tr>
+	            <td align=center bgcolor="pink" width=25%>
+	               <select name="pinkSample1">
+                          <option value="">
+                          <option value="Sample A">Sample A
+                          <option value="Sample B">Sample B
+                          <option value="Sample C">Sample C
+                          <option value="Sample D">Sample D
+	            </td>
+	            <td align=center bgcolor="lightgreen" width=25% style="display: none">
+	               <select name="greenSample1">
+                          <option value="">
+                          <option value="Sample A">Sample A
+                          <option value="Sample B">Sample B
+                          <option value="Sample C">Sample C
+                          <option value="Sample D">Sample D
+	            </td>
+	            <td align=center bgcolor="deepskyblue" width=25% style="display: none">
+	               <select name="blueSample1">
+                          <option value="">
+                          <option value="Sample A">Sample A
+                          <option value="Sample B">Sample B
+                          <option value="Sample C">Sample C
+                          <option value="Sample D">Sample D
+	            </td>
+	            <td align=center bgcolor="#FFFF60" width=25% style="display: none">
+	               <select name="yellowSample1">
+                          <option value="">
+                          <option value="Sample A">Sample A
+                          <option value="Sample B">Sample B
+                          <option value="Sample C">Sample C
+                          <option value="Sample D">Sample D
+	            </td>
+	         </tr>
+	      </table>
+	   </td></tr>
+
+
+	   
+	   
+	   <tr>
+	      <td width=35%>
+		 <p><b>Results File:</b> <i>(e.g. GenePix GPR, Affymetrix CHP)</i>
+	      </td>
+	      <td>
+	         <!-- <INPUT onChange="checkExt();" TYPE="file" NAME="external_filename" SIZE=30 MAXLENGTH=256><br> -->
+	         <INPUT TYPE="file" NAME="external_filename" SIZE=85 MAXLENGTH=256><br> 
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Red JPEG file:</b>
+	      </td>
+	      <td>
+		 <INPUT TYPE="file" NAME="red_jpeg_external_filename1" SIZE=85 MAXLENGTH=256><br>
+	      </td>
+	   </tr>
+	   <tr>
+	      <td>
+		 <p><b>Green JPEG file:</b>
+	      </td>
+	      <td>
+		 <INPUT TYPE="file" NAME="green_jpeg_external_filename1" SIZE=85 MAXLENGTH=256><br>
+	      </td>
+	   </tr>
+	   <tr>
+	      <td>
+		 <p><b>Combined JPEG file:</b>
+	      </td>
+	      <td>
+		 <INPUT TYPE="file" NAME="combo_jpeg_external_filename1" SIZE=85 MAXLENGTH=256><br>
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Data format:</b>
+	      </td>
+	      <td>
+		 <select name = "IMPORT_TYPE" SIZE=1 >
+		    <option value="DNASEQUENCE_MICROARRAY_GPR" SELECTED>GenePix GPR file
+		    <option value="DNASEQUENCE_MICROARRAY_CHP" SELECTED>Affymetrix CHP file
+		 </select> &nbsp; &nbsp; &nbsp;
+		 if other, <a href="mailto:alan.mcculloch@agresearch.co.nz;jason.mitchell@agresearch.co.nz?subject=New Microarray Format">please email us</a> full details of format
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Checksum:</b>
+	      </td>
+	      <td>
+		 <input name = "checkSum" SIZE=16 type="text" value="">
+		 <select name="checkSumType" size="1">
+		    <option value="F2_Mean_minus_B2">  F532 Mean - B532 (one of the last columns in GPR file)
+		 </select>
+		 <br><i style="font-size: 80%"> (This will be used to check that the database receives all of your results correctly.
+		 You can calculate it simply by summing all the ch1/ch2 ratio values in your data, in Excel) </i>
+	      </td>
+
+	   </tr>
+
+	   <tr>
+	      <td>
+	         <p><b>Description of this experiment:</b>
+	      </td>
+	      <td>
+		 <textarea name="experiment_description" title="Please enter a description here" type="textarea" rows="4" cols="72">(Please enter a description here)</textarea> 
+	      </td>
+	   </tr>
+
+
+
+
+         </table>
+         <br>
+      </td>
+   </tr>
+   
+
+
+<tr><td colspan=2>
+<P>
+<i>
+Please <a href="mailto:alan.mcculloch@agresearch.co.nz;jason.mitchell@agresearch.co.nz?subject=Microarray Suggestion">email us</a> with any suggestions for improvements to this form.
+</i>
+
+</td></tr>
+   <tr>
+      <td colspan=2 align=center>
+         <p><input type="submit" value="Submit Experiment">  </input>
+      </td>
+   </tr>
+</table>
+</FORM>
+</body>
+</html>

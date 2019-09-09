@@ -1,0 +1,167 @@
+<html>
+
+<head>
+<title>AgResearch Searchbar</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="shortcut icon" href="favicon.ico" >
+<link rel="icon" type="image/gif" href="animated_favicon1.gif" >
+
+<base target="main">
+<script type="text/javascript">
+//=================================================================//
+var bgColour = "";
+
+function checkAll() {
+   if(trim(searchForm.obTypeName.value) == "None Selected") {
+      highLight(searchForm.obTypeName,"Please select a value from the Search field");
+      return false;
+   }
+   else {
+      lowLight(searchForm.obTypeName);
+   }
+   if(trim(searchForm.queryString.value) == "") {
+      highLight(searchForm.queryString,"Please enter a value to search");
+      return false;
+   }
+   else {
+      lowLight(searchForm.queryString);
+   }
+   return true;
+}
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   eval("item.style.background = 'white'");
+}
+
+/*
+* a function to trim leading and trailing spaces from a string
+*/
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+function searchHelp() {
+   mywindow = window.open ("../cgi-bin/sheepgenomics/getHelp.py?helppage=Help_query_interface",
+   "Help","width=900,height=600,scrollbars=1");
+   mywindow.moveTo(150,250);
+}
+
+</script>
+</head>
+
+<body bgcolor="#388FBD">
+<table>
+<tr>
+<td align="center" valign="top" >
+<B>AgResearch Bioinformatics <br/> Database </b>
+</td>
+<td align="right">
+<form name="searchForm" method="post" onSubmit="return checkAll()" action="/cgi-bin/search.py" target="main"> 
+<font color="white"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; View </font>
+<SELECT name=viewName> <OPTION value=default selected>Default (Show 
+  All)<OPTION value=summary>Summary only</OPTION> </SELECT> &nbsp; &nbsp; &nbsp; 
+&nbsp; <font color="white"> Search </font>
+<select name="obTypeName">
+                      <optgroup label="AgResearch Database">
+                      <option value="Sample Lists">Hiseq runs/GBS (and other) sample lists
+                      <option value="Microarray Spots">Microarray Spots/Probesets
+                      <option value="Genetic Tests">SNPs </option>
+                      <option value="Libraries">Libaries
+                      <option value="Library Sequencing">Library Sequencing Run
+                      <option value="BioSequences"  selected>Sequences
+                      <option value="All Lab Resources"> All Lab Resources
+                      <option value="Genetic Tables">Genes
+                      <option value="BioSubjects">Animals 
+                      <option value="BioSamples">Samples/GBS SQ* libraries
+                      <option value="BioSampling">Sample details 
+                      <option value="Ontologies">Ontologies
+                      <option value="Ontology Terms">Ontology Terms
+                      <option value="Comments">Comments
+                      <option value="Databases">Sequence Databases
+                      <option value="Database Searches">Sequence Database Searches (Blast runs etc)
+                      <option value="Protocols">Protocols
+                      <option value="Contributed Data Tables">Contributed Data Tables (e.g. GO associations, Geneinfo, Legacy tables etc)
+                      <option value="Analysis Procedures">Data Analysis Scripts and Procedures
+                      <option value="Past Searches"> Past Searches
+                      <option value="External Links"> External Links
+                      </optgroup>
+                      <optgroup label="Cattle Resources">
+                      <option value="AgResearch Cattle Sequences">AgResearch Cattle Sequences
+                      </optgroup>
+                      <optgroup label="Search Everyting">
+                      <option value="All Tables">Search all Database Tables
+                      </optgroup>
+                      <optgroup label="AgResearch Browsers">
+                      <option value="AgResearch Medicago Genome Browser"> AgResearch Medicago Genome Browser
+                      </optgroup>
+                      <optgroup label="Public Bioinformatics Resources">
+                      <option value="NCBI"> NCBI
+                      </optgroup>
+                      <optgroup label="Experiments">
+                      <option value="Microarray Series"> Microarray Experiment Series (i.e. sets of slides)
+                      <option value="Microarray Experiments"> Microarray Experiments (i.e. individual slides)
+                      <option value="Phenotype Studies"> Phenotype Studies
+                      <option value="Genotype Experiments"> Genotype Experiments </option>
+                      <option value="Genetic Test Runs"> Genetic Test Runs </option>
+                      </optgroup>
+                      <optgroup label="Lab Resources">
+                      <option value="All Lab Resources"> All Lab Resources
+                      <option value="Microarrays"> Microarrays
+                      <option value="Microarray Spots">Microarray Spots
+                      <option value="Genetic Tests">Genetic Tests </option>
+                      </optgroup>
+                      <optgroup label="Relations and Attributes">
+                      <option value="Gene Product">Gene Product
+                      <option value="Gene Expression">Gene Expression
+                      <option value="Gene Function">Gene Function
+                      <option value="Gene Location">Gene Location
+                      <option value="Gene Regulation">Gene Regulation
+                      <option value="Microarray MIAME">Microarray MIAME
+                      </optgroup>
+                      <optgroup label="Other">
+                      <option value="Staff"> Staff
+                      <option value="Work Flows"> Work Flows
+                      <option value="Work Flow Stages"> Work Flow Stages
+                      <option value="Data Files Submitted"> Data Files Submitted
+                      <option value="Data Files Imported"> Data Files Imported
+                      <option value="DataSource Lists"> Data Source Lists
+                      </optgroup>
+                    </select></font>
+                    <font color="white"> for </font> <input name="queryString" type="text" value="" length="40">
+<input type="submit" value="Go"/>
+</p>
+</form>
+
+</td>
+</tr>
+</table>
+
+
+</html>

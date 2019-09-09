@@ -1,0 +1,594 @@
+<html>
+<head>
+<title>AgResearch Bioinformatics - Microarray Upload Form</title>
+<link rel="stylesheet" type="text/css" href="css/forms.css">
+<script language="JavaScript">
+
+var bgColour = "";
+var alreadySubmitted = false;
+
+function checkAll() {
+   // make sure we have not already submitted this form
+   if(alreadySubmitted) {
+      window.alert("This Form has already been submitted, please wait");
+      return false;
+   }
+
+   // check the gpr filename out
+   var file = arrayform.external_filename.value;
+   if (file == "") {
+      highLight(arrayform.external_filename,"You must specify a file");
+      return false;
+   }
+   var dir = file.substring(0,file.lastIndexOf('\\')+1);
+   var url = file.substring(dir.length,file.length+1);
+   var ext = url.substring(url.lastIndexOf(".") + 1, url.length);
+   ext = ext.toLowerCase();
+
+   if (ext != 'gpr' ){
+     //alert("You must select file with one of the following extensions: *.gpr");
+     highLight(arrayform.external_filename, "You must select a file with the extension *.gpr");
+     return false;
+   }
+   else {
+      lowLight(arrayform.external_filename)
+   }
+
+
+   // check the jpg filename out
+   var file = arrayform.jpeg_external_filename.value;
+   if (file == "") {
+      highLight(arrayform.jpeg_external_filename,"You must specify a jpeg file");
+      return false;
+   }
+   var dir = file.substring(0,file.lastIndexOf('\\')+1);
+   var url = file.substring(dir.length,file.length+1);
+   var ext = url.substring(url.lastIndexOf(".") + 1, url.length);
+   ext = ext.toLowerCase();
+
+   if (ext != 'jpg' ){
+     //alert("You must select file with one of the following extensions: *.jpg");
+     highLight(arrayform.jpeg_external_filename, "You must select a file with the extension *.jpg");
+     return false;
+   }
+   else {
+      lowLight(arrayform.external_filename)
+   }
+
+
+
+   // check the other values
+   if(arrayform.checkSum.value == "") {
+      highLight(arrayform.checkSum,"Please calculate and enter a checksum");
+      return false;
+   }
+   if(!checkFloatRange(arrayform.checkSum,0.0,10000000000000.0)) {
+      highLight(arrayform.checkSum,"Please calculate and enter a checksum");
+      return false;
+   }
+   else {
+      lowLight(arrayform.checkSum);
+   }
+
+
+   if(arrayform.experiment_name.value == "") {
+      highLight(arrayform.experiment_name,"Please enter a unique name for this experiment (use the slide id)");
+      return false;
+   }
+   else {
+      lowLight(arrayform.experiment_name);
+   }
+
+   if(arrayform.experiment_description.value == "") {
+      highLight(arrayform.experiment_description,"Please enter a description for this experiment");
+      return false;
+   }
+   else {
+      lowLight(arrayform.experiment_description);
+   }
+
+
+   
+   if(arrayform.CY5SampleDescr.value == "") {
+      highLight(arrayform.CY5SampleDescr,"Please enter CY5 sample description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY5SampleDescr);
+   }
+
+   if(arrayform.CY5TissueDescr.value == "") {
+      highLight(arrayform.CY5TissueDescr,"Please enter CY5 tissue description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY5TissueDescr);
+   }
+
+
+   if(arrayform.CY5TreatmentDescr.value == "") {
+      highLight(arrayform.CY5TreatmentDescr,"Please enter CY5 treatment description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY5TreatmentDescr);
+   }
+
+
+   if(arrayform.CY3SampleDescr.value == "") {
+      highLight(arrayform.CY3SampleDescr,"Please enter CY3 sample description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY3SampleDescr);
+   }
+
+   if(arrayform.CY3TissueDescr.value == "") {
+      highLight(arrayform.CY3TissueDescr,"Please enter CY3 tissue description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY3TissueDescr);
+   }
+
+
+   if(arrayform.CY3TreatmentDescr.value == "") {
+      highLight(arrayform.CY3TreatmentDescr,"Please enter CY3 treatment description");
+      return false;
+   }
+   else {
+      lowLight(arrayform.CY3TreatmentDescr);
+   }
+
+   if(arrayform.dataSubmittedBy.value == "") {
+      highLight(arrayform.dataSubmittedBy,"Please enter your name");
+      return false;
+   }
+   else {
+      lowLight(arrayform.dataSubmittedBy);
+   }
+
+   if(arrayform.APPLICATION_PASSWORD.value == "") {
+      highLight(arrayform.APPLICATION_PASSWORD,"Please enter password");
+      return false;
+   }
+   else {
+      lowLight(arrayform.APPLICATION_PASSWORD);
+   }
+
+
+
+
+
+   // finally , set the submitted flag
+   alreadySubmitted = true;
+}
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   //eval("item.style.background = '" + bgColour + "'");
+   eval("item.style.background = 'white'");
+}
+/*
+* a function to trim leading and trailing spaces
+* from a string
+*/
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+
+function checkFloatRange(item, low, high) {
+   if(isNaN(item.value))
+      return false;
+   if(high == null && low == null)
+      return true;
+   else if(high == null && parseFloat(item.value) < low)
+      return false;
+   else if(low == null && parseFloat(item.value) > high)
+      return false;
+   else if(parseFloat(item.value) < low || parseFloat(item.value) > high)
+      return false;
+   else 
+      return true;   
+}
+
+function setValueByName(fieldName, toValue) {
+   document.forms[0].elements[fieldName].value = toValue;
+}
+
+// this function can be used to focus on a field given its name
+function focusByName(fieldName) {
+   document.forms[0].elements[fieldName].focus();
+}
+
+// this function wil return the value of a field given its name
+function getValueByName(fieldName) {
+   return document.forms[0].elements[fieldName].value;
+}
+
+// this function wil return a field given its name
+function getItemByName(fieldName) {
+   return document.forms[0].elements[fieldName];
+}
+
+
+var file_count = 1
+
+function addFile(tableID) {
+   var table = document.getElementById(tableID);
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileDescText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.colSpan="2";
+      cell.innerHTML = FileDescField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = "&nbsp";
+   var row = table.insertRow(table.rows.length);
+      var cell = row.insertCell(0);
+      cell.vAlign="top";
+      cell.innerHTML = FileText(file_count+1);
+      var cell = row.insertCell(1);
+      cell.vAlign="top";
+      cell.innerHTML = FileField(file_count+1);
+      var cell = row.insertCell(2);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeText(file_count+1);
+      var cell = row.insertCell(3);
+      cell.vAlign="top";
+      cell.innerHTML = FileTypeField(file_count+1);
+      file_count++;
+      setFileCount(file_count);   
+}
+
+function setChannelNumber(comboID, tableID) {
+   var box = document.getElementById(comboID);
+   var pos = box[box.selectedIndex].value;
+
+   var table = document.getElementById(tableID);
+   
+   if (pos < 10) { //1-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "none";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "none";
+      }
+   }
+   else if (pos < 20) { //2-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "none";
+      }
+   }
+   else if (pos < 30) { //4-channel array
+      for (i=0; i<3; i++) {
+         var row = table.rows[i];
+         var col = row.cells[1];
+         col.style.display = "";
+      }
+      
+      for (i=3; i<6; i++) {
+         var row = table.rows[i];
+         row.style.display = "";
+      }
+   }
+}
+
+</script>
+</head><body>
+<FORM name="arrayform" onSubmit="return false" METHOD="POST" ENCTYPE="multipart/form-data" ACTION="/cgi-bin/sheepgenomics/form.py" >
+   <input type="HIDDEN" name="IMPORT_LEVEL" value="0"/> 
+   <input type="HIDDEN" name="WRITE_IMPORT_LEVEL" value="0"/> 
+   <input type="HIDDEN" name = "INPUT_PATH" value=""/>
+   <input type="HIDDEN" name="INPUT_FILE" value="test.gpr"/>
+   <input type="HIDDEN" name="INPUT_SOURCE" value="SOCKET"/>
+   <input type="HIDDEN" name="SERVICE" value="ORACLEIMPORT"/>
+   <input type="HIDDEN" name="SKIP" value="0"/>
+   <input type="HIDDEN" name="CLIENT_TIMEOUT" value="1"/>
+   <input type="HIDDEN" name="RUN_LATER" value="true"/> 
+   <input type="HIDDEN" name="ADDITIONAL_PARAMETER_NAMES" value="experiment_series,array_productid,experiment_name,experiment_description,external_filename,jpeg_external_filename,dataSubmittedBy,checkSum,checkSumType,CY5SampleDescr,CY5TissueDescr,CY5TreatmentDescr,CY3SampleDescr,CY3TissueDescr,CY3TreatmentDescr"/>
+   
+<table border="true" id="Outer_table">
+   <tr> 
+      <td colspan="2"> 
+         <h1 class="top">AgResearch Microarray Upload Form</h1>
+         <font color=crimson size=+2><b>This Form is not functional; it is here for users to provide feedback on.</b></font>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Your name:</b>
+      </td>
+      <td class="input" width=83%>
+          <!--input name="submittedby" value="__submitted_by__" size="50" type="text"/-->
+          <input name="submittedby" value="" size="50" type="text"/>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Your email address:</b>
+      </td>
+      <td class="input" width=83%>
+          <!--input name="emailaddress" value="__submitter_email_address__" size="50" type="text"/-->
+          <input name="emailaddress" value="" size="50" type="text"/>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Project ID:</b>
+      </td>
+      <td class="input" width=83%>
+         <select name="projectID" >
+            <option value="" selected>
+            <option value="SFG.005A">SFG.005A
+            <option value="SFP.017">SFP.017
+            <option value="SG.117">SG.117
+            <option value="SG.206">SG.206
+            <option value="SG.109">SG.109
+            <option value="SGP.014">SGP.014
+            <option value="SGP.205">SGP.205
+            <!--__EXISTING_PROJECTS__-->
+            <option value="Other">Other
+         </select>
+         &nbsp;&nbsp; Other project (not in list): 
+         <input name="otherProject" value="" size="40"/>
+      </td>
+   </tr>    
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Sub-Program:</b>
+      </td>
+      <td class="input" width=83%>
+         <SELECT name="subProgram">
+            <OPTION value="" selected>
+            <OPTION value="Coretech">Coretech
+            <OPTION value="Muscle">Muscle
+            <OPTION value="Parasite">Parasite
+            <OPTION value="Wool">Wool
+            <OPTION value="Reproduction">Reproduction
+         </SELECT>
+      </td>
+   </tr>
+   <tr>
+      <td class="fieldname" width=17%>
+         <p class="fieldname"><b>Experiment Name:</b>
+      </td>
+      <td class="input" width=83%>
+         <SELECT name="expName">
+            <OPTION value="" selected>
+            <OPTION value="new">New Experiment
+         </SELECT><br>
+         New Name (if not in list): 
+         <input name="otherExp" value="" size="115"/>
+      </td>
+   </tr>
+
+
+
+   <tr>
+      <td colspan=2>
+         <span style="font-size: 150%; font-weight: bold; line-height: 2">Microarray File Details:</span>
+      </td>
+   </tr>
+   
+   <tr>
+      <td colspan=2>
+         <p align=right><button type="button" id="addButton" onclick="">Add Another File</button> <!--onclick="addFile(\'File_table\');"--></p>
+         <table align=center width=90% id='File_table'>
+	   
+	   
+	   
+	   <tr>
+	      <td width=38%>
+		 <p><b>Results File:</b> <i>(e.g. a GenePix gpr file)</i>
+	      </td>
+	      <td>
+	         <!-- <INPUT onChange="checkExt();" TYPE="file" NAME="external_filename" SIZE=30 MAXLENGTH=256><br> -->
+	         <INPUT TYPE="file" NAME="external_filename" SIZE=30 MAXLENGTH=256><br> 
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Corresponding coloured JPEG file:</b>
+	      </td>
+	      <td>
+		 <!--image src="/icons/spots.jpg" height="25" width="25"/-->
+		 <INPUT TYPE="file" NAME="jpeg_external_filename" SIZE=30 MAXLENGTH=256><br>
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Data format:</b>
+	      </td>
+	      <td>
+		 <select name = "IMPORT_TYPE" SIZE=1 >
+		    <option value="DNASEQUENCE_MICROARRAY_GPR" SELECTED>GenePix GPR file
+		 </select> &nbsp; &nbsp; &nbsp;
+		 if other, <a href="mailto:alan.mcculloch@agresearch.co.nz;jason.mitchell@agresearch.co.nz?subject=New Microarray Format">please email us</a> full details of format
+	      </td>
+	   </tr>
+
+	   <tr>
+	      <td>
+		 <p><b>Ch1/Ch2 Ratio Checksum:</b>
+	      </td>
+	      <td>
+		 <input name = "checkSum" SIZE=16 type="text" value="">
+		 <select name="checkSumType" size="1">
+		    <option value="F2_Mean_minus_B2">  F532 Mean - B532 (one of the last columns in GPR file)
+		 </select>
+		 <br><i style="font-size: 80%"> (This will be used to check that the database receives all of your results correctly.
+		 You can calculate it simply by summing all the ch1/ch2 ratio values in your data, in Excel) </i>
+	      </td>
+
+	   </tr>
+
+	   <tr>
+	      <td>
+	         <p><b>Description of this hybridisation experiment:</b>
+	      </td>
+	      <td>
+		 <textarea name="experiment_description" type="textarea" rows="4" cols="72">(Please enter a description here)</textarea> 
+	      </td>
+	   </tr>
+	   <tr>
+	      <td>
+		 <p><b>Type of Microarray:</b>
+	      </td>
+	      <td>
+	         <select id="arrayCombo1" name="arrayType1" SIZE=1 onClick="setChannelNumber('arrayCombo1', 'channels1');">
+	<option value="">
+	<option value="11"> Affy Bovine Genome Array
+	<option value="12"> Spotted long oligonucleotide array
+	<option value="13"> Ovine 20K Array
+	<option value="14"> SNP Microarray
+	<option value="05"> Other single-channel array
+	<option value="16"> Other two-channel array
+	<option value="27"> Other four-channel array
+
+	      </select>
+	      </td>
+	   </tr>
+
+
+
+	   <tr><td colspan=2>
+	      <table width=100% id="channels1">
+	         <tr>
+	            <td align=right bgcolor="pink" width=50%>
+	               <i>CY5 sample description :</i>
+	               <input name = "CY5SampleDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="lightgreen" width=50% style="display: none">
+	               <i>CY3 sample description :</i>
+	               <input name = "CY3SampleDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+
+	         <tr>
+	            <td align=right bgcolor="pink" width=50%>
+	               <i>CY5 tissue :</i>
+	               <input name = "CY5TissueDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="lightgreen" width=50% style="display: none">
+	               <i>CY3 tissue :</i>
+	               <input name = "CY3TissueDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+
+	         <tr>
+	            <td align=right bgcolor="pink" width=50%>
+		       <i>CY5 treatment :</i>
+		       <input name = "CY5TreatmentDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="lightgreen" width=50% style="display: none">
+		       <i>CY3 treatment :</i>
+		       <input name = "CY3TreatmentDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+
+
+	         <tr style="display: none">
+	            <td align=right bgcolor="deepskyblue" width=50%>
+	               <i>Blue sample description :</i>
+	               <input name = "BlueSampleDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="floralwhite" width=50%>
+	               <i>White sample description :</i>
+	               <input name = "WhiteSampleDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+
+	         <tr style="display: none">
+	            <td align=right bgcolor="deepskyblue" width=50%>
+	               <i>Blue tissue :</i>
+	               <input name = "BlueTissueDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="floralwhite" width=50%>
+	               <i>White tissue :</i>
+	               <input name = "WhiteTissueDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+
+	         <tr style="display: none">
+	            <td align=right bgcolor="deepskyblue" width=50%>
+		       <i>Blue treatment :</i>
+		       <input name = "BlueTreatmentDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	            <td align=right bgcolor="floralwhite" width=50%>
+		       <i>White treatment :</i>
+		       <input name = "WhiteTreatmentDescr1" SIZE=25 type="text" value=""/><br>
+	            </td>
+	         </tr>
+	      </table>
+	   </td></tr>
+
+
+
+
+         </table>
+         <br>
+      </td>
+   </tr>
+   
+
+
+<tr><td colspan=2>
+<P>
+<i>
+Please <a href="mailto:alan.mcculloch@agresearch.co.nz;jason.mitchell@agresearch.co.nz?subject=Microarray Suggestion">email us</a> with any suggestions for improvements to this form.
+</i>
+
+</td></tr>
+   <tr>
+      <td colspan=2 align=center>
+         <p><input type="submit" value="Submit Experiment">  </input>
+      </td>
+   </tr>
+</table>
+</FORM>
+</body>
+</html>

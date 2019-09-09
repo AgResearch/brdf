@@ -1,0 +1,176 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en"><html>
+<head>
+<title> Plant Genomics Consortium Data Submission </title>
+<link rel="stylesheet" type="text/css" href="css/forms.css">
+<base target="_self">
+</head>
+<body bgcolor="#F7F5E0">
+<form name="generalsubmission" method="post" enctype="multipart/form-data" action="forms.py?formname=generalsubmission&context=new" >
+<table border="true">
+<tr> 
+   <td colspan="2"> 
+      <h1 class="title"> Plant Genomics Consortium FTP Data Submission</h1>
+   </td>
+    <tr>   
+      <td class="fieldname"> <p class="fieldname">  Paste in sequence data in FASTA format if applicable    </p>
+      </td>
+      <td class="input">
+        <textarea name="description" cols="50" rows="10"></textarea>
+      </td>
+   </tr>
+    <tr>   
+      <td class="fieldname"> <p class="fieldname">  Objective this submission relates to     </p>
+      </td>
+      <td class="input">
+         <select name="project">
+            <option name="1"> Drought Resistance 
+            <option name="2"> Nitrogen Fixation Genes
+            <option name="other"> Other.....please specify
+         </select><br/>
+         if other specify : <input class="detail" name="projectother" size="50"/>
+      </td>
+   </tr>
+   <tr>   
+      <td class="fieldname"> <p class="fieldname"> Reasons for submission of data to ftp site
+      </td>
+      <td class="input">
+         <table class="input">
+            <tr>
+               <td> pass on data to colleague </td>
+               <td class="input"> <input name="submission_colleague" type="checkbox" value="false"/> </td>
+            </tr>
+            <tr>
+               <td> archive files on server </td>
+               <td class="input"> <input name="submission_archive" type="checkbox" value="false"/> </td>
+            </tr>
+            <tr>
+               <td> data to be imported into relational database </td>
+               <td class="input"> <input name="submission_import" type="checkbox" value="false"/> </td>
+            </tr>
+            <tr>
+               <td colspan="2"> if other specify : <input class="detail" name="reasonother" size="50"/> </td>
+            </tr>
+         </table>
+       </td>
+   </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname"> Do you need an ftp directory to upload files ?
+      </td>
+      <td class="input">
+          <select name="ftp_required">
+             <option value="yes" selected/> Yes
+             <option value="no" /> No       
+          </select>
+          Number of files you will upload : 
+          <input name="filecount" value="0" size="5" type="text"/>
+      </td>
+   </tr>
+    <tr>
+      <td class="fieldname">
+         <p class="fieldname">Description of this data 
+      </td>
+      <td class="input">
+         <textarea name="description" cols="50" rows="3"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="fieldname">
+         <p class="fieldname">Processing instructions for this data
+      </td>
+      <td class="input">
+            <input type="checkbox"  value="blastagainst_NCBInr" checked> Blast against NCBI NR Protein
+            <input type="checkbox"    value="blastagainst_nt" checked > Blast against NCBI nt 
+            <p>
+            <input type="checkbox"    value="tracks_medicago"> Display as track on Medicago Genome Browser 
+         <p>
+         Other processing instructions
+         <textarea name="processing_instructions" cols="50" rows="3"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="fieldname">
+         <p class="fieldname">Notification instructions for this data 
+      </td>
+      <td class="input">
+         <table  class="input">
+            <tr>
+            <td class="input">
+            <p>
+            The following addresses will receive notification of this submission, including
+            description and processing instructions.
+            </p>
+            Clear , replace or add addresses as required, one per line
+            </td>
+            </tr>
+            <tr>
+            <td class="input">
+               <textarea rows="6" cols="50">anar.khan@agresearch.co.nz
+santa.claus@north.pole.planet
+               </textarea>
+            </td>
+	    <tr>
+            <td class="input">
+            Emails will be sent 
+            <select name="emaildelay">
+            <option value="0"> immediately on submission of form
+            <option value="5" selected> 5 minutes after submission of form
+            <option value="30"> 30 minutes after submission of form
+            <option value="60"> 60 minutes after submission of form
+            </select>
+            </td>
+            </tr>
+            </tr>
+         </table>
+      </td>
+    </tr>
+   <tr>
+      <td class="fieldname">
+         <p class="fieldname">Your name 
+      </td>
+      <td class="input">
+          <input name="submittedby" value="" size="50" type="text"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="fieldname">
+         <p class="fieldname">Your email address
+      </td>
+      <td class="input">
+          <input name="emailaddress" value="" size="50" type="text"/>
+      </td>
+    </tr>    
+    <tr>
+    <td colspan="2" class="fieldname">
+    <p>
+When you have completed the form, click the button below. If you have pasted in sequence
+data this be uploaded and processed as you have requested. If you have asked for 
+an ftp directory for file upload , then a folder will be created on the server specifically 
+for your submission, and a web page will be returned displaying a link to  the new folder. 
+Clicking on this link should open a file explorer window. You can then copy and paste your 
+files straight into the new folder. (Or you  may use some other ftp client if you prefer)
+    </p>
+    <p>
+Once you have submitted your files to the server, they will be backed up 
+to tape within 24 hours of the submission. This includes files submitted 
+solely for the purpose of exchange with a colleague.
+    </p>
+    <p>
+The information you have provided on this form will also be recorded in the 
+AgResearch relational database 
+    </p>
+   </td>
+   </tr>
+   <tr>
+   <td colspan="2">
+   <p class="footer">
+   <input type="submit" value="Request ftp link"/>
+   </p>
+    </td>
+    </tr>
+</table>
+
+<a href="mailto:anar.khan@agresearch.co.nz"/> Contact us </a>
+</form>
+</body>
+</html>

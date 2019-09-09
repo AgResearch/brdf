@@ -1,0 +1,1151 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "httpd://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>
+ </title>
+<style type= "text/css">
+span.CSSMenuTitle
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    font:bold 10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+span.CSSMenuTitleHover
+{
+    border:1px solid;
+    border-color:#3f1a01 #ff9a57 #ffc8a4 #7d3302;
+    font:bold 10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+a.CSSMenuOption
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    font:10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+a.CSSMenuOptionHover
+{
+    border:1px solid;
+    border-color:#3f1a01 #ff9a57 #ffc8a4 #7d3302;
+    font:10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+BODY.old {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND: #f0f9ff ;    
+}
+BODY {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND: #f0f9ff ;    
+}
+TD {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif 
+}
+TD.inside {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD.fieldvalue {
+        FONT-SIZE: 95%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f0f9ff
+}
+TD.fieldname {
+        FONT-SIZE: 95%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR:  #90aefe 
+}
+TD.tableheading {
+        FONT-SIZE: 120%; FONT-FAMILY: Arial, Helvetica, sans-serif; COLOR: #640064 ; BACKGROUND-COLOR: antiquewhite 
+}
+TR.brdftop2 { background-color: #ffbb11
+}
+TR.brdftop1 { background-color: #3366CC
+}
+
+P {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif ; 
+}
+UL {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+OL {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H1 {
+        FONT-WEIGHT: normal; FONT-SIZE: 170%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H1 {
+        FONT-WEIGHT: normal; FONT-SIZE: 170%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif ; BACKGROUND-COLOR: #CCDCDC
+}
+H2 {
+        FONT-WEIGHT: normal; FONT-SIZE: 160%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H3 {
+        FONT-WEIGHT: normal; FONT-SIZE: 150%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H3.section {
+        FONT-WEIGHT: normal; FONT-SIZE: 150%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #CCDCDC
+}
+H4 {
+        FONT-WEIGHT: normal; FONT-SIZE: 130%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H5 {
+        FONT-WEIGHT: normal; FONT-SIZE: 110%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H6 {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TABLE.old {
+        BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: antiquewhite
+}
+TABLE.inside {
+        BORDER-STYLE: none ;
+}
+TABLE.sequence_submission_inside {
+  border-collapse: collapse 
+}
+TABLE.sequence_submission_outside {
+        border-right: thin groove #CCDCDC ; BORDER-TOP: thin groove #CCDCDC ;  BORDER-LEFT: thin groove #CCDCDC ;
+        BORDER-BOTTOM: thin groove #CCDCDC 
+}
+TABLE.defaultbrdfcard { 
+}
+TABLE.brdftop1 {
+    BORDER-COLLAPSE: collapse ;  border-color: #388FBD ;
+}
+
+td.outside  {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.required	 {
+     color: red
+}
+.whiteheading {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+}
+.menuitem {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+        }
+.menuitem:hover {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; TEXT-DECORATION: underline
+}        
+.menuitem_small {
+        WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+        }
+.menuitem_small:hover {
+        FONT-SIZE: 100%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; TEXT-DECORATION: underline
+        }
+
+.sectionheading {
+        FONT-WEIGHT: bold; FONT-SIZE: 115%; WIDTH: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #388fbd
+}
+
+.sectionheading2 {
+        FONT-WEIGHT: bold; FONT-SIZE: 115%; WIDTH: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #1111FF
+}
+
+
+.hiddentext {display:none ;  border-left: thick solid #388fbd ; margin-left:30px ; padding-left:10px } 
+
+</style>
+<script language="JavaScript1.2">
+
+//SectionHeading
+// A group of functions to support AJAX style interactive fetches of
+// displays for an object.
+//
+
+// this method takes a URL, a list of queries, and the name of an 
+// HTML element (e.g. div tag) which will be where the result is written.
+// It then executes in turn an AJAX style post for each query, setting 
+// the asynchronous flag to false so that the stream of results is 
+// serialised. Each result is appended to the indicated result position
+// in the doc
+// SEE ALSO BELOW POLYMORPH
+function xmlhttpMultiPost(strURL,queryArray,resultelementname,waitbanner,waitURL,caller) {
+    //window.alert("in xmlhttpMultiPost");
+    var xmlHttpReq = false;
+    var self = this;
+    var queryCount = 0;
+    var buttonvalue = "" ;
+
+    self.buttonvalue=caller.value;
+
+    // Mozilla/SafariSectionHeading
+    if (window.XMLHttpRequest) {
+        self.xmlHttpReq = new XMLHttpRequest();
+    }
+    // IE
+    else if (window.ActiveXObject) {
+        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    updatepage('<img src="/'+waitbanner+'" />',resultelementname);
+    caller.value = "Processing request , please wait...";
+    caller.disabled = true;
+
+    
+    
+    self.xmlHttpReq.open('POST', waitURL);
+    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    self.xmlHttpReq.onreadystatechange = function() {
+        for(self.queryCount = 0; self.queryCount < queryArray.length; self.queryCount++) {
+
+            if (queryArray.length == 1) {
+                self.xmlHttpReq.open('POST', strURL, true);             // asynchronous if only one query
+            }
+            else {
+                self.xmlHttpReq.open('POST', strURL, false);            // synchronous if multiple queries
+            }
+
+            //self.xmlHttpReq.open('POST', strURL, false);
+            self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            self.xmlHttpReq.onreadystatechange = function() {
+                if (self.xmlHttpReq.readyState == 4) {
+                     //window.alert("calling update page");
+                     if (self.queryCount == 0 || queryArray.length == 1) {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"replace");
+                     }
+                     else {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"add");
+                     }      
+                }
+            }
+            // this function
+            self.xmlHttpReq.send(queryArray[self.queryCount]);
+        }
+        caller.value = self.buttonvalue;
+        caller.disabled = false;
+
+    }
+    self.xmlHttpReq.send("dummy=1");
+}
+
+
+
+
+//.... this version does not assume it is being called by a button...SEE ALSO ABOVE POLYMORPH
+function xmlhttpMultiPost(strURL,queryArray,resultelementname,waitbanner,waitURL) {
+    //window.alert("in xmlhttpMultiPost");
+    var xmlHttpReq = false;
+    var self = this;
+    var queryCount = 0;
+    var buttonvalue = "" ;
+
+    // Mozilla/SafariSectionHeading
+    if (window.XMLHttpRequest) {
+        self.xmlHttpReq = new XMLHttpRequest();
+    }
+    // IE
+    else if (window.ActiveXObject) {
+        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    updatepage('<img src="/'+waitbanner+'" />',resultelementname,"replace");
+
+    //window.alert("query length=" + queryArray.length);
+    
+    
+    self.xmlHttpReq.open('POST', waitURL);
+    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    self.xmlHttpReq.onreadystatechange = function() {
+        for(self.queryCount = 0; self.queryCount < queryArray.length; self.queryCount++) {
+            //window.alert("opening : " + strURL);
+
+            
+            if (queryArray.length == 1) {
+                self.xmlHttpReq.open('POST', strURL, true);             // asynchronous if only one query
+            }
+            else {
+                self.xmlHttpReq.open('POST', strURL, false);            // synchronous if multiple queries
+            }
+
+            //self.xmlHttpReq.open('POST', strURL, false);
+
+
+            
+            self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            self.xmlHttpReq.onreadystatechange = function() {
+                //window.alert("ready state = " + self.xmlHttpReq.readyState);
+                if (self.xmlHttpReq.readyState == 4) {
+                     //window.alert("calling update page with response " + self.xmlHttpReq.responseText);
+                     if (self.queryCount == 0 || queryArray.length == 1) {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"replace");
+                     }
+                     else {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"add");
+                     }      
+                }
+            }
+            window.alert("sending " + queryArray[self.queryCount]);
+            self.xmlHttpReq.send(queryArray[self.queryCount]);
+        }
+    }
+    self.xmlHttpReq.send("dummy=1");
+}
+
+
+
+
+//
+// This method simply inserts a given fragment in the indicated position
+//
+function updatepage(str,targetelement,mode){
+    if(mode == "add") {
+        document.getElementById(targetelement).innerHTML += str;
+    }
+    else {
+        document.getElementById(targetelement).innerHTML = str;
+    }
+}
+
+
+//
+// this method martials options from a multi-select box, into an array
+// and then calls another method to do the actual xmlhttp AJAX stuff
+// queryLeader would typically be (e.g. )
+// "displayprocedure=blah&amp;obid="
+// This polymorph assumes it is being called from a button - see other polymorph below
+function multipost(url,selectname,resultelementname,queryleader,waitbanner,waiturl,caller) {
+   //window.alert("in multipost");
+   var self = this;
+   var queryArray=new Array();
+   var queryCount = 0;
+
+   
+   for(var i=0 ; i < document.getElementById(selectname).options.length; i++) {
+      if (document.getElementById(selectname).options[i].selected ) {
+         payload = getDynamicData(document.getElementById(selectname).options[i].value)
+         queryArray[queryCount] = queryleader+escape(document.getElementById(selectname).options[i].value)+payload;
+         queryCount += 1
+      }
+   }
+   if(queryCount == 0) {
+      window.alert("Please select at least one procedure to run");
+      return false;
+   }   
+   JavaScript:xmlhttpMultiPost(url,queryArray,resultelementname,waitbanner,waiturl,caller);
+}
+
+
+// This polymorph does not assume it is being called from a button - see other polymorph above
+function multipost(url,selectname,resultelementname,queryleader,waitbanner,waiturl) {
+   //window.alert("in multipost");
+   var self = this;
+   var queryArray=new Array();
+   var queryCount = 0;
+   
+   for(var i=0 ; i < document.getElementById(selectname).options.length; i++) {
+      if (document.getElementById(selectname).options[i].selected ) {
+         //window.alert("adding " + queryleader+escape(document.getElementById(selectname).options[i].value));
+         payload = getDynamicData(document.getElementById(selectname).options[i].value)         
+         queryArray[queryCount] = queryleader+escape(document.getElementById(selectname).options[i].value)+payload;
+         queryCount += 1
+      }
+   }
+
+   if(queryCount == 0) {
+      window.alert("Please select at least one procedure to run");
+      return false;
+   }
+   JavaScript:xmlhttpMultiPost(url,queryArray,resultelementname,waitbanner,waiturl);
+}
+
+
+// this assumes that for each element of the query array, there is an HTML element with
+// id equal to that element, with child elements containing data to be posted.
+// Typically this would consist of a form section for each query element, containing
+// data fields such as text areas, input fields, radio boxes.
+// These data input elements are the HTML equivalent of "prompting" for the values required
+// to execute the query.
+//
+// Each div section contains one or more data elements. Each data element corresponds to
+// a datasource object that is bound to the query. Each of these datasource objects
+// knows how to construct its data element from information stored in an associated fact table,
+// and the complete div section is contructed by the initAnalysisFunctions method - i.e.
+// this is constructed as part of the object creation, for use in rendering the object
+//
+function getDynamicData(queryinstance) {
+
+    //window.alert("in getDynamicData with queryinstance "+ queryinstance);
+    payload="";
+    formid = "form"+queryinstance;
+    myform = document.getElementById(formid);
+    if(myform == null) {
+       return payload;
+    }
+    //window.alert("processing form " + formid);
+    if(document.forms[formid].elements != null) {
+       for(i=0 ; i < document.forms[formid].elements.length ; i++ ) {
+          if(document.forms[formid].elements[i].type == "textarea") {
+             datasource = document.forms[formid].elements[i].id;
+             payload += "&datasource" + datasource + "=" + document.forms[formid].elements[i].value ;
+          }
+          else if(document.forms[formid].elements[i].type == "select-multiple") {
+             datasource = document.forms[formid].elements[i].id;
+             payload += "&datasource" + datasource + "=";
+             for(j=0 ; j < document.forms[formid].elements[i].options.length ; j++) {
+                if(document.forms[formid].elements[i].options[j].selected) {
+                   payload += document.forms[formid].elements[i].options[j].value;
+                   payload += "\r\n";
+                }
+             }
+          }
+          else if(document.forms[formid].elements[i].type == "select-one") {
+             datasource = document.forms[formid].elements[i].id;
+             payload += "&datasource" + datasource + "=";
+             payload += document.forms[formid].elements[i].value;
+          }
+       }
+    }
+
+    //window.alert(payload);
+
+   return payload;
+}
+
+
+
+
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   //eval("item.style.background = '" + bgColour + "'");
+   eval("item.style.background = 'white'");
+}
+
+/*
+* a function to trim leading and trailing spaces
+* from a string
+*/
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+function toggleVisibility(caller, divid) {
+    if(document.getElementById(divid).style.display == 'none'){
+      document.getElementById(divid).style.display = 'block';
+    }else{
+      document.getElementById(divid).style.display = 'none';
+    }
+}
+
+</script>
+
+    <SCRIPT language="JavaScript1.2">
+    var mywindow=null;
+    var myhelpcontent="";
+    var brdfpopupinstance = 0;
+    function brdfpopup(heading,content) {
+       if(brdfpopupinstance == 0) {
+           mywindow=window.open("","Describe","status=0,toolbar=0,menubar=0,scrollbars=1,width=800,height=600,resizable=1");
+           mywindow.moveTo(100,100);
+           // pagewrap the content
+           mywindow.document.write('<html><head><title>' + heading + '</title>\n');
+           mywindow.document.write('<style type= "text/css">\n');
+           mywindow.document.write('BODY { FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND: #f0f9ff; }\n');
+           mywindow.document.write('</style></head>\n');
+           mywindow.document.write('<body>\n');
+           mywindow.document.write('<button onclick="self.close()">Close</button>');
+           mywindow.document.write('<p/>');
+           mywindow.document.write(content);
+           mywindow.document.write('<button onclick="self.close()">Close</button>');
+           mywindow.document.write('<p/></body></html>\n');
+           brdfpopupinstance = 1;
+           return true;
+        }
+        else {
+            brdfpopupinstance = 0;
+            mywindow.close();
+            brdfpopupinstance = 0;
+            brdfpopup(heading,content);
+            return true;
+        }
+    }
+    
+    
+    var isIE = navigator.appName.indexOf('Microsoft') > -1;
+
+    function findPos(obj) {
+        var curleft = curtop = 0;
+        if (obj.offsetParent) {
+            do {
+                curleft += obj.offsetLeft;
+                curtop += obj.offsetTop;
+            } while (obj = obj.offsetParent);
+        }
+        return [curleft,curtop];
+    }
+    
+    
+    var menuCount = 0;
+    
+    function showEditMenu(menuObj){showMenu(menuObj, "Edit", editItemArray);}
+    function showAnnotateMenu(menuObj){showMenu(menuObj, "Annotate", annotateItemArray);}
+    function showViewMenu(menuObj){showMenu(menuObj, "View", viewItemArray);}
+    function showToolsMenu(menuObj){showMenu(menuObj, "Tools", toolsItemArray);}
+    function showHelpMenu(menuObj){showMenu(menuObj, "Help", helpItemArray);}
+    
+    function showMenu(menuObj, menuName, itemArray) {
+        divId = "menuDiv_"+menuName;
+        hideMenu();
+        var hw = findPos(menuObj);
+        var w = hw[0] - 2;
+        var h = hw[1] - 1;
+        if (isIE) {w=hw[0]-4;h=hw[1];}
+        h += menuObj.offsetHeight;
+        //Create a Div at the bottom of this button, to display the menu
+        var myDiv = document.createElement("div");
+        myDiv.style.position = "absolute";
+        myDiv.style.top = h.toString() + "px";
+        myDiv.style.left = w.toString() + "px";
+        myDiv.id = divId;
+        
+        var tbl = document.createElement("table");
+        tbl.border = 0;
+        tbl.style.cursor = "pointer";
+        tbl.style.borderCollapse = "collapse";
+        tbl.cellPadding = "2px";
+        if (isIE) {tbl.cellPadding = "4px";}
+        
+        for (i=0; i< itemArray.length; i++) {
+            var cell = tbl.insertRow(i).insertCell(0);
+            cell.innerHTML = "<a class='CSSMenuOption' onmouseout='leaveField(this);' onmouseover='hoverField(this);'onClick='" + 
+                             itemArray[i][0] + "'>" + itemArray[i][1] + "</a>";
+        }
+        
+        myDiv.appendChild(tbl);
+        document.body.appendChild(myDiv);
+        menuCount++;
+
+        
+        //modify the padding in each anchor so that it pads out the width of the column!
+        for (i=0; i< tbl.rows.length; i++) {
+            var anc = tbl.rows[i].cells[0].childNodes[0];
+            var tWidth = tbl.offsetWidth + 4;
+            var aWidth = anc.offsetWidth + 5;
+            if (isIE) {tWidth=tbl.offsetWidth;}
+            if (tWidth > (aWidth+3)) anc.style.paddingRight = (tWidth-aWidth) + "px";
+        }
+    }
+    
+    function hideMenu() {
+        while (menuCount > 0) {
+            var tbl = document.body;
+            tbl.removeChild(tbl.lastChild);
+            menuCount--;
+        }
+    }
+    
+    var checkIt;
+    function delayedHideMenu(obj) {
+        if (isNaN(checkIt)==false) clearTimeout(checkIt);
+        checkIt = setTimeout("hideMenu()", 500);
+    }
+    function cancelHideMenu() {
+        clearTimeout(checkIt);
+    }
+    
+    function hoverField(fld) {fld.className = fld.className + "Hover";cancelHideMenu();}
+    function leaveField(fld) {fld.className = fld.className.substring(0,fld.className.indexOf("Hover"));delayedHideMenu();}
+
+    
+        function unimplemented(opt) {
+            hideMenu();
+            window.alert("Sorry, this option hasn't been implemented yet - please contact Alan McCulloch " + 
+                         "(alan.mcculloch@agresearch.co.nz) if you want to be able to " + opt + ".");
+        }
+        
+        function helpButton() {
+            hideMenu();
+            return brdfpopup("Sequence 41509677","<h2> BRDF Page Help Contents </h2> <p/> <ul><li><b><i>BRDF Sequence Object</i></b></li>\n<li><b><i>Page Usage</i></b></li>\n<li><b><i>Description of the Default BRDF Database Page</i></b></li>\n<b><i><ul> Information Summary </ul></i></b>\n<b><i><ul> Information Map </ul></i></b>\n<b><i><ul> Record Status </ul></i></b>\n</ul><p/><h3> BRDF Sequence Object </h3><p/>         This page displays a sequence object from the BRDF database. Contents include:          <ul>            <li> Basic sequence information - the sequence, length, molecule type            <li> Blast or other search annotation if available            <li> A graphical feature display if features have been loaded            <li> A trace viewer if there is a trace file linked to the sequence. The clipped off ends                 are usually shaded gray in this view, the sequence corresponding to that shown in the basic                 sequence information panel is unshaded. In some cases there may be no shading, if the                 drawing code could not determine where the clipping started. Some ABI files seem to                 adopt a convention of starting the clipped sequence at position zero, and it may be possible to                 identify the start of clipping using this rule, even when we have not shaded the clipped                 region.         </ul>                  In the BRDF database schema, sequence objects are stored in a table called         biosequenceob. Various types of sequence can be stored in this table - for example,         nucleotide, protein, mRNA sequence, genomic sequence. Also, various types of         sequence model can be stored in addition to the common models of nucleic and amino acid symbol strings -         for example, other models of sequences include regular expressions and HMMs.         </p>         The type of a sequence object is stored in the sequencetype field of this table.         The current set of types that are supported in this database are recorded in an ontology called         AGSEQUENCE_ONTOLOGY (you can browse this ontology by selecting ONTOLOGIES from the drop down list         of search types on the main page, and entering AGSEQUENCE_ONTOLOGY as the search phrase).         <p/>         A Sequence Object in the BRDF database may have relationships with other types of object         in the database. For example, if the sequence is a primary sequence resulting from lab work, then         there is a relation between the biological sample used in the sequencing experiment and one or more         lab resources (vectors, primers); a sequence may be the product of a gene and thus related to         a BRDF geneticob record; if we have searched sequence databases (e.g. via BLAST) and         found similar sequences and stored these search results in the BRDF schema, then this involves a         relationship with a database search run and another (hit) biosequence. All of the possible relationships that a         sequence object may have with other objects in the database are depicted by icons in the information         map section of the page.         <p/>         The icon is composed of the sequenceob symbol connected to the symbols for the related objects         by horizontal lines. Where the database does not yet contain any related objects for a sequence,         the icon for that relationship is greyed out.         <p/>         We may store various types of facts about a given sequence object - for example, features of the         sequence; or miscellaneous facts specific to a given project. Each type of fact supported by the         BRDF is depicted by a line connecting the sequence symbol, to a square box labelled info, with the type of         fact appearing to the right of the icon. Where the database does not yet contain any facts         of a given type for a sequence object, the info icon is greyed out.         \n<p/><h3> Page Usage </h3><p/>                         Using this page you can                         <ul>                         <li> attach free text comments                         <li> attach links to external files or web pages , either on the web or on your own                              intranet                         <li> click links in the information map to run simple reports that list related                          records , together with hyperlinks so that you can navigate to those records                         </ul>                         \n<p/><h3> Description of the Default BRDF Database Page </h3><p/>                     The default page view includes the following sections :                      \n<p/><h3> <ul> Information Summary </ul> </h3><p/>                     <ul>                     The information summary displays the core database fields recorded for this object. Note that these                     core fields are usually few in number, and related solely to the object itself - for example, its name,                     storage location etc. Most of the information of interest is stored either in details tables (called fact tables in the                     brdf schema) , linked to the object, or in tables corresponding to related objects in the database. These details tables and                     relationships are depicted in the Information Map section of the page.                     </ul>                     \n<p/><h3> <ul> Information Map </ul> </h3><p/>                     <ul>                     The information map displays the possible types of relationship an object can                     have with other objects in the BRDF database schema,  and also the possible types of                     factual details about an object that can be stored in related details tables.                      <p/>                     Where a given object is related to one or more other objects in the database, this is depicted                     by an icon , in which symbols representing each of the objects in the relationship are connected                     together by horizontal lines. If you click on a symbol, a simple report will be displayed, listing                     all of that type of  object,  that are related via the relationship depicted.                     <p/>                     (If there are no instances of a depicted relation currently in the database, the icon is greyed out)                     <p/>                     Where a given type of fact is stored about an object, in a specific seperate details table linked to                     the main object, this is depicted by a line connecting the object symbol , to a square box                     labelled info, with the type of fact appearing to the right of the icon. If you click on the square                     info box, a simple report will be displayed listing all the details records of that type, related to                     your object                     <p/>                     (Where the database does not yet contain any facts of a given type for an object, the info icon is greyed out)                     <p/>                     When additional details tables are added to the schema , as may be required for specific projects,                     icons depicting the new data dimensions will automatically be added to the information map.                     </ul>                     \n<p/><h3> <ul> Record Status </ul> </h3><p/>                     <ul>                     The record status section shows database housekeeping information, such as the date the record                     was created, date last updated and whether the record has been checked out.                     </ul>                     \n");
+        }
+        
+        function annotateButton(link) {
+            hideMenu();
+            return location.href=link;
+        }
+            
+        function editButton(anchor) {
+            hideMenu();
+            return location.href="/cgi-bin/form.py?formname=AgResearchSequenceSubmissionForm&formstate=edit&obid=41509677"+anchor;
+        }
+
+        function viewButton(link) {
+            hideMenu();
+            return location.href=link;        
+        }
+
+        function toolButton(link) {
+            hideMenu();
+            return location.href=link;        
+        }        
+        
+        var editItemArray = new Array();
+        editItemArray[0] = new Array("editButton(\"\");","Edit Basic Sequence Details");
+        editItemArray[1] = new Array("editButton(\"#Primer\");","Add Primer");
+        editItemArray[2] = new Array("editButton(\"#Vector\");","Add Vector");
+        editItemArray[3] = new Array("editButton(\"#Feature\");","Add Feature");
+        
+        var annotateItemArray = new Array();
+        annotateItemArray[0] = new Array("annotateButton(\"/cgi-bin/form.py?context=default&formname=commentform&formstate=insert&aboutob=41509677&aboutlsid=CS39.250506CS39007000FFFFF\");","Add Comment");
+        annotateItemArray[1] = new Array("annotateButton(\"/cgi-bin/form.py?context=default&formname=uriform&formstate=insert&aboutob=41509677&aboutlsid=CS39.250506CS39007000FFFFF\");","Add Hyperlink");
+        
+        var viewItemArray = new Array();
+        viewItemArray[0] = new Array("viewButton(\"/cgi-bin/fetch.py?obid=41509677&context=fasta&target=ob\");","as FASTA");
+        viewItemArray[1] = new Array("viewButton(\"/cgi-bin/fetch.py?obid=41509677&context=genbank&target=ob\");","as Genbank");
+        
+        var toolsItemArray = new Array();
+        toolsItemArray[0] = new Array("unimplemented(\"BLAST against this sequence\");","BLAST");
+        
+        var helpItemArray = new Array();
+        helpItemArray[0] = new Array("helpButton();","Help");
+        
+    </SCRIPT>
+</head>
+<body>
+<table class=defaultbrdfcard width=90% align=center>
+<tr>
+<td><h2> </h2><p>
+        <table class=brdftop1 cellpadding="0" cellspacing="0" width='90%' border=1>
+        <tr class="brdftop1"><td colspan="2">
+            <table><tr><td>
+                <img src="/images/biosequence.gif" usemap="#obtypelink" border="0" height="42" width="42"/>
+            </td><td halign=center>
+                <a name="top"/><h1><b>Sequence : CS39.250506CS39007000FFFFF</b></h1></a><p/>
+            </td></tr>
+            <tr><td colspan="2">
+                <span class="CSSMenuTitle" onmouseout="leaveField(this);" onmouseover="hoverField(this);showEditMenu(this);">Edit</span><span class="CSSMenuTitle" onmouseout="leaveField(this);" onmouseover="hoverField(this);showAnnotateMenu(this);">Annotate</span><span class="CSSMenuTitle" onmouseout="leaveField(this);" onmouseover="hoverField(this);showViewMenu(this);">View</span><span class="CSSMenuTitle" onmouseout="leaveField(this);" onmouseover="hoverField(this);showToolsMenu(this);">Tools</span><span class="CSSMenuTitle" onmouseout="leaveField(this);" onmouseover="hoverField(this);showHelpMenu(this);">Help</span>
+            </td></tr></table>
+        </td></tr>
+        
+                <tr class=sectionheading>
+                <td colspan=2>
+                <table class=sectionheading>
+                <tr>
+                <td align=left >
+                <a name="informationsummary" class=whiteheading>
+                Information Summary 
+                </a>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                
+                    <tr> <td colspan="2" class=tableheading> 
+                    Run selected analyses
+                    </td>
+                    </tr>
+                    
+                <tr>
+                <td colspan=2 align=center>
+                <script language="JavaScript1.2">
+                function showAnalysisUserInput(selectelement) {
+                   for(i=0 ; i<selectelement.options.length; i++) {
+                      if(selectelement.options[i].selected) {
+                         document.getElementById(selectelement.options[i].value).style.display = 'block';
+                      }
+                      else {
+                         document.getElementById(selectelement.options[i].value).style.display = 'none';
+                      }
+                   }
+                }
+                </script>
+                <font size="-1"> (to select multiple analyses press the control key and click. To select a block use the shift key and click) </font> <p/>
+                <select name="analyses" id="analyses" multiple size=4 onchange=showAnalysisUserInput(this)>
+                <option value=60841765> proteinUtils : AgResearch ORF prediction and translation from database </option>
+
+                </select>
+                
+                    <div id=60841765 style="display:none">
+                    <form name="form60841765">
+                    
+                        <SPAN STYLE="background-color: #ffffcc; color:orange">Specify Parameters for AgResearch ORF prediction and translation from database</SPAN>
+                        
+                    <p/>
+                    
+Select markup to include in the FASTA id line of the translated sequences
+
+<p/>
+<select  id=60727169>
+<option value="frame,start,end"> Include translation frame, begin and end </option>
+<option value="frame,start,end,protparam"> Include translation frame, begin, end and protparam information (gravy, isoelectric point etc) </option>
+<option value="frame,start,end,protparam,flexibility"> Include translation frame, begin, end, protparam and flexibility data </option>
+</select>
+<p/>
+
+
+Specify whether to use blast evidence to select the reading frame.
+
+If you choose to use blast evidence, then the procedure will extract the frame
+of each hit to any sequence in a protein database. If all hits are in the same
+frame, then this frame will be used, and only the ORF that overlaps the best hit
+in this frame will be reported.
+
+If there is more than one frame among the hits, this suggests that there may
+be an indel error in the sequence causing a frameshift - it is suggested you try
+an algorithm like ESTScan which uses an HMM and is sometimes able to correct
+indel frameshift errors.  In this case the procedure does not use the blast
+evidence and will simply report translations in all reading frames.
+<p/>
+<select  id=60727175>
+<option value="T"> Use database protein blast evidence if available </option>
+<option value="F"> Do not use protein blast evidence </option>
+</select>
+<p/>
+
+
+Specify whether the DNA sequences you have entered are spliced transcripts. 
+
+If they are spliced transcripts, then internal ORFs will only be reported
+if they begin with a methionine translation start codon.
+
+If they are not spliced transcripts - for example genomic DNA - then 
+internal ORFS are not required to start with an internal ORF.
+<p/>
+<select  id=60727155>
+<option value=T> Sequences are spliced transcripts </option>
+<option value=F> Sequences are unspliced (e.g. genomic sequence or unspliced transcript </option>
+</select>
+<p/>
+
+                    </form>
+                    </div>
+                    
+                <p/>
+                <input value="Run Analyses" type="button" id="runanalyses" onclick='multipost("/cgi-bin/fetchAnalysis.py","analyses","fetchedanalyses","context=default&amp;obid=41509677&amp;functioninstance=","images/loading.gif","/cgi-bin/wait.py",this)'></p>         
+                <p/>
+                </td>
+                </tr>
+                
+                        <tr>
+                        <td>
+                        <div id="fetchedanalyses">
+                        </div>
+                        </td>
+                        </tr>
+                    
+        <TH colspan="2" style="BACKGROUND: silver ; color:white; font-size:16pt" align=middle>Basic Sequence Details</TH>
+        <tr><td class=inside colspan="2"><table class=inside border="0"><tr><td class=fieldname>sequencename</td><td class=fieldvalue>250506CS39007000FFFFF</td></tr>
+<tr><td class=fieldname>sequencetype</td><td class=fieldvalue>mRNA SEQUENCE</td></tr>
+<tr><td class=fieldname>sequencedescription</td><td class=fieldvalue>DNA=(0%N 33%C 30%G 18%A 18%T ) Expr= 1=ONDC(1) Refseq =(eval=) Protein =gb|AAC6<br/>4980.1| immunoglobulin alpha heavy chain [Ovis aries(eval= 4.00E-64)</td></tr>
+<tr><td class=fieldname>seqlength</td><td class=fieldvalue>675</td></tr>
+<tr><td class=fieldname>sequencetopology</td><td class=fieldvalue>linear</td></tr>
+<tr><td class=fieldname>xreflsid</td><td class=fieldvalue>CS39.250506CS39007000FFFFF</td></tr>
+<tr><td class=fieldname>seqstring</td><td class=fieldvalue><pre>GGGATGATGCACTCTGATGAGCCGCTCCTTCAGGTGGTTGAGCTGAGGCCGTGCCCACGCCGCGCGCACTGTGGGTGTA<br/>CTCACAGTCGCAGTTGGCCGGCTCCGTCCTGGCGATGAAGCAGCTTTCTCAGTGCGGCGCCTTCGCTGCAGGATGTTCAG<br/>GGCTGCCTTTCGGGCACCCATCCCAGGACAGCCTTGGGGTGAAGCGTGGGCATGCGCCAGAGTGAAGCCAGCCCCAGCAT<br/>CTTCCCACTGAGCCTTGGGAACGAGGACCCAGCAGGGCAGGTGGTCATCGGCTGCCTGGTCCAGGGCTTCTTCCCATCGG<br/>CACCCCTGAGCGTGACCTGGAACCAGAGTGGTGACAACGTGTCCGTCAGGAACTTCCCCGCCGTGCTGGCCGGGAGCCAG<br/>TACACCATGAGCAGCCAGCTGACCTTGCCAGCCAGCCTGTGCCCAAAAGACAAGTCCGTGACCTGCCAAGTGCAGCACCT<br/>CTCCAAAGCCAGCAAGACCGTGGACGTGCCCTGCAAACTTGAAGGTTGTCCGTGTCCTGAGGAGTGTCTCCCATTGAACT<br/>GCGAGCCCAGCCTGTCCCTGCAGCCTCCAGCCCTCGAGGATCTGCTCCTGAGCTCCAACGCCAGCCTCACGTGCACGCTG<br/>CGTGGCCTGAAAAGCGCCAAGGGCGCCAGCTTCACC</pre></td></tr>
+
+            <tr> <td colspan="2" class=inside>
+            <table class=inside>
+            <tr>
+            <td class=tableheading colspan="7"><br/>
+            Feature Table
+            </td>
+            </tr>
+            <tr><td class=fieldname>xreflsid</td>
+<td class=fieldname>featuretype</td>
+<td class=fieldname>featurestrand</td>
+<td class=fieldname>featurestart</td>
+<td class=fieldname>featurestop</td>
+<td class=fieldname>featurecomment</td>
+<td class=fieldname>evidence</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_F1_1</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>114</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_F1_211</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>211</td>
+<td class=fieldvalue>675</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_F2_152</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>152</td>
+<td class=fieldvalue>247</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_F3_114</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>114</td>
+<td class=fieldvalue>221</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_R1_675</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>-1</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>675</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_R3_553</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>-1</td>
+<td class=fieldvalue>368</td>
+<td class=fieldvalue>553</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.CS39.ORF.250506CS39007000FFFFF_R2_674</td>
+<td class=fieldvalue>cds</td>
+<td class=fieldvalue>-1</td>
+<td class=fieldvalue>159</td>
+<td class=fieldvalue>674</td>
+<td class=fieldvalue>ORF</td>
+<td class=fieldvalue>6 frame translation</td>
+</tr><tr><td class=fieldvalue>CS39.250506CS39007000FFFFF.010914ONDC203014HT</td>
+<td class=fieldvalue>mRNA</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>1</td>
+<td class=fieldvalue>675</td>
+<td class=fieldvalue>contig membership</td>
+<td class=fieldvalue>CAP3 contig assembly</td>
+</tr></table></td></tr></table></td></tr>
+                    <tr>
+                    <td colspan="2" class=tableheading>
+                    Features and Selected Blast Alignments for  250506CS39007000FFFFF
+                    </td>
+                    </tr>
+                
+                        <tr>
+                        <td colspan=2 align=left>
+                        <p/>
+                        <iframe src="/tmp/3166837579291678219.png" align="left" width="1000" height="536"></iframe>
+                        <p/>
+                        </td>
+                        </tr>
+                
+        <TH colspan="2" style="BACKGROUND: silver ; color:white; font-size:16pt" align=middle>Sequence Annotation : Database Search Results against Protein Databases</TH></tr>
+        
+                            <tr>
+                            <td colspan=2 align=center>
+                            <img src="/images/entrez_prot.gif" halign="right" border="0" usemap="#6659970098672140484" title="NCBI Non-redundant Protein (NR) : All non-redundant GenBank CDS translations+PDB+SwissProt+PIR+PRF excluding environmental samples  "/>
+                            <map name="6659970098672140484" id="6659970098672140484">
+                            <area href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=Protein"
+                            shape="rect"
+                            coords="0,0,465,45"
+                            alt="NCBI Non-redundant Protein (NR) : All non-redundant GenBank CDS translations+PDB+SwissProt+PIR+PRF excluding environmental samples  "
+                            target = "NCBI Non-redundant Protein (NR)"/>
+                            </map>
+                            </td>
+                            </tr>
+                        
+                            <tr>
+                            <td align=left>
+                            <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=AAI40643" target="NCBI Non-redundant Protein (NR) AAI40643"> AAI40643 </a>
+                            </td>
+                            <td align=left>
+                            gb|AAI40643.1| Unknown (protein for MGC:148283) [Bos taurus]   (eval=1e-56)
+                            </td>                        
+                            </tr>
+                            
+                            <tr>
+                            <td align=left>
+                            <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=AAC98391" target="NCBI Non-redundant Protein (NR) AAC98391"> AAC98391 </a>
+                            </td>
+                            <td align=left>
+                            gb|AAC98391.1| immunoglobulin IgA heavy chain constant region [Bos taurus]   (eval=1e-56)
+                            </td>                        
+                            </tr>
+                            
+                            <tr>
+                            <td align=left>
+                            <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=AAC64980" target="NCBI Non-redundant Protein (NR) AAC64980"> AAC64980 </a>
+                            </td>
+                            <td align=left>
+                            gb|AAC64980.1| immunoglobulin alpha heavy chain [Ovis aries]   (eval=6e-65)
+                            </td>                        
+                            </tr>
+                            
+                            <tr>
+                            <td align=left>
+                            <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=I47175" target="NCBI Non-redundant Protein (NR) I47175"> I47175 </a>
+                            </td>
+                            <td align=left>
+                            pir||I47175 Ig alpha chain C region - pig (fragment) gb|AAA65943.1| immunoglobulin alpha heavy chain constant region   (eval=7e-40)
+                            </td>                        
+                            </tr>
+                            
+                            <tr>
+                            <td align=left>
+                            <a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=protein&val=AAT65195" target="NCBI Non-redundant Protein (NR) AAT65195"> AAT65195 </a>
+                            </td>
+                            <td align=left>
+                            gb|AAT65195.1| immunoglobulin IgA heavy chain constant region [Tursiops truncatus]   (eval=4e-42)
+                            </td>                        
+                            </tr>
+                            
+            <tr class=sectionheading>
+            <td colspan=2>
+            <table class=sectionheading>
+            <tr>            
+            <td align=left >
+            <a name="listmembership" class=whiteheading>
+            List Membership
+            </a>
+            </td>
+            <td align=right>
+            <a class=menuitem_small href="#top"> Top </a>
+            </td>
+            </tr>
+            </table>
+            </td>            
+            </tr>
+            <tr><td colspan="2"><table border="1">
+            <tr>
+               <th>List Description </th>
+               <th>Membership Count </th>
+               <th>Date Created</th>
+            </tr>
+            
+                <tr>
+                    <td> <img src=/images/search.gif height=32 width=32 alt="List type : SEARCH_RESULT"/> <a href=/cgi-bin/fetch.py?obid=58057944&context=default target=58057944>Search of BioSequences for ONDC (limited to first 20000 hits)</a></td>
+                    <td> 20000 </td>
+                    <td> 11-03-2009 </td>
+                </tr>
+                
+                <tr>
+                    <td> <img src=/images/ob.gif height=32 width=32 alt="List type : BIOSEQUENCE_LIST"/> <a href=/cgi-bin/fetch.py?obid=60173119&context=default target=60173119>immunoglobulin : CS39 Sheep Contigs</a></td>
+                    <td> 275 </td>
+                    <td> 15-04-2009 </td>
+                </tr>
+                
+                <tr>
+                    <td> <img src=/images/search.gif height=32 width=32 alt="List type : SEARCH_RESULT"/> <a href=/cgi-bin/fetch.py?obid=55220964&context=default target=55220964>Archived : Search of BioSequences for CS39% (limited to first 20000 hits)</a></td>
+                    <td> 20000 </td>
+                    <td> 21-11-2008 </td>
+                </tr>
+                
+                <tr>
+                    <td> <img src=/images/search.gif height=32 width=32 alt="List type : SEARCH_RESULT"/> <a href=/cgi-bin/fetch.py?obid=60173109&context=default target=60173109>Search of BioSequences for immunoglobulin (limited to first 20000 hits)</a></td>
+                    <td> 6315 </td>
+                    <td> 15-04-2009 </td>
+                </tr>
+                
+                <tr>
+                    <td> <img src=/images/ob.gif height=32 width=32 alt="List type : BIOSEQUENCE_LIST"/> <a href=/cgi-bin/fetch.py?obid=58057947&context=default target=58057947>ONDC : CS39 Sheep Contigs</a></td>
+                    <td> 12849 </td>
+                    <td> 11-03-2009 </td>
+                </tr>
+                </table></td></tr>
+                      <tr class=sectionheading>
+                      <td colspan=2>
+                      <table class=sectionheading>
+                      <tr>                  
+                      <td align=left>
+                      <a name="informationmap" class=whiteheading>
+                      Information Map
+                      </a>
+                      </td>
+                      <td align=right>
+                      <a href="#top" class=menuitem_small> Top </a>
+                      </td>
+                      </tr>
+                      </table>
+                      </td>                  
+                      </tr>                
+                     <tr><td colspan=2><table><tr><td>
+                                    <tr>
+                                    <td align=left>
+                                    <img src="/tmp/7585276284760414797.gif" halign="left" usemap="#7585276284760414797" border="0"/>
+                                    <p/>
+                                    
+                                    </td>
+                                
+                                    <td align=left>
+                                    <img src="/tmp/4459892661349772914.gif" halign="left" usemap="#4459892661349772914" border="0"/>
+                                    <p/>
+                                    
+      <map name="4459892661349772914" id="4459892661349772914">
+                   <area href="/cgi-bin/join.py?context=default&fromob=41509677&jointype=117&joinhash=2"
+                   shape="rect"
+                   coords="122,6,152,26"
+                   alt="Link to related information"/>
+                   
+    </map>
+                                    </td>
+                                    </tr>
+                                
+                                    <tr>
+                                    <td align=left>
+                                    <img src="/tmp/1482785571183800269.gif" halign="left" usemap="#1482785571183800269" border="0"/>
+                                    <p/>
+                                    
+                                    </td>
+                                
+                                    <td align=left>
+                                    <img src="/tmp/7424521513370455691.gif" halign="left" usemap="#7424521513370455691" border="0"/>
+                                    <p/>
+                                    
+                                    </td>
+                                    </tr>
+                                
+                                    <tr>
+                                    <td align=left>
+                                    <img src="/tmp/646155175248453211.gif" halign="left" usemap="#646155175248453211" border="0"/>
+                                    <p/>
+                                    
+      <map name="646155175248453211" id="646155175248453211">
+                    <area href="/cgi-bin/join.py?context=default&totype=20&fromob=41509677&jointype=26&joinhash=1"
+                    shape="rect"
+                    coords="105,0,137,32"
+                    alt="Link to related database object(s)"/>
+                    
+    </map>
+                                    </td>
+                                
+                                    <tr>
+                                    <td colspan=2 align=left>
+                                    <img src="/tmp/1773409230614687055.gif" halign="left" usemap="#1773409230614687055" border="0"/>
+                                    <p/>
+                                    
+      <map name="1773409230614687055" id="1773409230614687055">
+                    <area href="/cgi-bin/join.py?context=default&totype=115&fromob=41509677&jointype=325&joinhash=1"
+                    shape="rect"
+                    coords="105,0,137,32"
+                    alt="Link to related database object(s)"/>
+                    
+                    <area href="/cgi-bin/join.py?context=default&totype=320&fromob=41509677&jointype=325&joinhash=1"
+                    shape="rect"
+                    coords="210,0,242,32"
+                    alt="Link to related database object(s)"/>
+                    
+                    <area href="/cgi-bin/join.py?context=default&fromob=41509677&jointype=325&joinhash=2"
+                    shape="rect"
+                    coords="267,11,399,22"
+                    alt="Link to related database object(s)"/>
+                
+    </map>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan=2 align=left>
+                                    <img src="/tmp/4397499685776822674.gif" halign="left" usemap="#4397499685776822674" border="0"/>
+                                    <p/>
+                                    
+      <map name="4397499685776822674" id="4397499685776822674">
+                    <area href="/cgi-bin/join.py?context=default&totype=540&fromob=41509677&jointype=548&joinhash=1"
+                    shape="rect"
+                    coords="105,0,137,32"
+                    alt="Link to related database object(s)"/>
+                    
+                    <area href="/cgi-bin/join.py?context=default&totype=550&fromob=41509677&jointype=548&joinhash=1"
+                    shape="rect"
+                    coords="210,0,242,32"
+                    alt="Link to related database object(s)"/>
+                    
+    </map>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td colspan=2 align=left>
+                                    <img src="/tmp/4936112670443380532.gif" halign="left" usemap="#4936112670443380532" border="0"/>
+                                    <p/>
+                                    
+                                    </td>
+                                    </tr>
+                    </td>
+                    </tr>
+                    </td></tr></table></td></tr>
+            <tr class=sectionheading>
+            <td colspan=2>
+            <table class=sectionheading>
+            <tr>            
+            <!-- <td colspan=2 align=left> -->
+            <td align=left> 
+            <a name="recordstatus" class=whiteheading>
+            Record Status
+            </a>
+            </td>
+            <td align=right>
+            <!--<a class="CSSCheckOutButton" href=http://agbrdfdev.agresearch.co.nz/zz_contents.htm>Check Out Record</a>-->
+            <a href="#top" class=menuitem_small> Top </a>
+            </td>
+            </tr>
+            </table>
+            </td>            
+            </tr><tr><td class=inside colspan="2"><table class=inside border="0"><tr><td class=fieldname>checkedout</td><td class=fieldvalue>f</td></tr>
+<tr><td class=fieldname>checkedoutby</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>checkoutdate</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>createdby</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>createddate</td><td class=fieldvalue>2008-05-08 00:00:00.00</td></tr>
+<tr><td class=fieldname>lastupdatedby</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>lastupdateddate</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>obid</td><td class=fieldvalue>41509677</td></tr>
+<tr><td class=fieldname>obkeywords</td><td class=fieldvalue>None</td></tr>
+<tr><td class=fieldname>obtypeid</td><td class=fieldvalue>115</td></tr>
+<tr><td class=fieldname>statuscode</td><td class=fieldvalue>1</td></tr>
+<tr><td class=fieldname>xreflsid</td><td class=fieldvalue>CS39.250506CS39007000FFFFF</td></tr>
+</table></td></tr></table>
+
+                <map name="obtypelink" id="obtypelink">
+                <area nohref
+                shape="rect"
+                coords="0,0,42,42"
+                alt="Click To Describe this object"
+                target="obdescription" onclick="return brdfpopup('Sequence 41509677','<h2> BRDF Page Help Contents </h2> <p/> <ul><li><b><i>BRDF Sequence Object</i></b></li>\n<li><b><i>Page Usage</i></b></li>\n<li><b><i>Description of the Default BRDF Database Page</i></b></li>\n<b><i><ul> Information Summary </ul></i></b>\n<b><i><ul> Information Map </ul></i></b>\n<b><i><ul> Record Status </ul></i></b>\n</ul><p/><h3> BRDF Sequence Object </h3><p/>         This page displays a sequence object from the BRDF database. Contents include:          <ul>            <li> Basic sequence information - the sequence, length, molecule type            <li> Blast or other search annotation if available            <li> A graphical feature display if features have been loaded            <li> A trace viewer if there is a trace file linked to the sequence. The clipped off ends                 are usually shaded gray in this view, the sequence corresponding to that shown in the basic                 sequence information panel is unshaded. In some cases there may be no shading, if the                 drawing code could not determine where the clipping started. Some ABI files seem to                 adopt a convention of starting the clipped sequence at position zero, and it may be possible to                 identify the start of clipping using this rule, even when we have not shaded the clipped                 region.         </ul>                  In the BRDF database schema, sequence objects are stored in a table called         biosequenceob. Various types of sequence can be stored in this table - for example,         nucleotide, protein, mRNA sequence, genomic sequence. Also, various types of         sequence model can be stored in addition to the common models of nucleic and amino acid symbol strings -         for example, other models of sequences include regular expressions and HMMs.         </p>         The type of a sequence object is stored in the sequencetype field of this table.         The current set of types that are supported in this database are recorded in an ontology called         AGSEQUENCE_ONTOLOGY (you can browse this ontology by selecting ONTOLOGIES from the drop down list         of search types on the main page, and entering AGSEQUENCE_ONTOLOGY as the search phrase).         <p/>         A Sequence Object in the BRDF database may have relationships with other types of object         in the database. For example, if the sequence is a primary sequence resulting from lab work, then         there is a relation between the biological sample used in the sequencing experiment and one or more         lab resources (vectors, primers); a sequence may be the product of a gene and thus related to         a BRDF geneticob record; if we have searched sequence databases (e.g. via BLAST) and         found similar sequences and stored these search results in the BRDF schema, then this involves a         relationship with a database search run and another (hit) biosequence. All of the possible relationships that a         sequence object may have with other objects in the database are depicted by icons in the information         map section of the page.         <p/>         The icon is composed of the sequenceob symbol connected to the symbols for the related objects         by horizontal lines. Where the database does not yet contain any related objects for a sequence,         the icon for that relationship is greyed out.         <p/>         We may store various types of facts about a given sequence object - for example, features of the         sequence; or miscellaneous facts specific to a given project. Each type of fact supported by the         BRDF is depicted by a line connecting the sequence symbol, to a square box labelled info, with the type of         fact appearing to the right of the icon. Where the database does not yet contain any facts         of a given type for a sequence object, the info icon is greyed out.         \n<p/><h3> Page Usage </h3><p/>                         Using this page you can                         <ul>                         <li> attach free text comments                         <li> attach links to external files or web pages , either on the web or on your own                              intranet                         <li> click links in the information map to run simple reports that list related                          records , together with hyperlinks so that you can navigate to those records                         </ul>                         \n<p/><h3> Description of the Default BRDF Database Page </h3><p/>                     The default page view includes the following sections :                      \n<p/><h3> <ul> Information Summary </ul> </h3><p/>                     <ul>                     The information summary displays the core database fields recorded for this object. Note that these                     core fields are usually few in number, and related solely to the object itself - for example, its name,                     storage location etc. Most of the information of interest is stored either in details tables (called fact tables in the                     brdf schema) , linked to the object, or in tables corresponding to related objects in the database. These details tables and                     relationships are depicted in the Information Map section of the page.                     </ul>                     \n<p/><h3> <ul> Information Map </ul> </h3><p/>                     <ul>                     The information map displays the possible types of relationship an object can                     have with other objects in the BRDF database schema,  and also the possible types of                     factual details about an object that can be stored in related details tables.                      <p/>                     Where a given object is related to one or more other objects in the database, this is depicted                     by an icon , in which symbols representing each of the objects in the relationship are connected                     together by horizontal lines. If you click on a symbol, a simple report will be displayed, listing                     all of that type of  object,  that are related via the relationship depicted.                     <p/>                     (If there are no instances of a depicted relation currently in the database, the icon is greyed out)                     <p/>                     Where a given type of fact is stored about an object, in a specific seperate details table linked to                     the main object, this is depicted by a line connecting the object symbol , to a square box                     labelled info, with the type of fact appearing to the right of the icon. If you click on the square                     info box, a simple report will be displayed listing all the details records of that type, related to                     your object                     <p/>                     (Where the database does not yet contain any facts of a given type for an object, the info icon is greyed out)                     <p/>                     When additional details tables are added to the schema , as may be required for specific projects,                     icons depicting the new data dimensions will automatically be added to the information map.                     </ul>                     \n<p/><h3> <ul> Record Status </ul> </h3><p/>                     <ul>                     The record status section shows database housekeeping information, such as the date the record                     was created, date last updated and whether the record has been checked out.                     </ul>                     \n')"/>
+                </map><p><p>
+<i>2009-05-14</i>
+<p></td>
+</tr>
+</table>
+</body>
+</html>
+
+

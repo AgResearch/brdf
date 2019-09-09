@@ -1,0 +1,1663 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>            
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link id="themeStyles" rel="stylesheet" href="js/dojo-release-1.3.2/dijit/themes/soria/soria.css"> 
+      
+
+       <script type="text/javascript" src="js/dojo-release-1.3.2/dojo/dojo.js" 
+                    djConfig="parseOnLoad: true, isDebug: false, debugAtAllCosts: false" >
+       </script>
+       <script type="text/javascript"> 
+                    //dojo.require("dojo.parser");
+                    //dojo.require("dijit.form.parser");
+                    //dojo.require("dijit.form.TextBox");
+                    //dojo.require("dojo.widget.button");
+                    dojo.require("dijit.form.Form");
+
+
+		    dojo.require("dijit.layout.BorderContainer");
+		    dojo.require("dijit.layout.ContentPane");
+ 		    dojo.require("dijit.layout.AccordionContainer");
+                    dojo.require("dijit.layout.AccordionPane");
+                    dojo.require("dijit.layout.TabContainer");
+       </script>
+       <style type="text/css">
+                    @import "js/dojo-release-1.3.2/dojo/resources/dojo.css";
+                    @import "js/dojo-release-1.3.2/dijit/themes/soria/soria.css";
+                    html, body { height: 100%; width: 100%; padding: 0; margin: 0; border: 0; }
+                    #borderContainer { width:80%; height:100% }
+                    #header { margin: 0px; height: 80px; padding: 0; text-align: center;}
+                    #footer { margin: 0px; height: 20px; padding: 0; text-align: center;}
+                    #leading { margin: 0px; width: 100px; padding: 0}
+                    #leftAccordion { width: 25%; }
+                    #bottomTabs { height: 40%; }
+
+       </style>
+
+
+
+<!-- begin legacy javascript -->
+<script type="text/javascript">
+
+var bgColour = "";
+var alreadySubmitted = false;
+
+function formSetup() {
+   // this function can be called from onload or onChange handlers , to setup the
+   // form, when a specific report is selected
+
+   // if the report is the create_cohort report then add the admixed section, and make various other sections 
+   // hidden
+   //window.alert("in onload");
+   if(document.getElementById("reportmenu").options[document.getElementById("reportmenu").selectedIndex].value == "create_cohort") {
+      document.getElementById("ethnicity_div").innerHTML='Cohort should have any admixed annotation equal to ' +
+      '<select name="admixed">' +
+      '<option value="N"> N</option>' +
+      '<option value="Y"> Y</option>' +
+      '</select>';
+
+      
+      // additional fields for cohort report
+      document.getElementById("cohort_div").style.visibility = 'visible';
+
+      // enable centers and ethnicities sections, and remove its button
+      toggleVisibility(null, 'centers_block','Centers and Ethnicities')
+      document.getElementById("ethnicity_div").style.visibility = 'visible';
+      document.getElementById("centers_button").style.display = 'none';
+
+      // gray out sections not supported for cohorts
+      //document.getElementById("snp_div").style.backgroundColor = 'gray';
+      document.getElementById("output_div").style.backgroundColor = 'gray';
+   }
+   else {
+      // hide additional fields
+      document.getElementById("cohort_div").style.visibility = 'hidden';
+      document.getElementById("ethnicity_div").style.visibility = 'hidden'; 
+
+      //restore other elements
+      //document.getElementById("snp_div").style.backgroundColor = '#336699';
+      document.getElementById("output_div").style.backgroundColor = '#336699';
+   }
+
+   // set report title
+   if(simplereport.reportmenu.value=="ibdgenotypeextract1") {
+      simplereport.reporttitle.value="IBD Genotype Extract";
+   }
+   else if(simplereport.reportmenu.value=="ibdgenotypevariance1") {
+      simplereport.reporttitle.value="IBD Genotype Variance Report";
+   }
+   else if(simplereport.reportmenu.value=="genotypeimportsummary1") {
+      simplereport.reporttitle.value="Nutrigenomics New Zealand Genotype Import Summary";
+   }
+   else if(simplereport.reportmenu.value=="create_cohort") {
+      simplereport.reporttitle.value="Create a subject cohort";
+   }
+   return true;
+
+}
+
+function toggleVisibility(caller, divid, topic) {
+    //window.alert(caller.name);
+    //window.alert(caller.type);
+    if(document.getElementById(divid).style.display == 'none'){
+      document.getElementById(divid).style.display = 'block';
+      if (caller != null) {
+         caller.value="Hide " + topic + "...";
+      }
+    }else{
+      document.getElementById(divid).style.display = 'none';
+      if(caller != null) {
+         caller.value="Specify " + topic + "...";
+      }
+    }
+}
+
+
+function checkAll() {
+   // make sure we have not already submitted this form
+   //if(alreadySubmitted) {
+   //   window.alert("This Form has already been submitted, please wait");
+   //   return false;
+   //}
+
+
+   // check the other values
+
+
+
+   if(trim(simplereport.reportmenu.value) != "ibdgenotypeextract1" && trim(simplereport.reportmenu.value) != "create_cohort" && simplereport.ethnicitylist.value != "") {
+      highLight(simplereport.ethnicitylist,"Selecting a list of ethnic groups to report is only relevant to the Genotype extract report - please select None");
+      return false;
+   }
+   else {
+      lowLight(simplereport.ethnicitylist);
+   }
+
+   
+
+
+   if(trim(simplereport.reportmenu.value) == "ibdgenotypeextract1" || trim(simplereport.reportmenu.value) == "create_cohort") {
+      if(trim(simplereport.reportmenu.value) == "ibdgenotypeextract1") {
+         if (simplereport.ethnicitylist.value == "") {
+            highLight(simplereport.ethnicitylist,"You must select one or more ethnic groups");
+            return false;         
+         }
+         else {
+            lowLight(simplereport.ethnicitylist);      
+         }
+      }
+      //if (simplereport.genetictestlist.value == "") {
+      //   highLight(simplereport.genetictestlist,"You must select one or more genetic tests");
+      //   return false;         
+      //}
+      //else {
+      //   lowLight(simplereport.genetictestlist);      
+      //}
+      if (simplereport.centerlist.value == "") {
+         highLight(simplereport.centerlist,"You must select one or more centers");
+         return false;         
+      }
+      else {
+         lowLight(simplereport.centerlist);      
+      }            
+   }
+
+   if( trim(simplereport.reportmenu.value) == "create_cohort") {
+      if (trim(simplereport.cohort_name.value) == "") {
+         highLight(simplereport.cohort_name,"You must enter a cohort name");
+         return false;
+      }
+      else {
+         lowLight(simplereport.cohort_name);
+      }
+   }
+
+
+   if(trim(simplereport.reportmenu.value) == "ibdgenotypevariance1" ) {
+      if (simplereport.genetictestlist.value == "") {
+         highLight(simplereport.genetictestlist,"You must select one or more genetic tests");
+         return false;         
+      }
+      else {
+         lowLight(simplereport.genetictestlist);      
+      }
+      if (simplereport.centerlist.value == "") {
+         highLight(simplereport.centerlist,"You must select one or more centers");
+         return false;         
+      }
+      else {
+         lowLight(simplereport.centerlist);      
+      }
+      if (simplereport.outputformat.value == "ped") {
+         highLight(simplereport.outputformat,"ped format is not applicable to this report");
+         return false;         
+      }
+      else {
+         lowLight(simplereport.outputformat);      
+      }      
+         
+   }
+
+   //window.alert("hello");
+   c1 = false;
+   lmontreal = false;
+   //window.alert(simplereport.phenotypelist.options.length);
+   for(i=0; i< simplereport.phenotypelist.options.length; i++) {
+      if (simplereport.phenotypelist.options[i].selected) {
+         if (simplereport.phenotypelist.options[i].value == 'l montreal') {
+            lmontreal = true;
+         }
+         else if (simplereport.phenotypelist.options[i].value == 'c1') {
+            c1 = true;
+         }
+
+      }
+   }
+   if(lmontreal && ! c1) {
+      highLight(simplereport.phenotypelist,"If you select 'l montreal you must also select c1'");
+      return false;
+   }
+   else {
+      lowLight(simplereport.phenotypelist);
+   }
+
+   // finally , set the submitted flag
+   alreadySubmitted = true;
+
+
+   return true;
+}
+
+function highLight(item,message) {
+   if(bgColour == "")
+      eval("bgColour = item.style.background");
+   eval("item.style.background = 'red'");
+   window.alert(message);
+   item.focus();
+} // assume IE
+
+function lowLight(item) {
+   //eval("item.style.background = '" + bgColour + "'");
+   eval("item.style.background = 'white'");
+}
+/*
+* a function to trim leading and trailing spaces
+* from a string
+*/
+function trim(strval) {
+   var start=-1;
+   var end=-1;
+
+   if(strval == null)
+      return null;
+   if(strval == "")
+      return strval;
+
+   for(i=0; i < strval.length; i++) {
+      if(strval.charAt(i) != " ") {
+         if(start == -1)
+            start = i;
+         end = i;
+      }
+   }
+
+   if(start == -1)
+      return "";
+   else
+      return strval.substring(start,1 + end);
+}
+
+
+function checkFloatRange(item, low, high) {
+   if(isNaN(item.value))
+      return false;
+   if(high == null && low == null)
+      return true;
+   else if(high == null && parseFloat(item.value) < low)
+      return false;
+   else if(low == null && parseFloat(item.value) > high)
+      return false;
+   else if(parseFloat(item.value) < low || parseFloat(item.value) > high)
+      return false;
+   else 
+      return true;   
+}
+
+function setValueByName(fieldName, toValue) {
+   document.forms[0].elements[fieldName].value = toValue;
+}
+
+// this function can be used to focus on a field given its name
+function focusByName(fieldName) {
+   document.forms[0].elements[fieldName].focus();
+}
+
+// this function wil return the value of a field given its name
+function getValueByName(fieldName) {
+   return document.forms[0].elements[fieldName].value;
+}
+
+// this function wil return a field given its name
+function getItemByName(fieldName) {
+   return document.forms[0].elements[fieldName];
+}
+
+
+// methods for support AJAX processing 
+// this method takes a URL, a list of queries, and the name of an 
+// HTML element (e.g. div tag) which will be where the result is written.
+// It then executes in turn an AJAX style post for each query, setting 
+// the asynchronous flag to false so that the stream of results is 
+// serialised. Each result is appended to the indicated result position
+// in the doc
+function xmlhttpMultiPost(strURL,queryArray,resultelementname,waitbanner,waitURL) {
+    //window.alert("in xmlhttpMultiPost");
+    var xmlHttpReq = false;
+    var self = this;
+    var queryCount = 0;
+    var buttonvalue = "" ;
+
+    // Mozilla/SafariSectionHeading
+    if (window.XMLHttpRequest) {
+        self.xmlHttpReq = new XMLHttpRequest();
+    }
+    // IE
+    else if (window.ActiveXObject) {
+        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    updatepage('<img src="/'+waitbanner+'" />',resultelementname,"replace");
+
+    //window.alert("query length=" + queryArray.length);
+    
+    
+    self.xmlHttpReq.open('POST', waitURL);
+    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    self.xmlHttpReq.onreadystatechange = function() {
+        for(self.queryCount = 0; self.queryCount < queryArray.length; self.queryCount++) {
+            //window.alert("opening : " + strURL);
+            self.xmlHttpReq.open('POST', strURL, false);
+            self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            self.xmlHttpReq.onreadystatechange = function() {
+                //window.alert("ready state = " + self.xmlHttpReq.readyState);
+                if (self.xmlHttpReq.readyState == 4) {
+                     //window.alert("calling update page with response " + self.xmlHttpReq.responseText);
+                     if (self.queryCount == 0) {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"replace");
+                     }
+                     else {
+                         updatepage(self.xmlHttpReq.responseText,resultelementname,"add");
+                     }      
+                }
+            }
+            //window.alert("sending " + queryArray[self.queryCount]);
+            self.xmlHttpReq.send(queryArray[self.queryCount]);
+        }
+    }
+    self.xmlHttpReq.send("dummy=1");
+}
+
+
+
+//
+// This method simply inserts a given fragment in the indicated position
+//
+function updatepage(str,targetelement,mode){
+    //window.alert("in updatepage for " + targetelement);
+    //window.alert("mode=" + mode);
+    //window.alert("response="+str);
+    if(mode == "add") {
+        document.getElementById(targetelement).innerHTML += str;
+    }
+    else {
+        document.getElementById(targetelement).innerHTML = str;
+    }
+}
+
+
+//
+// this method martials options from a multi-select box, into an array
+// and then calls another method to do the actual xmlhttp AJAX stuff
+// queryLeader would typically be (e.g. )
+// "displayprocedure=blah&amp;obid="
+function multipost(url,selectname,resultelementname,queryleader,waitbanner,waiturl) {
+   //window.alert("in multipost");
+   var self = this;
+   var queryArray=new Array();
+   var queryCount = 0;
+
+   
+   for(var i=0 ; i < document.getElementById(selectname).options.length; i++) {
+      if (document.getElementById(selectname).options[i].selected ) {
+         //window.alert("adding " + queryleader+escape(document.getElementById(selectname).options[i].value));
+         queryArray[queryCount] = queryleader+escape(document.getElementById(selectname).options[i].value);
+         queryCount += 1
+      }
+   }
+   JavaScript:xmlhttpMultiPost(url,queryArray,resultelementname,waitbanner,waiturl);
+}
+
+
+</script>
+<!-- end legacu javascript -->
+
+
+
+
+       </head>
+    <body class="soria" onload='formSetup()'>
+<form name="simplereport" method="post" onSubmit="return checkAll()" enctype="multipart/form-data" action="/cgi-bin/nutrigenomics/report.py" target="simpleReportListing" >
+<input type="hidden" name="context" value="report"/>
+<div dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" style="width: 100%; height: 100%">
+
+
+     <div dojoType="dijit.layout.ContentPane" region="top" id="header">
+<table>
+  <tr> 
+    <td width="10%" height="44"><img src="/images/NutriDBLogo.png" width="135" height="57"></td>
+    <td width="90%" height="44"  valign="top">&nbsp; 
+          <p>
+            <select name="viewName">
+              <option value="default"> Default (Show All) </option>
+            </select>
+            <select name="obTypeName">
+              <optgroup label=""> </optgroup> <optgroup label="Nutrigenomics Site"> 
+              <option value="All Tables">All Nutrigenomics Database Tables </option>
+              <option value="NUNZ Wiki"> NUNZ Wiki 
+              </optgroup> <optgroup label="Public Resources"> 
+              <option value="NCBI"> NCBI 
+              <option value="USDA Food Composition"> USDA Food Composition 
+              </optgroup> <optgroup label="Nutrigenomics Database : Specific Databases "> 
+              <option value="All Tables">Everything </option>
+              <option value="Genetic Tables">Genes </option>
+              <option value="BioSubjects">Subjects </option>
+              <option value="Subject Lists">Subject Cohorts </option>
+              <option value="BioSamples">Samples </option>
+              <option value="BioSampling">Sampling </option>
+              <option value="BioSequences">Sequences </option>
+              <option value="Ontologies">Ontologies </option>
+              <option value="Ontology Terms">Ontology Terms </option>
+              <option value="Comments">Comments </option>
+              <option value="External Links"> External Links </option>
+              <option value="Protocols">Protocols </option>
+              <option value="Analysis Procedures">Analysis Procedures </option>
+              <option value="Literature References">Literature References </option>
+              </optgroup> <optgroup label="Experiments"> 
+              <option label="Microarray Experiments"> Microarray Experiments </option>
+              <option label="Phenotype Studies"> Phenotype Studies </option>
+              <option label="Genotype Experiments"> Genotype Experiments </option>
+              <option label="Genetic Test Runs"> Genetic Test Runs </option>
+              <option label="Food Fraction Experiments"> Food Fraction Experiments 
+              </option>
+              </optgroup> <optgroup label="Lab Resources"> 
+              <option value="All Lab Resources"> All Lab Resources </option>
+              <option value="Microarrays"> Microarrays </option>
+              <option value="Microarray Spots">Microarray Spots </option>
+              <option value="Genetic Tests">Genetic Tests </option>
+              </optgroup> <optgroup label="Relations and Attributes"> 
+              <option value="Gene Product">Gene Product </option>
+              <option value="Gene Expression">Gene Expression </option>
+              <option value="Gene Function">Gene Function </option>
+              <option value="Gene Location">Gene Location </option>
+              <option value="Gene Regulation">Gene Regulation </option>
+              <option value="Microarray MIAME">Microarray MIAME </option>
+              </optgroup> <optgroup label="Other"> 
+              <option value="Staff"> Staff </option>
+              <option value="Work Flows"> Work Flows </option>
+              <option value="Work Flow Stages"> Work Flow Stages </option>
+              <option value="Data Files Submitted"> Data Files Submitted </option>
+              <option value="Data Files Imported"> Data Files Imported </option>
+              <option value="Past Searches"> Past Searches </option>
+              </optgroup> 
+            </select>
+            for 
+            <input name="queryString" value="" length="40" type="text">
+            <input value="Go" type="submit">
+          </p>	  
+    </td>
+  </tr>
+  </table>
+     </div>
+
+
+
+     <div dojoType="dijit.layout.ContentPane" region="leading" id="leading">
+	      <table>
+              <tr> 
+                <td><a href="/index.htm" >Home</a></td>
+              </tr>
+              <tr> 
+                <td><a href="/reports.htm" >Report 
+                  Menu</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/ftp.htm" >FTP 
+                  folders</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/agblast.htm" >BLAST</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/request1.htm" >Report 
+                  a Bug</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/mediawiki/index.php" >NutriWiki</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/mediawiki/index.php/People" target="_blank" >Staff 
+                  List</a></td>
+              </tr>
+              <tr> 
+                <td> <a href="/mediawiki/index.php/Category:Help" target="_blank" >Help</a></td>
+              </tr>
+             </table>
+     </div> 
+
+
+ 
+     <div dojoType="dijit.layout.AccordionContainer" region="center">
+          <div dojoType="dijit.layout.AccordionPane" title="Choose Report, Select / Specify Centers and Ethnicity">
+
+
+<table>
+<tr>
+   <td class="fieldname"> <p class="fieldname"> Choose a report      </p>
+   </td>
+   <td class="input">
+      <a name="top"/>
+      <select id="reportmenu" name="reportmenu" onChange='formSetup()'>
+         <option value="ibdgenotypeextract1">IBD Genotype Extract
+         <option value="ibdgenotypevariance1">IBD Genotype Variance Report
+         <option value="genotypeimportsummary1">Genotype Import Summary
+         <option value="create_cohort">Create a subject cohort
+      </select><br/>
+      <div id="cohort_div">
+      Cohort name : <input name="cohort_name" type="text" size="50" value=""/>
+      </div>
+   </td>
+</tr>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Report Title 
+   </td>
+   <td  class="input"> 
+   <input name="reporttitle" type="text" size="40" value="Create a subject cohort"/>   
+   </td>
+</tr>
+<tr>   
+   <td class="fieldname"> <p class="fieldname"> Report Parameters 
+   </td>
+   <td  class="input">
+   <p><i>(In the following fields you may choose one or more items. To choose more than one item hold the control
+   key down and click to select. To select a block , select first item then hold down the shift key and select the second item) </i></p>
+   <p/>
+   <div id="centers_block" style="display:block">
+   <select name="centerlist" multiple size=8><optgroup label="IBD Centers"> <option value="ControlAukDebbie"/> ControlAukDebbie 
+<option value="ControlAukNunz"/> ControlAukNunz 
+<option value="ControlCanterbury"/> ControlCanterbury 
+<option value="ControlDunedin"/> ControlDunedin 
+<option value="IBDAukKrissiansen"/> IBDAukKrissiansen 
+<option value="IBDAukNunz"/> IBDAukNunz 
+<option value="IBDCanterbury"/> IBDCanterbury 
+</optgroup></select>
+   <select name="ethnicitylist" multiple size=21><optgroup label="Ethnicities">
+<option value="ASIAN"/> ASIAN 
+<option value="BANGLADESHI"/> BANGLADESHI 
+<option value="CHINESE"/> CHINESE 
+<option value="EGYPTIAN"/> EGYPTIAN 
+<option value="INDIAN"/> INDIAN 
+<option value="JAPANESE"/> JAPANESE 
+<option value="KOREAN"/> KOREAN 
+<option value="LEBANESE"/> LEBANESE 
+<option value="MIDDLE EASTERN"/> MIDDLE EASTERN 
+<option value="NOT STATED"/> NOT STATED 
+<option value="NZ EUROPEAN/PAKEHA"/> NZ EUROPEAN/PAKEHA 
+<option value="NZ MAORI"/> NZ MAORI 
+<option value="OTHER"/> OTHER 
+<option value="OTHER ASIAN"/> OTHER ASIAN 
+<option value="PACIFIC ISLANDER"/> PACIFIC ISLANDER 
+<option value="PHILIPINO"/> PHILIPINO 
+<option value="SINGAPOREAN"/> SINGAPOREAN 
+<option value="SINGHALESE"/> SINGHALESE 
+<option value="SOUTHEAST ASIAN"/> SOUTHEAST ASIAN 
+<option value="UNKNOWN"/> UNKNOWN 
+</optgroup></select><div id="ethnicity_div"></div>
+<p/> (to report all ethnicities, including those with missing ethnicity, do not select anything from the ethnicity list) 
+   </div>
+</td>
+</tr>
+</table>
+
+
+
+          </div>
+          <div dojoType="dijit.layout.AccordionPane" title="Select / Specify Vienna Phenotypes">
+
+<table>
+<tr>
+<td>
+   <select name="viennaphenotypelist" id="viennaphenotypelist" multiple size=8 ><optgroup label="Vienna Phenotypes">
+<option value="any eim"/> any eim 
+<option value="a vienna"/> a vienna 
+<option value="c1"/> c1 
+<option value="cbvienna"/> cbvienna 
+<option value="clvienna"/> clvienna 
+<option value="ever surgery"/> ever surgery 
+</optgroup></select><div id="viennaphenotypelist_div"></div>
+  
+<select name="phenotypelist" id="phenotypelist" multiple size=21 onChange="if(simplereport.reportmenu.value == 'create_cohort') {multipost('/cgi-bin/nutrigenomics/fetchSelectList.py','phenotypelist','phenotypelist_div','listname=subjectfactvalues&amp;factnamespace=Gearry Data 1&amp;attributename=','images/loading.gif','/cgi-bin/nutrigenomics/wait.py');} return true;" >
+<option value=">1 eim"/> >1 eim 
+<option value="a montreal"/> a montreal 
+<option value="any eim"/> any eim 
+<option value="b montreal"/> b montreal 
+<option value="c1"/> c1 
+<option value="dateofbirth"/> dateofbirth 
+<option value="date of recruitment"/> date of recruitment 
+<option value="duration (calculated)"/> duration (calculated) 
+<option value="durationuntilsurgery"/> durationuntilsurgery 
+<option value="ever surgery"/> ever surgery 
+<option value="ever used im"/> ever used im 
+<option value="ibddiagnosisdate"/> ibddiagnosisdate 
+<option value="l montreal"/> l montreal 
+<option value="otheribdfamily"/> otheribdfamily 
+<option value="pa modifier"/> pa modifier 
+<option value="recurrent surgery"/> recurrent surgery 
+<option value="sex"/> sex 
+<option value="smoker"/> smoker 
+<option value="smokeratdiag"/> smokeratdiag 
+<option value="smokercessationtodiag"/> smokercessationtodiag 
+<option value="smokercurrent"/> smokercurrent 
+<option value="smokerendage"/> smokerendage 
+<option value="smokerexatdiag"/> smokerexatdiag 
+<option value="smokeronsettodiag"/> smokeronsettodiag 
+<option value="smokerpackyrs"/> smokerpackyrs 
+<option value="smokerstartage"/> smokerstartage 
+<option value="smokeryears"/> smokeryears 
+<option value="smokesperday"/> smokesperday 
+<option value="study number"/> study number 
+<option value="ugi modifier"/> ugi modifier 
+</optgroup></select><div id="phenotypelist_div"></div> 
+</td>
+</tr>
+</table>
+
+
+
+
+
+          </div>
+          <div dojoType="dijit.layout.AccordionPane" title="Select / Specify SNPs">
+
+
+<table>
+<tr>
+<td>
+      You may select SNPs by
+      <ul>
+      <li> using one or more of the drop-down list of all SNPs, and /or 
+      <li> paste one or more SNP identifiers into the box below, and/or
+      <li> select one or more previously compiled SNP lists ( SNP lists are created simply by supplying a name as noted below)
+      <p/>
+      Report all SNPs selected from the following list of all SNPs
+      <select name="allgenetictestlist" multiple size=21><optgroup label="SNPs"> 
+<option value="1464946"/> snp.ABCB1.1002204 
+<option value="1464953"/> snp.ABCB1.10246878 
+<option value="1464960"/> snp.ABCB1.10264990 
+<option value="3893530"/> snp.ABCB1.1045642 
+<option value="3893611"/> snp.ABCB1.1128503 
+<option value="3893541"/> snp.ABCB1.1186745 
+<option value="1464995"/> snp.ABCB1.11983225 
+<option value="1465002"/> snp.ABCB1.1202172 
+<option value="1465009"/> snp.ABCB1.12334183 
+<option value="1465029"/> snp.ABCB1.12720066 
+<option value="1465036"/> snp.ABCB1.13226726 
+<option value="1465043"/> snp.ABCB1.13233308 
+<option value="1465050"/> snp.ABCB1.13237132 
+<option value="1465057"/> snp.ABCB1.17064 
+<option value="3893552"/> snp.ABCB1.2032582 
+<option value="1465071"/> snp.ABCB1.2032588 
+<option value="1465106"/> snp.ABCB1.2188525 
+<option value="1465113"/> snp.ABCB1.2214102 
+<option value="3893570"/> snp.ABCB1.2235046 
+<option value="3893581"/> snp.ABCB1.3789243 
+<option value="1465174"/> snp.ABCB1.4148733 
+<option value="13235318"/> snp.AMT.11922013 
+<option value="13235118"/> snp.AMT.1464567 
+<option value="12427891"/> snp.ATG12.26532 
+<option value="12427904"/> snp.ATG12.26534 
+<option value="12550765"/> snp.ATG12.26537 
+<option value="12427915"/> snp.ATG12.3797570 
+<option value="12427926"/> snp.ATG12.7705442 
+<option value="11761034"/> snp.ATG16L1.10210302 
+<option value="9747611"/> snp.ATG16L1.2241880 
+<option value="1465188"/> snp.BPI.4358188 
+<option value="12123926"/> snp.BPI.4358189 
+<option value="13235144"/> snp.BSN.2131109 
+<option value="13235196"/> snp.BSN.4283605 
+<option value="11761065"/> snp.BSN.MST1.9858542 
+<option value="1465078"/> snp.CARD15.2066844 
+<option value="1465085"/> snp.CARD15.2066845 
+<option value="7175460"/> snp.CARD15.2066847 
+<option value="3893559"/> snp.CARD4.2075818 
+<option value="1465099"/> snp.CARD4.2075822 
+<option value="1465153"/> snp.CARD4.2907748 
+<option value="11761104"/> snp.CARD8.2288877 
+<option value="12198856"/> snp.CCR10.2301436 
+<option value="12198863"/> snp.CCR11.2301436 
+<option value="12198870"/> snp.CCR12.2301436 
+<option value="12198877"/> snp.CCR13.2301436 
+<option value="12198884"/> snp.CCR14.2301436 
+<option value="12198891"/> snp.CCR15.2301436 
+<option value="12198898"/> snp.CCR16.2301436 
+<option value="12197172"/> snp.CCR6.2301436 
+<option value="12198807"/> snp.CCR7.2301436 
+<option value="12198814"/> snp.CCR8.2301436 
+<option value="12198821"/> snp.CCR9.2301436 
+<option value="3988028"/> snp.CD14.17524551 
+<option value="13235241"/> snp.CDH29.7629936 
+<option value="12204610"/> snp.CDKAL1.6908425 
+<option value="12550772"/> snp.CLDN12.1017105 
+<option value="12427952"/> snp.CLDN12.1017106 
+<option value="13235296"/> snp.CLDN12.10953006 
+<option value="12665841"/> snp.CLDN12.11563429 
+<option value="12427974"/> snp.CLDN12.11760813 
+<option value="12665848"/> snp.CLDN12.17862175 
+<option value="12550807"/> snp.CLDN12.17864006 
+<option value="12427985"/> snp.CLDN12.17867644 
+<option value="12550785"/> snp.CLDN12.3810874 
+<option value="12427963"/> snp.CLDN12.6963257 
+<option value="12550796"/> snp.CLDN12.7792438 
+<option value="12758860"/> snp.CLDN12.7793743 
+<option value="12758871"/> snp.CLDN12.7811178 
+<option value="12665855"/> snp.CLDN12.9731 
+<option value="12427941"/> snp.CLDN2.12008279 
+<option value="13235226"/> snp.CLDN2.6622121 
+<option value="11761136"/> snp.CNTNAP2.7807268 
+<option value="7167917"/> snp.CSF1R.2282804 
+<option value="12428003"/> snp.CTSD.1317356 
+<option value="12665862"/> snp.CTSD.17571 
+<option value="12428014"/> snp.CTSD.2292962 
+<option value="12550814"/> snp.CTSD.2292963 
+<option value="12427992"/> snp.CTSL2.6477844 
+<option value="11867945"/> snp.CYP1A2.35858607 
+<option value="11760969"/> snp.CYP1A2.762551 
+<option value="13235185"/> snp.DAG1.3870336 
+<option value="3893604"/> snp.DEFA5.10095331 
+<option value="1465022"/> snp.DEFA5.12682030 
+<option value="1465181"/> snp.DEFA5.4260915 
+<option value="1465195"/> snp.DEFA5.4610776 
+<option value="1465209"/> snp.DEFA5.7017866 
+<option value="1464981"/> snp.DEFA6.11784359 
+<option value="1465139"/> snp.DEFA6.2738120 
+<option value="1465216"/> snp.DEFA6.712276 
+<option value="11806585"/> snp.desert (ARG99).11610584 
+<option value="11761097"/> snp.desert (PTGER4).17234657 
+<option value="11761115"/> snp.desert (PTGER4).9292777 
+<option value="12428036"/> snp.DIO1.11206244 
+<option value="12666035"/> snp.DIO1.12095080 
+<option value="12428025"/> snp.DIO1.7515322 
+<option value="12758923"/> snp.DIO2.12885300 
+<option value="12428047"/> snp.DIO2.2250114 
+<option value="12665869"/> snp.DIO3.1190715 
+<option value="12550836"/> snp.DIO3.1190716 
+<option value="12665876"/> snp.DIO3.8011440 
+<option value="12550825"/> snp.DIO3.945006 
+<option value="1393446"/> snp.DLG5.1248696 
+<option value="1394813"/> snp.DLG5.2289310 
+<option value="1395986"/> snp.DLG5.2289311 
+<option value="3994149"/> snp.EPHX1.1051740 
+<option value="11806703"/> snp.FAM92B.8050910 
+<option value="11842847"/> snp.FLJ45139.2836753 
+<option value="12758849"/> snp.FOSL2.7606480 
+<option value="12768919"/> snp.FOSL2.K438X 
+<option value="12665883"/> snp.GPX1.1800668 
+<option value="12758808"/> snp.GPX1.3811699 
+<option value="12758786"/> snp.GPX2.1800669 
+<option value="12550847"/> snp.GPX2.2296327 
+<option value="12550858"/> snp.GPX2.2412065 
+<option value="12550869"/> snp.GPX2.2737844 
+<option value="12665890"/> snp.GPX2.3742599 
+<option value="12550880"/> snp.GPX3.2042235 
+<option value="12428058"/> snp.GPX3.3763013 
+<option value="12550891"/> snp.GPX3.3763015 
+<option value="12550909"/> snp.GPX3.3792795 
+<option value="12665897"/> snp.GPX3.3792796 
+<option value="12428069"/> snp.GPX3.3792797 
+<option value="12428080"/> snp.GPX3.3805435 
+<option value="12428091"/> snp.GPX3.3828599 
+<option value="12550902"/> snp.GPX3.8177412 
+<option value="12428102"/> snp.GPX3.8177425 
+<option value="12665908"/> snp.GPX3.870407 
+<option value="12758740"/> snp.GPX4.713041 
+<option value="12758775"/> snp.HFE.1800562 
+<option value="12550920"/> snp.HFE2.7540883 
+<option value="11842854"/> snp.HLA.3104404 
+<option value="11761016"/> snp.HLA.9469220 
+<option value="11761143"/> snp.IBD5.10077785 
+<option value="11806614"/> snp.ICAM1.1799969 
+<option value="7186949"/> snp.ICAM.13306430 
+<option value="11761083"/> snp.ICAM1.5498 
+<option value="11760987"/> snp.IL12B.1363670 
+<option value="11806675"/> snp.IL12B.6887695 
+<option value="11761023"/> snp.IL23R.10889677 
+<option value="9753668"/> snp.IL23R.11209026 
+<option value="11842805"/> snp.IL23R.11805303 
+<option value="11761076"/> snp.IL23R.1343151 
+<option value="11806682"/> snp.IL23R.7517847 
+<option value="1459520"/> snp.IL4.2243250 
+<option value="12156903"/> snp.IL4.4358188 
+<option value="12550931"/> snp.IL6.1800795 
+<option value="11842840"/> snp.intergenic.224136 
+<option value="11761122"/> snp.IRGM.13361189 
+<option value="11760980"/> snp.IRGM.4958847 
+<option value="12165375"/> snp.ITLN1.2274910 
+<option value="12186805"/> snp.JAK2.10758669 
+<option value="12188442"/> snp.JAK3.10758669 
+<option value="12758912"/> snp.JAM3.11223704 
+<option value="12550942"/> snp.JAM3.11604455 
+<option value="11761090"/> snp.KLF6.6601764 
+<option value="12665915"/> snp.LAMP1.12871648 
+<option value="12428113"/> snp.LAMP1.9577497 
+<option value="12666070"/> snp.MAP1LC3A.2424994 
+<option value="12550953"/> snp.MAP1LC3A.4911430 
+<option value="12428124"/> snp.MAP1LC3A.6059908 
+<option value="12428135"/> snp.MAP1LC3A.6059909 
+<option value="12550964"/> snp.MAP1LC3A.6088519 
+<option value="12550975"/> snp.MAP1LC3A.6088520 
+<option value="12665922"/> snp.MAP1LC3B.2288483 
+<option value="12428146"/> snp.MAP1LC3B.7204722 
+<option value="12758882"/> snp.MAP1LC3B.8044820 
+<option value="13235256"/> snp.MAP1LC3B.8051218 
+<option value="12550986"/> snp.MAP1LC3B.8059571 
+<option value="12758901"/> snp.MAP1LC3B.9308349 
+<option value="7187707"/> snp.MIF.755622 
+<option value="11842826"/> snp.MYO9B.1457092 
+<option value="11806625"/> snp.MYO9B.2305764 
+<option value="9757485"/> snp.NCF4.4821544 
+<option value="1465146"/> snp.NFKB1.28362491 
+<option value="7188120"/> snp.NFKB1A.696 
+<option value="11842868"/> snp.NFkBIA.6960534 
+<option value="11806578"/> snp.NKX2-3.10883365 
+<option value="12115618"/> snp.NOD2 .2066844 
+<option value="1435663"/> snp.OCTN1.1050152 
+<option value="11806639"/> snp.OCTN2.2631367 
+<option value="12665929"/> snp.P4HA2.2278398 
+<option value="12551077"/> snp.P4HA2.3792894 
+<option value="12665936"/> snp.P4HA2.4361509 
+<option value="11806600"/> snp.PHOX2B.16853571 
+<option value="11760994"/> snp.PTGER4.1373692 
+<option value="11806664"/> snp.PTGER4.4613763 
+<option value="12166768"/> snp.PTPN22.2476601 
+<option value="11806632"/> snp.PTPN2.2542151 
+<option value="13235307"/> snp.RHOA.11716445 
+<option value="11806710"/> snp.RSHL1.8111071 
+<option value="12758945"/> snp.SECISBP2.IVS8ds+29G->A 
+<option value="12758956"/> snp.SECISBP2.K438X 
+<option value="12428234"/> snp.SECISBP2.R540Q 
+<option value="12665957"/> snp.SELS.28665122 
+<option value="12666101"/> snp.SELS.4965373 
+<option value="12550997"/> snp.SELS.4965814 
+<option value="12551008"/> snp.SELS.7178239 
+<option value="12551019"/> snp.SEP15.5845 
+<option value="12428245"/> snp.SEP15.5859 
+<option value="12665950"/> snp.SEPP1.28919919 
+<option value="12551030"/> snp.SEPP1.3877899 
+<option value="12665943"/> snp.SEPP1.promotor repeat 
+<option value="12665964"/> snp.SLC11A1.17229009 
+<option value="12428201"/> snp.SLC11A1.17235416 
+<option value="12758797"/> snp.SLC11A1.3731865 
+<option value="12758838"/> snp.SLC11A1.7573065 
+<option value="12665971"/> snp.SLC11A2.1048230 
+<option value="12551041"/> snp.SLC11A2.224589 
+<option value="12665978"/> snp.SLC11A2.28651478 
+<option value="12665985"/> snp.SLC11A2.427020 
+<option value="12758764"/> snp.SLC6A6.1042350 
+<option value="12428157"/> snp.SLC6A6.1042351 
+<option value="12665992"/> snp.SLC6A6.1042352 
+<option value="12551052"/> snp.SLC6A6.2228585 
+<option value="12665999"/> snp.SLC6A6.35003284 
+<option value="12428179"/> snp.SLC6A6.35476822 
+<option value="12551070"/> snp.SLC6A6.36006953 
+<option value="12758934"/> snp.SLC6A6.41284011 
+<option value="12428190"/> snp.SLC6A6.41284017 
+<option value="12758819"/> snp.SLC6A6.4685154 
+<option value="12428168"/> snp.SLC6A6.4685155 
+<option value="12551059"/> snp.SLC6A6.9879642 
+<option value="11761129"/> snp.STAT3.3816769 
+<option value="11761009"/> snp.STAT3.744166 
+<option value="1465160"/> snp.STAT6.324015 
+<option value="12428212"/> snp.TF.1799899 
+<option value="12551099"/> snp.TFF3.11701143 
+<option value="12428898"/> snp.TFF3.2236705 
+<option value="12666006"/> snp.TFF3.225363 
+<option value="12428223"/> snp.TFF3.225369 
+<option value="11842861"/> snp.TGFBRAP1.3792048 
+<option value="1465202"/> snp.TLR4.4986790 
+<option value="3972350"/> snp.TLR4.4986791 
+<option value="1441327"/> snp.TLR9.5743836 
+<option value="12147460"/> snp.TLR9.5743837 
+<option value="12147563"/> snp.TLR9.5743838 
+<option value="12147626"/> snp.TLR9.5743839 
+<option value="12147689"/> snp.TLR9.5743840 
+<option value="12147748"/> snp.TLR9.5743841 
+<option value="11806689"/> snp.TNFAIP3.7753394 
+<option value="7147193"/> snp.TNF ALPHA.1799724 
+<option value="7151139"/> snp.TNF ALPHA.1800629 
+<option value="7149176"/> snp.TNF ALPHA.361525 
+<option value="12094070"/> snp.TNFRSF1B.1061622 
+<option value="12095636"/> snp.TNFRSF1B.1061624 
+<option value="12097493"/> snp.TNFRSF1B.3397 
+<option value="11842798"/> snp.TNFSF15.10982412 
+<option value="11842819"/> snp.TNFSF15.1322063 
+<option value="11806646"/> snp.TNFSF15.3810936 
+<option value="11761052"/> snp.TNFSF15.6478109 
+<option value="11760962"/> snp.TNFSF15.7029554 
+<option value="11842883"/> snp.TNFSF15.7867918 
+<option value="11806657"/> snp.TNRC6C.4362447 
+<option value="11806696"/> snp.TNSF15.7869487 
+<option value="11842812"/> snp.TNSF18.12035082 
+<option value="13235289"/> snp.TRAIP.10865959 
+<option value="13235340"/> snp.TRAIP.17598137 
+<option value="13235151"/> snp.TRAIP.2271960 
+<option value="13235162"/> snp.TRAIP.2352975 
+<option value="13235219"/> snp.TRAIP.6446298 
+<option value="13235329"/> snp.USP4.17080505 
+<option value="13235133"/> snp.USP4.1865741 
+<option value="13235275"/> snp.USP4.9874474 
+<option value="13235282"/> snp.USP4.9881860 
+<option value="12758753"/> snp.VDR.731236 
+<option value="12551088"/> snp.VDR.7975232 
+<option value="12665834"/> snp.VDR.ENSSNP750253 
+<option value="11806567"/> snp.ZNF365.EGR2.10761659 
+</optgroup></select>
+
+      <p/>
+      <SPAN STYLE="background-color: aqua; color:orange" >AND</SPAN>
+      <p/>
+      SNPs found by searching the database using the following list of complete or partial SNP identifiers 
+      (enter one identifier per line)
+      <textarea rows="5" cols="60" name="snpnames"></textarea><br/>
+      (For example, you may enter on seperate lines ABCB and CARD - this will currently report 30 SNPS, whose names match these patterns.
+       Patterns may include wildcard characters where needed - but note that the system will automatically insert leading and 
+       trailing wildcards where required - i.e. where there is no exact match found for a string - so in most cases you do not
+       need to include a wildcard)
+      <p/>
+      (Match no more than <select name="snpnamematchlimit">
+      <option value="1000"> 1000 </option>
+      </select> SNPs (submit multiple extract requests if you wish to extract more))
+      <p/>
+      Optionally enter a name for the list of all SNPS found that match the above identifiers : <input name="snpnameslistname" type="text" size="60"/>
+      <br/><font size="-1"> <i>(If you enter a list name , it will appear in future in the above list of previously compiled lists </i></font> <br/>
+      <p/>
+      <SPAN STYLE="background-color: aqua; color:orange" >AND</SPAN>      
+      <p/>
+      SNPS in all the previously compiled lists selected from :
+      <select name="genetictestlistlist" multiple size=5>
+<option value="12078057"/> Archived : SNPLIST.Sequenom Set 4 All SNP rs (count=77, date=05-12-2007)
+<option value="12077946"/> Archived : SNPLIST.test2 (count=13, date=04-12-2007)
+<option value="12077945"/> Archived : SNPLIST.test1 (count=4, date=04-12-2007)
+</select>
+
+  
+   </td>
+   </tr>
+   </table>
+
+          </div>
+
+
+          <div dojoType="dijit.layout.AccordionPane" title="Select / Specify Risk Factors">
+    <table>
+    <tr>
+    <td>
+   <select name="rfsurveyquestionlist" id="rfsurveyquestionlist" multiple size=21 onChange="if(simplereport.reportmenu.value == 'create_cohort') {multipost('/cgi-bin/nutrigenomics/fetchSelectList.py','rfsurveyquestionlist','RFsurveyquestions_div','listname=surveyanswers&amp;surveyform=surveyform.Risk Factor Survey Form Version 1&amp;question=','images/loading.gif','/cgi-bin/nutrigenomics/wait.py');} return true;">
+<option value="qid"/> qid 
+<option value="questionnaireid"/> questionnaireid 
+<option value="spokentomum"/> rf 00 spokentomum 
+<option value="gender"/> rf 01.gender 
+<option value="dateofbirth"/> rf 02.dateofbirth 
+<option value="countryid"/> rf 03.countryid 
+<option value="yeararrivenz"/> rf 04.yeararrivenz 
+<option value="townofbirth"/> rf 05.townofbirth 
+<option value="ethnicid"/> rf 06.ethnicid 
+<option value="descendedmaori"/> rf 07.descendedmaori 
+<option value="whereliving"/> rf 08.whereliving 
+<option value="yeararrivecanty"/> rf 08.yeararrivecanty 
+<option value="brotherssisters"/> rf 09.brotherssisters 
+<option value="olderbrosis"/> rf 10.olderbrosis 
+<option value="twin"/> rf 11.twin 
+<option value="otheribdfamily"/> rf 12.otheribdfamily 
+<option value="otheribdrelationship"/> rf 12.otheribdrelationship 
+<option value="otheribdrelatives"/> rf 13.otheribdrelatives 
+<option value="otheribdrelativesrship"/> rf 13.otheribdrelativesrship 
+<option value="otherdiseaseid"/> rf 14.otherdiseaseid 
+<option value="motherage"/> rf 15.motherage 
+<option value="breastfed"/> rf 16.breastfed 
+<option value="breastfedhowlong"/> rf 17.breastfedhowlong 
+<option value="premature"/> rf 18.premature 
+<option value="mothersmoke"/> rf 19.mothersmoke 
+<option value="mothermedication"/> rf 20.mothermedication 
+<option value="mothermedicationdetails"/> rf 21.mothermedicationdetails 
+<option value="attendpreschool"/> rf 22.attendpreschool 
+<option value="ageatpreschool"/> rf 23.ageatpreschool 
+<option value="fathersoccdetails"/> rf 24.fathersoccdetails 
+<option value="fathersoccupation"/> rf 24.fathersoccupation 
+<option value="immmeasles"/> rf 25.immmeasles 
+<option value="immmumps"/> rf 25.immmumps 
+<option value="immtb"/> rf 25.immtb 
+<option value="topeducation"/> rf 26.topeducation 
+<option value="topeducdetails"/> rf 26.topeducdetails 
+<option value="highestqualification"/> rf 27.highestqualification 
+<option value="highestqualsubject"/> rf 27.highestqualsubject 
+<option value="otherqualification"/> rf 27.otherqualification 
+<option value="antibiotics"/> rf 28.antibiotics 
+<option value="othermeddetails"/> rf 29.othermeddetails 
+<option value="othermedication"/> rf 29.othermedication 
+<option value="traveloseas"/> rf 30.traveloseas 
+<option value="traveloseaswhere"/> rf 30.traveloseaswhere 
+<option value="smoker"/> rf 31.smoker 
+<option value="smokerstartage"/> rf 32.smokerstartage 
+<option value="smokerendage"/> rf 33.smokerendage 
+<option value="smokesperday"/> rf 34.smokesperday 
+<option value="drinksperweek"/> rf 35.drinksperweek 
+<option value="income"/> rf 36.income 
+<option value="occupation"/> rf 37.occupation 
+<option value="occcategory"/> rf 38.occcategory 
+<option value="healthprobactivities"/> rf 39.healthprobactivities 
+<option value="healthprobanyactivities"/> rf 39.healthprobanyactivities 
+<option value="healthprobcommn"/> rf 39.healthprobcommn 
+<option value="healthprobnodifficulties"/> rf 39.healthprobnodifficulties 
+<option value="firstdevelopibdmth"/> rf 40.firstdevelopibdmth 
+<option value="firstdevelopibdyear"/> rf 40.firstdevelopibdyear 
+<option value="firstdiagnosedibdmth"/> rf 41.firstdiagnosedibdmth 
+<option value="firstdiagnosedibdyear"/> rf 41.firstdiagnosedibdyear 
+<option value="anymedication"/> rf 42.anymedication 
+<option value="anymedicationdetails"/> rf 42.anymedicationdetails 
+<option value="sickdays"/> rf 43.sickdays 
+<option value="sickdaysibd"/> rf 43.sickdaysibd 
+<option value="vegetarian"/> rf 44.vegetarian 
+<option value="vegetarianstart"/> rf 44.vegetarianstart 
+<option value="publicswimming"/> rf 45.publicswimming 
+<option value="perianalcrohns"/> rf 48.perianalcrohns 
+<option value="oralpill"/> rf 49.oralpill 
+<option value="pillstartdate"/> rf 49.pillstartdate 
+<option value="pillenddate"/> rf 50.pillenddate 
+<option value="nameofpill"/> rf 51.nameofpill 
+<option value="numofbabies"/> rf 52.numofbabies 
+<option value="takeawaysadol"/> rf 53.takeawaysadol 
+<option value="takeawayschild"/> rf 53.takeawayschild 
+<option value="takeawaysinf"/> rf 53.takeawaysinf 
+<option value="carpetadol"/> rf 54.carpetadol 
+<option value="carpetchild"/> rf 54.carpetchild 
+<option value="carpetinf"/> rf 54.carpetinf 
+<option value="antibiotadol"/> rf 55.antibiotadol 
+<option value="antibiotchild"/> rf 55.antibiotchild 
+<option value="antibiotinf"/> rf 55.antibiotinf 
+<option value="meddetailsadol"/> rf 56.meddetailsadol 
+<option value="meddetailschild"/> rf 56.meddetailschild 
+<option value="meddetailsinf"/> rf 56.meddetailsinf 
+<option value="medicationadol"/> rf 56.medicationadol 
+<option value="medicationchild"/> rf 56.medicationchild 
+<option value="medicationinf"/> rf 56.medicationinf 
+<option value="pooladol"/> rf 58.pooladol 
+<option value="poolchild"/> rf 58.poolchild 
+<option value="poolinf"/> rf 58.poolinf 
+<option value="sandpitadol"/> rf 59.sandpitadol 
+<option value="sandpitchild"/> rf 59.sandpitchild 
+<option value="sandpitinf"/> rf 59.sandpitinf 
+<option value="areaadol"/> rf 60.areaadol 
+<option value="areachild"/> rf 60.areachild 
+<option value="areainf"/> rf 60.areainf 
+<option value="farmadol"/> rf 61.farmadol 
+<option value="farmchild"/> rf 61.farmchild 
+<option value="farminf"/> rf 61.farminf 
+<option value="smokeadol"/> rf 62.smokeadol 
+<option value="smokechild"/> rf 62.smokechild 
+<option value="smokeinf"/> rf 62.smokeinf 
+<option value="sharebroomadol"/> rf 63.sharebroomadol 
+<option value="sharebroomchild"/> rf 63.sharebroomchild 
+<option value="sharebroominf"/> rf 63.sharebroominf 
+<option value="bedroomsadol"/> rf 64.bedroomsadol 
+<option value="bedroomschild"/> rf 64.bedroomschild 
+<option value="bedroomsinf"/> rf 64.bedroomsinf 
+<option value="noinhouseadol"/> rf 65.noinhouseadol 
+<option value="noinhousechild"/> rf 65.noinhousechild 
+<option value="noinhouseinf"/> rf 65.noinhouseinf 
+<option value="toiletsadol"/> rf 66.toiletsadol 
+<option value="toiletschild"/> rf 66.toiletschild 
+<option value="toiletsinf"/> rf 66.toiletsinf 
+<option value="petsadol"/> rf 67.petsadol 
+<option value="petschild"/> rf 67.petschild 
+<option value="petsinf"/> rf 67.petsinf 
+<option value="feedpetsadol"/> rf 69.feedpetsadol 
+<option value="feedpetschild"/> rf 69.feedpetschild 
+<option value="feedpetsinf"/> rf 69.feedpetsinf 
+<option value="vegegardenadol"/> rf 70.vegegardenadol 
+<option value="vegegardenchild"/> rf 70.vegegardenchild 
+<option value="vegegardeninf"/> rf 70.vegegardeninf 
+<option value="diagnosis"/> rf diagnosis 
+<option value="notes"/> rf notes 
+</optgroup></select>   <div id="RFsurveyquestions_div"></div>
+</p>
+
+    </td>
+    </tr>
+    </table>
+
+
+          </div>
+
+          <div dojoType="dijit.layout.AccordionPane" title="Select / Specify Crohns Disease Survey Form Answers">
+    <table>
+    <tr>
+    <td>
+
+   <select name="cdsurveyquestionlist" id="cdsurveyquestionlist" multiple size=21 onChange="if(simplereport.reportmenu.value == 'create_cohort') {multipost('/cgi-bin/nutrigenomics/fetchSelectList.py','cdsurveyquestionlist','CDsurveyquestions_div','listname=surveyanswers&amp;surveyform=surveyform.Crohns Disease Clinical Data Form v6 as at 26-11-08&amp;question=','images/loading.gif','/cgi-bin/nutrigenomics/wait.py');} return true;" >
+<option value="anal loc at diag"/> anal loc at diag 
+<option value="anal  loc latest"/> anal  loc latest 
+<option value="anal  post op recurrence"/> anal  post op recurrence 
+<option value="autoimmunediseasedetails"/> autoimmunediseasedetails 
+<option value="behaviourdiagnosisendoscopy"/> behaviourdiagnosisendoscopy 
+<option value="behaviourdiagnosishistology"/> behaviourdiagnosishistology 
+<option value="behaviourdiagnosislaparotomy"/> behaviourdiagnosislaparotomy 
+<option value="behaviourdiagnosismethod"/> behaviourdiagnosismethod 
+<option value="behaviourdiagnosisother"/> behaviourdiagnosisother 
+<option value="behaviourdiagnosisradiology"/> behaviourdiagnosisradiology 
+<option value="behaviourfistulising"/> behaviourfistulising 
+<option value="behaviourfistulisingother"/> behaviourfistulisingother 
+<option value="behaviourfistulisingperianal"/> behaviourfistulisingperianal 
+<option value="behaviourinflammatory"/> behaviourinflammatory 
+<option value="behaviourstenoic"/> behaviourstenoic 
+<option value="colonic loc at diag"/> colonic loc at diag 
+<option value="colonic  loc latest"/> colonic  loc latest 
+<option value="colonic  post op recurrence"/> colonic  post op recurrence 
+<option value="colonic stoma"/> colonic stoma 
+<option value="completersname"/> completersname 
+<option value="completiondate"/> completiondate 
+<option value="dateofonsetday"/> dateofonsetday 
+<option value="dateofonsetmonth"/> dateofonsetmonth 
+<option value="dateofonsetyear"/> dateofonsetyear 
+<option value="dob"/> dob 
+<option value="eimcancercolon"/> eimcancercolon 
+<option value="eimcancercomments"/> eimcancercomments 
+<option value="eimcancerother"/> eimcancerother 
+<option value="eimcancerotherdetails"/> eimcancerotherdetails 
+<option value="eimeyesconjunctivitis"/> eimeyesconjunctivitis 
+<option value="eimeyesepiscleritis"/> eimeyesepiscleritis 
+<option value="eimeyesundiagnosedocularinflam"/> eimeyesundiagnosedocularinflam 
+<option value="eimeyesuveitis"/> eimeyesuveitis 
+<option value="eimjointas"/> eimjointas 
+<option value="eimjointsacroiliitis"/> eimjointsacroiliitis 
+<option value="eimjointslarge"/> eimjointslarge 
+<option value="eimjointsmall"/> eimjointsmall 
+<option value="eimliverpsc"/> eimliverpsc 
+<option value="eimskinerythemanodosum"/> eimskinerythemanodosum 
+<option value="eimskinmouthulcers"/> eimskinmouthulcers 
+<option value="eimskinpsoriasis"/> eimskinpsoriasis 
+<option value="eimskinpyoderma"/> eimskinpyoderma 
+<option value="findq"/> findq 
+<option value="first name"/> first name 
+<option value="fistula type"/> fistula type 
+<option value="ibddiagnosis"/> ibddiagnosis 
+<option value="ibddiagnosisconfirmed"/> ibddiagnosisconfirmed 
+<option value="ibddiagnosisdateday"/> ibddiagnosisdateday 
+<option value="ibddiagnosisdatemonth"/> ibddiagnosisdatemonth 
+<option value="ibddiagnosisdateyear"/> ibddiagnosisdateyear 
+<option value="ibdmontrealafterdiag"/> ibdmontrealafterdiag 
+<option value="ibdmontrealbeforediag"/> ibdmontrealbeforediag 
+<option value="ibdmontreallatest"/> ibdmontreallatest 
+<option value="ileal loc at diag"/> ileal loc at diag 
+<option value="ileal  loc latest"/> ileal  loc latest 
+<option value="ileal  post op recurrence"/> ileal  post op recurrence 
+<option value="jejunal location at diag"/> jejunal location at diag 
+<option value="jejunal  loc latest"/> jejunal  loc latest 
+<option value="jejunal  post op recurrence"/> jejunal  post op recurrence 
+<option value="locationatdiagnosisogd"/> locationatdiagnosisogd 
+<option value="locationlatestnone"/> locationlatestnone 
+<option value="nhi number"/> nhi number 
+<option value="none post op recurrence"/> none post op recurrence 
+<option value="notes"/> notes 
+<option value="notesonfile"/> notesonfile 
+<option value="nsaiduse"/> nsaiduse 
+<option value="ogd loc latest"/> ogd loc latest 
+<option value="ogd post op recurrence"/> ogd post op recurrence 
+<option value="operation1dateday"/> operation1dateday 
+<option value="operation1datemonth"/> operation1datemonth 
+<option value="operation1dateyear"/> operation1dateyear 
+<option value="operation1type"/> operation1type 
+<option value="operation2dateday"/> operation2dateday 
+<option value="operation2datemonth"/> operation2datemonth 
+<option value="operation2dateyear"/> operation2dateyear 
+<option value="operation2type"/> operation2type 
+<option value="operation3dateday"/> operation3dateday 
+<option value="operation3datemonth"/> operation3datemonth 
+<option value="operation3dateyear"/> operation3dateyear 
+<option value="operation3type"/> operation3type 
+<option value="otheribdfamily"/> otheribdfamily 
+<option value="otheribdfamilybrother"/> otheribdfamilybrother 
+<option value="otheribdfamilydetails"/> otheribdfamilydetails 
+<option value="otheribdfamilyfather"/> otheribdfamilyfather 
+<option value="otheribdfamilymatgrandad"/> otheribdfamilymatgrandad 
+<option value="otheribdfamilymatgrandma"/> otheribdfamilymatgrandma 
+<option value="otheribdfamilymother"/> otheribdfamilymother 
+<option value="otheribdfamilyother"/> otheribdfamilyother 
+<option value="otheribdfamilypatgrandad"/> otheribdfamilypatgrandad 
+<option value="otheribdfamilypatgrandma"/> otheribdfamilypatgrandma 
+<option value="otheribdfamilysister"/> otheribdfamilysister 
+<option value="physician"/> physician 
+<option value="qid"/> qid 
+<option value="recordlocked"/> recordlocked 
+<option value="rectal loc at diag"/> rectal loc at diag 
+<option value="rectal  loc latest"/> rectal  loc latest 
+<option value="rectal  post op recurrence"/> rectal  post op recurrence 
+<option value="sex"/> sex 
+<option value="specialist"/> specialist 
+<option value="stomaileal"/> stomaileal 
+<option value="surname"/> surname 
+</optgroup></select>
+</p>
+   <div id="CDsurveyquestions_div">
+   </div>
+
+
+    </td>
+    </tr>
+    </table>
+
+          </div>
+
+
+          <div dojoType="dijit.layout.AccordionPane" title="Select / Specify Diet Survey Form Answers">
+    <table>
+    <tr>
+    <td>
+
+
+   <select name="dietsurveyquestionlist" id="dietsurveyquestionlist" multiple size=21 onChange="if(simplereport.reportmenu.value == 'create_cohort') {multipost('/cgi-bin/nutrigenomics/fetchSelectList.py','dietsurveyquestionlist','Dietsurveyquestions_div','listname=surveyanswers&amp;surveyform=surveyform.IBD Diet Survey Questionnaire Versions 1-3&amp;question=','images/loading.gif','/cgi-bin/nutrigenomics/wait.py');} return true;" >
+<option value="almonds"/> almonds 
+<option value="aniseed"/> aniseed 
+<option value="apple"/> apple 
+<option value="applechips"/> applechips 
+<option value="apricots"/> apricots 
+<option value="asparagus"/> asparagus 
+<option value="avocado"/> avocado 
+<option value="bacon"/> bacon 
+<option value="bakedbeans"/> bakedbeans 
+<option value="banana"/> banana 
+<option value="barley"/> barley 
+<option value="basil"/> basil 
+<option value="beefroast"/> beefroast 
+<option value="beefsausages"/> beefsausages 
+<option value="beefsteak"/> beefsteak 
+<option value="beer"/> beer 
+<option value="beetroot"/> beetroot 
+<option value="biscuithomemade"/> biscuithomemade 
+<option value="biscuithomemadedetails"/> biscuithomemadedetails 
+<option value="biscuitsymptoms"/> biscuitsymptoms 
+<option value="biscuitsymptomsdetails"/> biscuitsymptomsdetails 
+<option value="blackberries"/> blackberries 
+<option value="blueberries"/> blueberries 
+<option value="boiledcornedbeef"/> boiledcornedbeef 
+<option value="brazil"/> brazil 
+<option value="breadcorn"/> breadcorn 
+<option value="breadrice"/> breadrice 
+<option value="breadrye"/> breadrye 
+<option value="breadsourdough"/> breadsourdough 
+<option value="breadwhite"/> breadwhite 
+<option value="breadwholegrain"/> breadwholegrain 
+<option value="breadwholemeal"/> breadwholemeal 
+<option value="broccoli"/> broccoli 
+<option value="broccoli/cauliflower"/> broccoli/cauliflower 
+<option value="butter"/> butter 
+<option value="cabbage"/> cabbage 
+<option value="cake"/> cake 
+<option value="candychocolate"/> candychocolate 
+<option value="capsicum"/> capsicum 
+<option value="carrot"/> carrot 
+<option value="cashews"/> cashews 
+<option value="cassava"/> cassava 
+<option value="cauliflower"/> cauliflower 
+<option value="celery"/> celery 
+<option value="cerealsymptomsavoiddetails"/> cerealsymptomsavoiddetails 
+<option value="cerealsymptomsdetail"/> cerealsymptomsdetail 
+<option value="cerealsymptomsotherdetails"/> cerealsymptomsotherdetails 
+<option value="champagne"/> champagne 
+<option value="cheese"/> cheese 
+<option value="cherries"/> cherries 
+<option value="chewinggum"/> chewinggum 
+<option value="chickenfried"/> chickenfried 
+<option value="chickengrilled"/> chickengrilled 
+<option value="chickensausages"/> chickensausages 
+<option value="chickpeas"/> chickpeas 
+<option value="childrencerealssugarcoated"/> childrencerealssugarcoated 
+<option value="chillisauce"/> chillisauce 
+<option value="chinese"/> chinese 
+<option value="chinesegreens"/> chinesegreens 
+<option value="chives"/> chives 
+<option value="chocolate"/> chocolate 
+<option value="chocolatebiscuits"/> chocolatebiscuits 
+<option value="chutney"/> chutney 
+<option value="cinnamon"/> cinnamon 
+<option value="cocacola"/> cocacola 
+<option value="cocacoladiet"/> cocacoladiet 
+<option value="coconut"/> coconut 
+<option value="coriander"/> coriander 
+<option value="corn"/> corn 
+<option value="corncrackers"/> corncrackers 
+<option value="cornflakes"/> cornflakes 
+<option value="cornsnacks"/> cornsnacks 
+<option value="couscous"/> couscous 
+<option value="crab"/> crab 
+<option value="crackerswheat"/> crackerswheat 
+<option value="crayfish"/> crayfish 
+<option value="cream"/> cream 
+<option value="croissants"/> croissants 
+<option value="cucumber"/> cucumber 
+<option value="cumin"/> cumin 
+<option value="custard"/> custard 
+<option value="dairycheese"/> dairycheese 
+<option value="dairycheesedetails"/> dairycheesedetails 
+<option value="dairyeggs"/> dairyeggs 
+<option value="dairyeggsdetails"/> dairyeggsdetails 
+<option value="dairynottolerated"/> dairynottolerated 
+<option value="dairysymptoms"/> dairysymptoms 
+<option value="dairysymptomsdetails"/> dairysymptomsdetails 
+<option value="dairyyoghurt"/> dairyyoghurt 
+<option value="dairyyoghurtdetails"/> dairyyoghurtdetails 
+<option value="dill"/> dill 
+<option value="doughnuts"/> doughnuts 
+<option value="driedapricots"/> driedapricots 
+<option value="driedbeans"/> driedbeans 
+<option value="driedcranberries"/> driedcranberries 
+<option value="driedfigs"/> driedfigs 
+<option value="driedfish"/> driedfish 
+<option value="driedpeaches"/> driedpeaches 
+<option value="drinkssymptomsdetails"/> drinkssymptomsdetails 
+<option value="effectofproduct1"/> effectofproduct1 
+<option value="effectofproduct2"/> effectofproduct2 
+<option value="effectofproduct3"/> effectofproduct3 
+<option value="effectofproduct4"/> effectofproduct4 
+<option value="effectofproduct5"/> effectofproduct5 
+<option value="effectofproduct6"/> effectofproduct6 
+<option value="eggplant"/> eggplant 
+<option value="eggs"/> eggs 
+<option value="fatworse"/> fatworse 
+<option value="feijoas"/> feijoas 
+<option value="fennel"/> fennel 
+<option value="fiedmeatworse"/> fiedmeatworse 
+<option value="figs"/> figs 
+<option value="fishsymptoms"/> fishsymptoms 
+<option value="fishsymptomsdetails"/> fishsymptomsdetails 
+<option value="fivespice"/> fivespice 
+<option value="flavouredwater"/> flavouredwater 
+<option value="foodrellsymptoms"/> foodrellsymptoms 
+<option value="freshwhitefish"/> freshwhitefish 
+<option value="friedeggsworse"/> friedeggsworse 
+<option value="friedfish"/> friedfish 
+<option value="friedfishworse"/> friedfishworse 
+<option value="fruitcookedraw"/> fruitcookedraw 
+<option value="fruitcookedrawdetails"/> fruitcookedrawdetails 
+<option value="fruitfreshpreserved"/> fruitfreshpreserved 
+<option value="fruitfreshpreserveddetails"/> fruitfreshpreserveddetails 
+<option value="fruitjuiceform"/> fruitjuiceform 
+<option value="fruitjuiceformdetails"/> fruitjuiceformdetails 
+<option value="fruitorganic"/> fruitorganic 
+<option value="fruitorganicdetails"/> fruitorganicdetails 
+<option value="fruitsymptoms"/> fruitsymptoms 
+<option value="fruitsymptomsdetails"/> fruitsymptomsdetails 
+<option value="garlic"/> garlic 
+<option value="generalsymptomscomment"/> generalsymptomscomment 
+<option value="gherkins"/> gherkins 
+<option value="ginger"/> ginger 
+<option value="gingerale"/> gingerale 
+<option value="gingerbeer"/> gingerbeer 
+<option value="glutenfreeproducts"/> glutenfreeproducts 
+<option value="glutenintolerance"/> glutenintolerance 
+<option value="gluten intolerance"/> gluten intolerance 
+<option value="goatsmilk"/> goatsmilk 
+<option value="grapefruit"/> grapefruit 
+<option value="gravy"/> gravy 
+<option value="greenbanana"/> greenbanana 
+<option value="greenbeans"/> greenbeans 
+<option value="ham"/> ham 
+<option value="hamchickenluncheon"/> hamchickenluncheon 
+<option value="hazelnuts"/> hazelnuts 
+<option value="herbssymptoms"/> herbssymptoms 
+<option value="herbssymptomsdetail"/> herbssymptomsdetail 
+<option value="hifatmeatworse"/> hifatmeatworse 
+<option value="honey"/> honey 
+<option value="horseradish"/> horseradish 
+<option value="hummus"/> hummus 
+<option value="icecream"/> icecream 
+<option value="indiandahl"/> indiandahl 
+<option value="indianfishcurry"/> indianfishcurry 
+<option value="indianmeatcurry"/> indianmeatcurry 
+<option value="indianvegcurry"/> indianvegcurry 
+<option value="jam"/> jam 
+<option value="jerusalemartichokes"/> jerusalemartichokes 
+<option value="kiwifruit"/> kiwifruit 
+<option value="kumara"/> kumara 
+<option value="leeks"/> leeks 
+<option value="lemonadesprite"/> lemonadesprite 
+<option value="lemongrass"/> lemongrass 
+<option value="lentils"/> lentils 
+<option value="linseed"/> linseed 
+<option value="liver"/> liver 
+<option value="liveyoggoodeffect"/> liveyoggoodeffect 
+<option value="locked"/> locked 
+<option value="lofatspreadsmoretolerable"/> lofatspreadsmoretolerable 
+<option value="lowfatmilk"/> lowfatmilk 
+<option value="lowfatmoretolerable"/> lowfatmoretolerable 
+<option value="mandarin"/> mandarin 
+<option value="mango"/> mango 
+<option value="manukapositiveeffect"/> manukapositiveeffect 
+<option value="margarine"/> margarine 
+<option value="marmitevegemite"/> marmitevegemite 
+<option value="mayonnaisetype"/> mayonnaisetype 
+<option value="meatnveg"/> meatnveg 
+<option value="meatorganic"/> meatorganic 
+<option value="meatorganicdetails"/> meatorganicdetails 
+<option value="meatprepdiff"/> meatprepdiff 
+<option value="meatprepdiffdetails"/> meatprepdiffdetails 
+<option value="meatstew"/> meatstew 
+<option value="meatsymptoms"/> meatsymptoms 
+<option value="meatsymptomsdetails"/> meatsymptomsdetails 
+<option value="melon"/> melon 
+<option value="mince"/> mince 
+<option value="mixedhomebought"/> mixedhomebought 
+<option value="mixedhomeboughtdetails"/> mixedhomeboughtdetails 
+<option value="mixedspice"/> mixedspice 
+<option value="mixedsymptoms"/> mixedsymptoms 
+<option value="mixedsymptomsdetail"/> mixedsymptomsdetail 
+<option value="msgworse"/> msgworse 
+<option value="mueslibars"/> mueslibars 
+<option value="muffinssweetbuns"/> muffinssweetbuns 
+<option value="mushrooms"/> mushrooms 
+<option value="mussels"/> mussels 
+<option value="mustard"/> mustard 
+<option value="nectarines"/> nectarines 
+<option value="noodlesegg"/> noodlesegg 
+<option value="noodlesflour"/> noodlesflour 
+<option value="noodlesrice"/> noodlesrice 
+<option value="nutella"/> nutella 
+<option value="nutmeg"/> nutmeg 
+<option value="nutslocal"/> nutslocal 
+<option value="nutslocaldetails"/> nutslocaldetails 
+<option value="nutssymptomsdetail"/> nutssymptomsdetail 
+<option value="nutsymptoms"/> nutsymptoms 
+<option value="oilyfish"/> oilyfish 
+<option value="oilyfishworse"/> oilyfishworse 
+<option value="oliveoilspreads"/> oliveoilspreads 
+<option value="onions"/> onions 
+<option value="oranges"/> oranges 
+<option value="oregano"/> oregano 
+<option value="othercereal1_name"/> othercereal1_name 
+<option value="othercereal1_rank"/> othercereal1_rank 
+<option value="othercereal2_name"/> othercereal2_name 
+<option value="othercereal2_rank"/> othercereal2_rank 
+<option value="othercereal3_name"/> othercereal3_name 
+<option value="othercereal3_rank"/> othercereal3_rank 
+<option value="otherdrinks1_name"/> otherdrinks1_name 
+<option value="otherdrinks1_rank"/> otherdrinks1_rank 
+<option value="otherdrinks2_name"/> otherdrinks2_name 
+<option value="otherdrinks2_rank"/> otherdrinks2_rank 
+<option value="otherdrinks3_name"/> otherdrinks3_name 
+<option value="otherdrinks3_rank"/> otherdrinks3_rank 
+<option value="othersweets"/> othersweets 
+<option value="oysters"/> oysters 
+<option value="pancake"/> pancake 
+<option value="papaya"/> papaya 
+<option value="paprika"/> paprika 
+<option value="parsley"/> parsley 
+<option value="parsnip"/> parsnip 
+<option value="pastacheese"/> pastacheese 
+<option value="pastacream"/> pastacream 
+<option value="pastameat"/> pastameat 
+<option value="pastaveg"/> pastaveg 
+<option value="paua"/> paua 
+<option value="pawpaw"/> pawpaw 
+<option value="pawpawpapaya"/> pawpawpapaya 
+<option value="peaches"/> peaches 
+<option value="peanutbutter"/> peanutbutter 
+<option value="peanuts"/> peanuts 
+<option value="pear"/> pear 
+<option value="peas"/> peas 
+<option value="pecans"/> pecans 
+<option value="pineapple"/> pineapple 
+<option value="pinenuts"/> pinenuts 
+<option value="pistachio"/> pistachio 
+<option value="pitaflatbread"/> pitaflatbread 
+<option value="plainbiscuits"/> plainbiscuits 
+<option value="plums"/> plums 
+<option value="poastpork"/> poastpork 
+<option value="polentacornmeal"/> polentacornmeal 
+<option value="popcorn"/> popcorn 
+<option value="poppyseed"/> poppyseed 
+<option value="porridgeoats"/> porridgeoats 
+<option value="potatochips"/> potatochips 
+<option value="potatocrisps"/> potatocrisps 
+<option value="potatoesbakedinskin"/> potatoesbakedinskin 
+<option value="potatoesboiled"/> potatoesboiled 
+<option value="potatoesfried"/> potatoesfried 
+<option value="potatoesroasted"/> potatoesroasted 
+<option value="prawnsshrimps"/> prawnsshrimps 
+<option value="probioticshavepositiveeffect"/> probioticshavepositiveeffect 
+<option value="productused1"/> productused1 
+<option value="productused2"/> productused2 
+<option value="productused3"/> productused3 
+<option value="productused4"/> productused4 
+<option value="productused5"/> productused5 
+<option value="productused6"/> productused6 
+<option value="prunes"/> prunes 
+<option value="puha"/> puha 
+<option value="pumpkin"/> pumpkin 
+<option value="qid"/> qid 
+<option value="quinoa"/> quinoa 
+<option value="raisins"/> raisins 
+<option value="raisins/sultanas"/> raisins/sultanas 
+<option value="raspberries"/> raspberries 
+<option value="redbull"/> redbull 
+<option value="redwine"/> redwine 
+<option value="ricearboriorisotto"/> ricearboriorisotto 
+<option value="ricebrownorunpolished"/> ricebrownorunpolished 
+<option value="ricebubblescocopops"/> ricebubblescocopops 
+<option value="ricecrackers"/> ricecrackers 
+<option value="ricewhite"/> ricewhite 
+<option value="ricewild"/> ricewild 
+<option value="roastchicken"/> roastchicken 
+<option value="roastlamb"/> roastlamb 
+<option value="rocket"/> rocket 
+<option value="rosemary"/> rosemary 
+<option value="saffron"/> saffron 
+<option value="sage"/> sage 
+<option value="saladgreens"/> saladgreens 
+<option value="salami"/> salami 
+<option value="salmon"/> salmon 
+<option value="sausages"/> sausages 
+<option value="scallops"/> scallops 
+<option value="scones"/> scones 
+<option value="sesame"/> sesame 
+<option value="sheepmilk"/> sheepmilk 
+<option value="silverbeetspinach"/> silverbeetspinach 
+<option value="smokedwhitefish"/> smokedwhitefish 
+<option value="snackssymptoms"/> snackssymptoms 
+<option value="snackssymptomsdetails"/> snackssymptomsdetails 
+<option value="soyamilk"/> soyamilk 
+<option value="soyasauce"/> soyasauce 
+<option value="sportsdrink"/> sportsdrink 
+<option value="spreadshomemade"/> spreadshomemade 
+<option value="spreadshomemadedetails"/> spreadshomemadedetails 
+<option value="spreadsjamhoney"/> spreadsjamhoney 
+<option value="spreadsjamhoneydetails"/> spreadsjamhoneydetails 
+<option value="spreadssymptoms"/> spreadssymptoms 
+<option value="spreadssymptomsdetails"/> spreadssymptomsdetails 
+<option value="standardmilk"/> standardmilk 
+<option value="strawberries"/> strawberries 
+<option value="sultanas"/> sultanas 
+<option value="sunflower"/> sunflower 
+<option value="tacos"/> tacos 
+<option value="tamarillos"/> tamarillos 
+<option value="taro"/> taro 
+<option value="teriyaki"/> teriyaki 
+<option value="thaifishcurry"/> thaifishcurry 
+<option value="thaimeatcurry"/> thaimeatcurry 
+<option value="thaivegcurry"/> thaivegcurry 
+<option value="thyme"/> thyme 
+<option value="tinnedcornedbeef"/> tinnedcornedbeef 
+<option value="tinnedsalmon"/> tinnedsalmon 
+<option value="tinnedsardinesanch"/> tinnedsardinesanch 
+<option value="tinnedtuna"/> tinnedtuna 
+<option value="tomatocooked"/> tomatocooked 
+<option value="tomatoesraw"/> tomatoesraw 
+<option value="tomatopuree"/> tomatopuree 
+<option value="tomatosauce"/> tomatosauce 
+<option value="tortillas"/> tortillas 
+<option value="tumeric"/> tumeric 
+<option value="tuna"/> tuna 
+<option value="v"/> v 
+<option value="vegorganic"/> vegorganic 
+<option value="vegorganicdetails"/> vegorganicdetails 
+<option value="vegrawcooked"/> vegrawcooked 
+<option value="vegrawcookeddetails"/> vegrawcookeddetails 
+<option value="vegsymptoms"/> vegsymptoms 
+<option value="vegsymptomsdetail"/> vegsymptomsdetail 
+<option value="vinegardressings"/> vinegardressings 
+<option value="walnuts"/> walnuts 
+<option value="wasabi"/> wasabi 
+<option value="watercress"/> watercress 
+<option value="weetbixshredwheatallbran"/> weetbixshredwheatallbran 
+<option value="wheatflakes"/> wheatflakes 
+<option value="whitefishcakes"/> whitefishcakes 
+<option value="whitefishfingers"/> whitefishfingers 
+<option value="whitewine"/> whitewine 
+<option value="yams"/> yams 
+<option value="yoghurt"/> yoghurt 
+</optgroup></select>
+</p>
+   <div id="Dietsurveyquestions_div">
+   </div>
+
+    </td>
+    </tr>
+    </table>
+
+
+          </div>
+
+
+
+         <div dojoType="dijit.layout.AccordionPane" title="Specify output and Run Report">
+
+<table>
+<tr> 
+   <td  class="input">
+   <p>Sort: 
+   <select name="orderbyclause">
+   <option value=""> No sort
+   <option value=""> By Subject   
+   </select>
+   <br/>
+   Output Format: <select name="outputformat"  onChange='simplereport.filename.value="extract." + simplereport.outputformat.value; return true;'    >
+   <option value="html"> html
+   <option value="csv" selected> csv
+   <option value="ped"> Merlin ped    
+   </select>   
+   &nbsp;Output to:<select name="outputto">
+   <option value="browser"> Browser
+   <option value="file" selected> File
+   <option value="Java postprocessing"> Post-processing script (only applicable to variance report)
+   </select>
+   &nbsp;File name:  <input name="filename" type="text" value="extract.csv" length="40"/>
+   <br/>
+   If you wish to limit the number of rows returned, enter limit (e.g. for test) :
+   <input name="maxrows" type="text" value="" length="10"/> </p>   
+   <p class="footer">
+   <input type="submit" value="Run report"/>
+   </p>
+    </td>
+</tr>
+</table>
+     </div>
+
+
+     </div> <!---- end of center section ---->
+
+<div dojoType="dijit.layout.ContentPane" region="bottom" id="footer">
+<table style="text-align: center;">
+<tr>
+<td style="text-align: center;">
+<a href="https://www.nbrowse.org.nz/mediawiki/index.php/DzierzonH" target="_blank">Contact Us</a> 
+</td>
+</tr>
+</table>
+</div>
+
+
+</div> <!----- end of main border container -->
+</form> 
+    </body>
+    </html>
+    
+

@@ -1,0 +1,136 @@
+a:link {  color: #388fbd; text-decoration: none}
+
+a:visited {color: #388fbd; text-decoration: none}
+
+a:hover { color: blue }
+
+a:active {color: #388fbd; text-decoration: none}
+
+BODY {
+	FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-SIZE: 80%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+P {
+	FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+UL {
+	FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+OL {
+	FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H1 {
+	FONT-WEIGHT: normal; FONT-SIZE: 200%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 170%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 150%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 130%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H5 {
+	FONT-WEIGHT: bold; FONT-SIZE: 110%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H6 {
+	FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.menuitem {
+	BORDER-RIGHT: #33cccc 1px solid; BORDER-TOP: #33cccc 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 80%; BORDER-LEFT: #33cccc 1px solid; WIDTH: 90%; COLOR: #ffffff; BORDER-BOTTOM: #33cccc 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #33cccc
+}
+.menuitem:hover {
+	BORDER-RIGHT: #3366cc 1px solid; BORDER-TOP: #3366cc 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 80%; BORDER-LEFT: #3366cc 1px solid; WIDTH: 90%; COLOR: #ffffff; BORDER-BOTTOM: #3366cc 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #3366cc
+}
+.box {
+	FONT-SIZE: 12px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.boxarticle {
+	FONT-WEIGHT: bold; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.boxblue {
+	FONT-WEIGHT: bold; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.separator {
+	COLOR: #99cc66
+}
+.print {
+	FONT-SIZE: 10px; FONT-FAMILY: Trebuchet MS, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+.margin5 {
+	MARGIN-TOP: 20px; MARGIN-LEFT: 5px
+}
+.black {
+	COLOR: black; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.black:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+.green {
+	COLOR: #009900; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: blue; TEXT-DECORATION: underline
+}
+A.green:hover {
+	COLOR: blue; TEXT-DECORATION: underline
+}
+.menu {
+	BORDER-RIGHT: #3366cc 1px solid; BORDER-TOP: #3366cc 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 90%; BORDER-LEFT: #3366cc 1px solid; WIDTH: 100%; COLOR: #ffffff; BORDER-BOTTOM: #3366cc 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #3399cc
+}
+.menu:hover {
+	BORDER-RIGHT: #3366cc 1px solid; BORDER-TOP: #3366cc 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 90%; BORDER-LEFT: #3366cc 1px solid; WIDTH: 100%; COLOR: #ffffff; BORDER-BOTTOM: #3366cc 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #3366cc
+}
+.white {
+	FONT-WEIGHT: bold; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.onblack {
+	FONT-WEIGHT: normal; COLOR: #388fbd
+}
+.whitesmall {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.white:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.whitesmall:hover {
+	COLOR: #ffffff; TEXT-DECORATION: underline
+}
+A.onblack:hover {
+	COLOR: #fd9800
+}
+.title {
+	FONT-WEIGHT: normal; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.errors {
+	FONT-WEIGHT: bold; FONT-SIZE: 240%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+SELECT {
+	BACKGROUND: #ffffff; FONT: 10pt Arial, Helvetica, sans-serif; COLOR: #333333
+}
+INPUT {
+	FONT: 10pt Arial, Helvetica, sans-serif; COLOR: #333333
+}
+TEXTAREA {
+	BACKGROUND: #ffffff; FONT: 10pt Arial, Helvetica, sans-serif; WIDTH: 300px; CURSOR: text; COLOR: #333333; HEIGHT: 100px
+}
+TD.fieldname {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; FONT-FAMILY: arial, helvetica, geneva, sans-serif
+}
+TD.input {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; BACKGROUND-COLOR: lightblue
+}
+TABLE.inside {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: antiquewhite
+}
+TABLE.input {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-BOTTOM: black 1px solid; BACKGROUND-COLOR: lightblue
+}
+ul {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 0px; PADDING-LEFT: 0px; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 0px; WORD-SPACING: 0px; MARGIN-LEFT: 4px; TEXT-INDENT: 1em; PADDING-TOP: 0px; LIST-STYLE-TYPE: square; TEXT-ALIGN: left
+}
+
+

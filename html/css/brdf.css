@@ -1,0 +1,350 @@
+/*
+* brdf CSS style declarations.
+* 
+* There is a section for each type of CSS selector
+* 
+* Within each section, if possible the order is top down - for example selectors for
+* <table>s come before selectors for <tr>s come before selectors for 
+* <td>s.
+* 
+* Selectors for HTML elements at the same level such as <p> , <ul> etc 
+* are given in the order they might typically occur in a document 
+* 
+* Selectors for sets of elements  - e.g. selectors for classes as
+* a whole, or for all elemnts with a certain value, are organised if possible into 
+* semantically meaningful groups - e.g. everything relating to menu items
+* together etc 
+*/ 
+
+
+
+
+/*
+*******************************************************************
+* selectors to provide default styles for standard elements 
+*******************************************************************
+*/
+BODY {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND: #f0f9ff ;    
+}
+H1 {
+        FONT-WEIGHT: normal; FONT-SIZE: 170%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif ; BACKGROUND-COLOR: #CCDCDC
+}
+H2 {
+        FONT-WEIGHT: normal; FONT-SIZE: 160%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H3 {
+        FONT-WEIGHT: normal; FONT-SIZE: 150%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H4 {
+        FONT-WEIGHT: normal; FONT-SIZE: 130%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H5 {
+        FONT-WEIGHT: normal; FONT-SIZE: 110%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+H6 {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+
+
+
+
+TD {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif 
+}
+P {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif ; 
+}
+UL {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+OL {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+
+
+/*
+*******************************************************************
+* CSS buttons , menus etc  
+*******************************************************************
+*/
+
+a.CSSHelpButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#ff0000;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSDownloadButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#ff0000;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSEditButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSCommentButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#001188;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSCheckOutButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#079909;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSAddLinkButton
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    color:#FFFFFF; background-color:#800207;
+    text-decoration:none;
+    margin:0px;
+}
+a.CSSToggleSectionButton
+{
+    border:1px solid;
+    padding:0px 3px 0px 3px;
+    font:bold 10px verdana,sans-serif; 
+    text-decoration:none;
+    margin:0px;
+}
+span.CSSMenuTitle
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    font:bold 10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+span.CSSMenuTitleHover
+{
+    border:1px solid;
+    border-color:#3f1a01 #ff9a57 #ffc8a4 #7d3302;
+    font:bold 10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+a.CSSMenuOption
+{
+    border:1px solid;
+    border-color:#ffc8a4 #7d3302 #3f1a01 #ff9a57;
+    font:10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+a.CSSMenuOptionHover
+{
+    border:1px solid;
+    border-color:#3f1a01 #ff9a57 #ffc8a4 #7d3302;
+    font:10px verdana,sans-serif;
+    color:#FFFFFF; background-color:#ff6600;
+    text-decoration:none;
+    margin:0px;
+    cursor:pointer;
+    padding:3px;
+    position: relative;
+}
+
+/*
+*******************************************************************
+* selectors to provide styles for brdf-defined classes, for specific elements 
+*******************************************************************
+*/
+
+H3.section {
+        FONT-WEIGHT: normal; FONT-SIZE: 150%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #CCDCDC
+}
+
+
+TABLE.inside {
+        BORDER-STYLE: none ;
+}
+TABLE.sequence_submission_inside {
+  border-collapse: collapse 
+}
+TABLE.sequence_submission_outside {
+        border-right: thin groove #CCDCDC ; BORDER-TOP: thin groove #CCDCDC ;  BORDER-LEFT: thin groove #CCDCDC ;
+        BORDER-BOTTOM: thin groove #CCDCDC 
+}
+TABLE.defaultbrdfcard { 
+}
+TABLE.brdftop1 {
+    BORDER-COLLAPSE: collapse ;  border-color: #388FBD ;
+}
+
+TR.brdftop2 { background-color: #ffbb11
+}
+TR.brdftop1 { background-color: #3366CC
+}
+
+
+TD.inside {
+        FONT-SIZE: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD.fieldvalue {
+        FONT-SIZE: 95%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f0f9ff
+}
+TD.fieldname {
+        FONT-SIZE: 95%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR:  #90aefe 
+}
+TD.tableheading {
+        FONT-SIZE: 120%; FONT-FAMILY: Arial, Helvetica, sans-serif; COLOR: #640064 ; BACKGROUND-COLOR: antiquewhite 
+}
+
+
+td.outside  {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+pre.wrapped {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+
+
+/*
+*******************************************************************
+* selectors to provide styles for sets of elements : all elements with a given class
+*******************************************************************
+*/
+.required	 {
+     color: red
+}
+.whiteheading {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+}
+.menuitem {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+        }
+.menuitem:hover {
+        FONT-SIZE: 120%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; TEXT-DECORATION: underline
+}        
+.menuitem_small {
+        WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; text-decoration: none;
+        }
+.menuitem_small:hover {
+        FONT-SIZE: 100%;  WIDTH: 100%; COLOR: #ffffff;  FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-STYLE: normal; TEXT-DECORATION: underline
+        }
+
+.sectionheading {
+        FONT-WEIGHT: bold; FONT-SIZE: 115%; WIDTH: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #388fbd
+}
+
+.sectionheading2 {
+        FONT-WEIGHT: bold; FONT-SIZE: 115%; WIDTH: 100%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #1111FF
+}
+
+.hiddentext {display:none ;  border-left: thick solid #388fbd ; margin-left:30px ; padding-left:10px } 
+
+
+
+/*
+*******************************************************************
+* selectors to provide styles for sets of elements : all elements with an attribute that has a given value
+*******************************************************************
+*/
+/*
+* none currently. Examples : 
+input[type="text"] {background-color: blue}
+*/
+
+
+
+/*
+*******************************************************************
+* selectors to provide styles for sets of elements : all elements with an id that has a particular value 
+*******************************************************************
+*/
+/*
+* none currently. Examples : 
+
+all elements with an id "green" :
+
+#green {color: green}
+
+all paragraph elements with an id "para1"
+
+p#para1
+{
+text-align: center;
+color: red
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+*******************************************************************
+* various deprecated / currently un-used style descriptors for info
+*******************************************************************
+*/
+BODY.old {
+        FONT-SIZE: 90%; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND: #f0f9ff ;    
+}
+H1.old {
+        FONT-WEIGHT: normal; FONT-SIZE: 170%; COLOR: #388fbd; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TABLE.old {
+        BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: antiquewhite
+}

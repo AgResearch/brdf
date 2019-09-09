@@ -1,0 +1,88 @@
+<html>
+<head>
+<title></title>
+
+<link rel="stylesheet" type="text/css" href="yui/examples/tabview/css/round_tabs.css">
+<link rel="stylesheet" type="text/css" href="yui/build/tabview/assets/tabview.css">
+<link rel="stylesheet" type="text/css" href="ajax_styles.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<script type="text/javascript" src="yui/build/yahoo/yahoo.js"></script>
+<script type="text/javascript" src="yui/build/event/event.js"></script>
+<script type="text/javascript" src="yui/build/dom/dom.js"></script>
+<script type="text/javascript" src="yui/build/connection/connection.js"></script>
+<script type="text/javascript" src="yui/build/element/element-beta.js"></script>
+<script type="text/javascript" src="yui/build/tabview/tabview.js"></script>
+
+<style type="text/css">
+#demo {
+    width:100%; /* arbitrary width */
+	
+}
+
+#demo .yui-content {
+    padding:3em;
+}
+
+#demo .loading {
+    background-image:url(loading.gif);
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+
+#demo .loading * {
+    display:none;
+}
+
+</style>
+
+<script type="text/javascript">
+YAHOO.example.init = function() {
+    var tabView = new YAHOO.widget.TabView({id: 'demo'});
+  
+    tabView.addTab(new YAHOO.widget.Tab({
+        label: 'Default',
+        dataSrc: 'default.htm',
+        cacheData: true, /* only load once */        
+        active: true
+    }));  
+
+    tabView.addTab(new YAHOO.widget.Tab({
+        label: 'AgResearch Sequences',
+        dataSrc: 'http://agbrdf.agresearch.co.nz/cgi-bin/search.py?obTypeName=BioSequences&queryString=RPS6&viewName=default',
+        cacheData: true /* only load once */
+    }));
+    
+    tabView.addTab(new YAHOO.widget.Tab({
+        label: 'AgResearch Microarray spots',
+        dataSrc: 'http://agbrdf.agresearch.co.nz/cgi-bin/search.py?obTypeName=Microarray%20Spots&queryString=RPS6&viewName=default',
+        cacheData: true
+    }));
+
+    tabView.addTab(new YAHOO.widget.Tab({
+        label: 'Genome Browser and links',
+        dataSrc: 'http://agbrdf.agresearch.co.nz/cgi-bin/search.py?obTypeName=Genetic%20Tables&queryString=RPS6&viewName=default',
+        cacheData: true
+    }));
+
+    tabView.addTab(new YAHOO.widget.Tab({
+        label: 'Experiments and Protocols',
+        dataSrc: 'pdf.htm',
+        cacheData: true
+    }));
+  
+    YAHOO.util.Event.onContentReady('doc', function() {
+        tabView.appendTo('doc');
+    });
+
+};
+
+YAHOO.example.init();
+</script>
+
+</head>
+<body>
+<div id="doc">
+</div>
+</body>
+</html>
