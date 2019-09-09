@@ -1,4 +1,5 @@
 :80 {
   tls off
   root /srv/html
+  cgi /cgi-bin/*.py /srv/{match}
 }

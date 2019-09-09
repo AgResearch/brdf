@@ -7,7 +7,7 @@ CGIDIR=$PWD/cgi-bin
 HTMLDIR=$PWD/html
 
 test -r $CADDYFILE -a -r $CGIDIR -a -r $HTMLDIR || {
-    echo >&2 "run-brdf: must be run from brdf repo root dir"
+    echo >&2 "`basename $0`: must be run from top-level repo dir"
     exit 1
 }
 
