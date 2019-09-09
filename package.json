@@ -1,0 +1,23 @@
+{
+  "name": "brdf",
+  "version": "1.0.0",
+  "description": "AgResearch Bioinformatics Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgResearch/brdf.git"
+  },
+  "author": "Alan McCulloch <alan.mcculloch@agresearch.co.nz>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/AgResearch/brdf/issues"
+  },
+  "homepage": "https://github.com/AgResearch/brdf#readme",
+  "dependencies": {
+    "dijit": "^1.6.5",
+    "dojo": "^1.6.5"
+  }
+}
