@@ -1,0 +1,1163 @@
+accessfact,accesscomment,Comment
+accessfact,accesstype,Access Type
+accessfact,createdby,Created By
+accessfact,createddate,Date
+accessfact,lastupdatedby,Last Updated By
+accessfact,lastupdateddate,Date
+accessfact,ob,OBID
+accesslink,accesscomment,Comment
+accesslink,accesstype,Access Type
+accesslink,createdby,Created By
+accesslink,createddate,Date
+accesslink,lastupdatedby,Last Updated By
+accesslink,lastupdateddate,Date
+accesslink,ob,OBID
+accesslink,staffob,** not displayed **
+biodatabaseob,checkedout,Checked Out
+biodatabaseob,checkedoutby,Checked out by
+biodatabaseob,checkoutdate,Checked Out Date
+biodatabaseob,createdby,Created By
+biodatabaseob,createddate,Date
+biodatabaseob,databasecomment,Comment
+biodatabaseob,databasedescription,Description
+biodatabaseob,databasename,Name
+biodatabaseob,databasetype,Database Type
+biodatabaseob,lastupdatedby,Last Updated By
+biodatabaseob,lastupdateddate,Date
+biodatabaseob,obid,OBID
+biodatabaseob,obkeywords,Keywords
+biodatabaseob,obtypeid,Record Type
+biodatabaseob,statuscode,** not displayed **
+biodatabaseob,xreflsid,LSID
+bioprotocolob,checkedout,Checked Out
+bioprotocolob,checkedoutby,Checked out by
+bioprotocolob,checkoutdate,Checked Out Date
+bioprotocolob,createdby,Created By
+bioprotocolob,createddate,Date
+bioprotocolob,lastupdatedby,Last Updated By
+bioprotocolob,lastupdateddate,Date
+bioprotocolob,obid,OBID
+bioprotocolob,obkeywords,Keywords
+bioprotocolob,obtypeid,Record Type
+bioprotocolob,protocoldescription,Description
+bioprotocolob,protocolname,Name
+bioprotocolob,protocoltext,Text
+bioprotocolob,protocoltype,Type
+bioprotocolob,statuscode,** not displayed **
+bioprotocolob,xreflsid,LSID
+biosamplefact,attributename,Attribute Name
+biosamplefact,attributevalue,Attribute Value
+biosamplefact,biosampleob,BioSample
+biosamplefact,factnamespace,Attribute Type
+biosamplelist,checkedout,Checked Out
+biosamplelist,checkedoutby,Checked out by
+biosamplelist,checkoutdate,Date
+biosamplelist,createdby,Created By
+biosamplelist,createddate,Date
+biosamplelist,lastupdatedby,Last Updated By
+biosamplelist,lastupdateddate,Date
+biosamplelist,listcomment,Comment
+biosamplelist,listname,List Name
+biosamplelist,maxmembership,Max Membership
+biosamplelist,obid,OBID
+biosamplelist,obkeywords,Keywords
+biosamplelist,obtypeid,Record Type
+biosamplelist,statuscode,** not displayed **
+biosamplelist,xreflsid,LSID
+biosamplelistmembershiplink,addedby,Added By
+biosamplelistmembershiplink,addeddate,Date
+biosamplelistmembershiplink,biosamplelist,BioSample List
+biosamplelistmembershiplink,biosampleob,BioSample
+biosamplelistmembershiplink,inclusioncomment,Comment
+biosampleob,checkedout,Checked Out
+biosampleob,checkedoutby,Checked out by
+biosampleob,checkoutdate,Date
+biosampleob,createdby,Created By
+biosampleob,createddate,Date
+biosampleob,lastupdatedby,Last Updated By
+biosampleob,lastupdateddate,Date
+biosampleob,obid,OBID
+biosampleob,obkeywords,Keywords
+biosampleob,obtypeid,Record Type
+biosampleob,sampledate,Date
+biosampleob,sampledescription,Description
+biosampleob,samplename,Name
+biosampleob,samplestorage,Storage
+biosampleob,sampletissue,Tissue
+biosampleob,sampletype,Type
+biosampleob,statuscode,** not displayed **
+biosampleob,xreflsid,LSID
+biosamplingfact,attributename,Attribute Name
+biosamplingfact,attributevalue,Attribute Value
+biosamplingfact,biosamplingfunction,BioSampling Function
+biosamplingfact,factnamespace,NameSpace
+biosamplingfact,unitname,Name
+biosamplingfunction,bioprotocolob,Protocol ID
+biosamplingfunction,biosampleob,BioSample
+biosamplingfunction,biosubjectob,BioSubject
+biosamplingfunction,checkedout,Checked Out
+biosamplingfunction,checkedoutby,Checked out by
+biosamplingfunction,checkoutdate,Date
+biosamplingfunction,createdby,Created By
+biosamplingfunction,createddate,Date
+biosamplingfunction,labbookreference,Lab Book Reference
+biosamplingfunction,labresourcelist,Lab Resource List
+biosamplingfunction,labresourceob,Lab Resource
+biosamplingfunction,lastupdatedby,Last Updated By
+biosamplingfunction,lastupdateddate,Date
+biosamplingfunction,obid,OBID
+biosamplingfunction,obkeywords,Keywords
+biosamplingfunction,obtypeid,Record Type
+biosamplingfunction,samplingcomment,Comment
+biosamplingfunction,samplingdate,Date
+biosamplingfunction,statuscode,** not displayed **
+biosamplingfunction,voptypeid,** not displayed **
+biosamplingfunction,xreflsid,LSID
+biosequencefact,attributename,Attribute Name
+biosequencefact,attributevalue,Attribute Value
+biosequencefact,biosequenceob,BioSequence
+biosequencefact,factnamespace,NameSpace
+biosequencefeatureattributefact,attributename,Attribute Name
+biosequencefeatureattributefact,attributevalue,Attribute Value
+biosequencefeatureattributefact,biosequencefeaturefact,BioSequence Feature
+biosequencefeaturefact,biosequenceob,BioSequence
+biosequencefeaturefact,checkedout,Checked Out
+biosequencefeaturefact,checkedoutby,Checked out by
+biosequencefeaturefact,checkoutdate,Date
+biosequencefeaturefact,createdby,Created By
+biosequencefeaturefact,createddate,Date
+biosequencefeaturefact,featureaccession,Feature Accession
+biosequencefeaturefact,featurecomment,Comment
+biosequencefeaturefact,featurestart,Start
+biosequencefeaturefact,featurestop,Stop
+biosequencefeaturefact,featurestrand,Strand
+biosequencefeaturefact,featuretype,Type
+biosequencefeaturefact,lastupdatedby,Last Updated By
+biosequencefeaturefact,lastupdateddate,Date
+biosequencefeaturefact,obid,OBID
+biosequencefeaturefact,obkeywords,Keywords
+biosequencefeaturefact,obtypeid,Record Type
+biosequencefeaturefact,statuscode,** not displayed **
+biosequencefeaturefact,voptypeid,** not displayed **
+biosequencefeaturefact,xreflsid,LSID
+biosequenceob,checkedout,Checked Out
+biosequenceob,checkedoutby,Checked out by
+biosequenceob,checkoutdate,Date
+biosequenceob,createdby,Created By
+biosequenceob,createddate,Date
+biosequenceob,fnindex_accession,** not displayed **
+biosequenceob,fnindex_id,** not displayed **
+biosequenceob,gi,NCBI GI
+biosequenceob,lastupdatedby,Last Updated By
+biosequenceob,lastupdateddate,Date
+biosequenceob,obid,OBID
+biosequenceob,obkeywords,Keywords
+biosequenceob,obtypeid,Record Type
+biosequenceob,seqcomment,Comment
+biosequenceob,seqlength,Length
+biosequenceob,seqstring,String
+biosequenceob,sequencedescription,Description
+biosequenceob,sequencename,Name
+biosequenceob,sequencetopology,Topology
+biosequenceob,sequencetype,Type
+biosequenceob,sequenceurl,URL
+biosequenceob,statuscode,** not displayed **
+biosequenceob,xreflsid,LSID
+biosubjectfact,attributedate,Date
+biosubjectfact,attributename,Attribute Name
+biosubjectfact,attributevalue,Attribute Value
+biosubjectfact,biosubjectob,BioSubject
+biosubjectfact,factnamespace,NameSpace
+biosubjectob,checkedout,Checked Out
+biosubjectob,checkedoutby,Checked out by
+biosubjectob,checkoutdate,Date
+biosubjectob,createdby,Created By
+biosubjectob,createddate,Date
+biosubjectob,dob,DOB
+biosubjectob,lastupdatedby,Last Updated By
+biosubjectob,lastupdateddate,Date
+biosubjectob,obid,OBID
+biosubjectob,obkeywords,Keywords
+biosubjectob,obtypeid,Record Type
+biosubjectob,sex,Sex
+biosubjectob,statuscode,** not displayed **
+biosubjectob,strain,Strain
+biosubjectob,subjectdescription,Description
+biosubjectob,subjectname,Name
+biosubjectob,subjectspeciesname,Name
+biosubjectob,subjecttaxon,Tax On
+biosubjectob,xreflsid,LSID
+commentlink,commentby,Comment By
+commentlink,commentdate,Date
+commentlink,commentob,Comment
+commentlink,ob,OBID
+commentlink,style_bgcolour,Comment Colour
+commentob,checkedout,Checked Out
+commentob,checkedoutby,Checked out by
+commentob,checkoutdate,Date
+commentob,commentstring,Comment
+commentob,commenttype,** not displayed **
+commentob,createdby,Created By
+commentob,createddate,Date
+commentob,lastupdatedby,Last Updated By
+commentob,lastupdateddate,Date
+commentob,obid,OBID
+commentob,obkeywords,Keywords
+commentob,obtypeid,Record Type
+commentob,statuscode,** not displayed **
+commentob,visibility,Visibility
+commentob,xreflsid,LSID
+databasesearchobservation,checkedout,Checked Out
+databasesearchobservation,checkedoutby,Checked out by
+databasesearchobservation,checkoutdate,Date
+databasesearchobservation,createdby,Created By
+databasesearchobservation,createddate,Date
+databasesearchobservation,databasesearchstudy,Search Study
+databasesearchobservation,hitdescription,Description
+databasesearchobservation,hitevalue,e-value
+databasesearchobservation,hitlength,Length
+databasesearchobservation,hitpvalue,p-value
+databasesearchobservation,hitsequence,Sequence
+databasesearchobservation,hitxreflsid,Hit LSID
+databasesearchobservation,lastupdatedby,Last Updated By
+databasesearchobservation,lastupdateddate,Date
+databasesearchobservation,obid,OBID
+databasesearchobservation,obkeywords,Keywords
+databasesearchobservation,observationcomment,Comment
+databasesearchobservation,obtypeid,Record Type
+databasesearchobservation,querylength,Length
+databasesearchobservation,querysequence,Sequence
+databasesearchobservation,queryxreflsid,** not displayed **
+databasesearchobservation,rawsearchresult,Raw Search Result
+databasesearchobservation,statuscode,** not displayed **
+databasesearchobservation,voptypeid,** not displayed **
+databasesearchobservation,xreflsid,LSID
+databasesearchstudy,biodatabaseob,Database Name
+databasesearchstudy,bioprotocolob,Protocol ID
+databasesearchstudy,checkedout,Checked Out
+databasesearchstudy,checkedoutby,Checked out by
+databasesearchstudy,checkoutdate,Date
+databasesearchstudy,createdby,Created By
+databasesearchstudy,createddate,Date
+databasesearchstudy,lastupdatedby,Last Updated By
+databasesearchstudy,lastupdateddate,Date
+databasesearchstudy,obid,OBID
+databasesearchstudy,obkeywords,Keywords
+databasesearchstudy,obtypeid,Record Type
+databasesearchstudy,runby,Run By ?
+databasesearchstudy,rundate,Run Date
+databasesearchstudy,statuscode,** not displayed **
+databasesearchstudy,studycomment,Comment
+databasesearchstudy,studytype,Study Type
+databasesearchstudy,voptypeid,** not displayed **
+databasesearchstudy,xreflsid,LSID
+datasourcefact,attributename,Attribute Name
+datasourcefact,attributevalue,Attribute Value
+datasourcefact,datasourceob,Data Source
+datasourcefact,factnamespace,NameSpace
+datasourceob,checkedout,Checked Out
+datasourceob,checkedoutby,Checked out by
+datasourceob,checkoutdate,Date
+datasourceob,createdby,Created By
+datasourceob,createddate,Date
+datasourceob,datasourcecomment,Comment
+datasourceob,datasourcename,Name
+datasourceob,datasourcetype,Data Source Type
+datasourceob,datasupplieddate,Date
+datasourceob,datasupplier,Supplier
+datasourceob,lastupdatedby,Last Updated By
+datasourceob,lastupdateddate,Date
+datasourceob,numberoffiles,Number of Files
+datasourceob,obid,OBID
+datasourceob,obkeywords,Keywords
+datasourceob,obtypeid,Record Type
+datasourceob,physicalsourceuri,Physical Souce URI
+datasourceob,statuscode,** not displayed **
+datasourceob,xreflsid,LSID
+displayfunction,checkedout,Checked Out
+displayfunction,checkedoutby,Checked out by
+displayfunction,checkoutdate,Date
+displayfunction,createdby,Created By
+displayfunction,createddate,Date
+displayfunction,datasourceob,Data Source
+displayfunction,displayprocedureob,Procedure
+displayfunction,functioncomment,Comment
+displayfunction,lastupdatedby,Last Updated By
+displayfunction,lastupdateddate,Date
+displayfunction,ob,OBID
+displayfunction,obid,OBID
+displayfunction,obkeywords,Keywords
+displayfunction,obtypeid,Record Type
+displayfunction,statuscode,** not displayed **
+displayfunction,voptypeid,** not displayed **
+displayfunction,xreflsid,LSID
+displayprocedureob,author,Author
+displayprocedureob,authordate,Date
+displayprocedureob,checkedout,Checked Out
+displayprocedureob,checkedoutby,Checked out by
+displayprocedureob,checkoutdate,Date
+displayprocedureob,createdby,Created By
+displayprocedureob,createddate,Date
+displayprocedureob,invocation,Invocation
+displayprocedureob,lastupdatedby,Last Updated By
+displayprocedureob,lastupdateddate,Date
+displayprocedureob,obid,OBID
+displayprocedureob,obkeywords,Keywords
+displayprocedureob,obtypeid,Record Type
+displayprocedureob,procedurecomment,Comment
+displayprocedureob,procedurename,Name
+displayprocedureob,sourcecode,SourceCode
+displayprocedureob,statuscode,** not displayed **
+displayprocedureob,xreflsid,LSID
+geneexpressionstudy,bioprotocolob,Protocol ID
+geneexpressionstudy,biosamplelist,BioSample List
+geneexpressionstudy,checkedout,Checked Out
+geneexpressionstudy,checkedoutby,Checked out by
+geneexpressionstudy,checkoutdate,Date
+geneexpressionstudy,createdby,Created By
+geneexpressionstudy,createddate,Date
+geneexpressionstudy,labresourcelist,Lab Resource List
+geneexpressionstudy,labresourceob,Lab Resource
+geneexpressionstudy,lastupdatedby,Last Updated By
+geneexpressionstudy,lastupdateddate,Date
+geneexpressionstudy,obid,OBID
+geneexpressionstudy,obkeywords,Keywords
+geneexpressionstudy,obtypeid,Record Type
+geneexpressionstudy,statuscode,** not displayed **
+geneexpressionstudy,studydescription,Description
+geneexpressionstudy,studytype,Study Type
+geneexpressionstudy,voptypeid,** not displayed **
+geneexpressionstudy,xreflsid,LSID
+geneproductlink,biosequenceob,BioSequence
+geneproductlink,checkedout,Checked Out
+geneproductlink,checkedoutby,Checked out by
+geneproductlink,checkoutdate,Date
+geneproductlink,createdby,Created By
+geneproductlink,createddate,Date
+geneproductlink,evidence,Evidence
+geneproductlink,geneticob,** not displayed **
+geneproductlink,lastupdatedby,Last Updated By
+geneproductlink,lastupdateddate,Date
+geneproductlink,obid,OBID
+geneproductlink,obkeywords,Keywords
+geneproductlink,obtypeid,Record Type
+geneproductlink,productcomment,Comment
+geneproductlink,producttype,Type
+geneproductlink,statuscode,** not displayed **
+geneproductlink,voptypeid,** not displayed **
+geneproductlink,xreflsid,LSID
+generegulationlink,biosequenceob,BioSequence
+generegulationlink,checkedout,Checked Out
+generegulationlink,checkedoutby,Checked out by
+generegulationlink,checkoutdate,Date
+generegulationlink,createdby,Created By
+generegulationlink,createddate,Date
+generegulationlink,evidence,Evidence
+generegulationlink,geneticob,** not displayed **
+generegulationlink,lastupdatedby,Last Updated By
+generegulationlink,lastupdateddate,Date
+generegulationlink,obid,OBID
+generegulationlink,obkeywords,Keywords
+generegulationlink,obtypeid,Record Type
+generegulationlink,regulationcomment,Comment
+generegulationlink,regulationtype,Type
+generegulationlink,statuscode,** not displayed **
+generegulationlink,voptypeid,** not displayed **
+generegulationlink,xreflsid,LSID
+geneticexpressionfact,cellularlocalisation,Cellular Localisation
+geneticexpressionfact,checkedout,Checked Out
+geneticexpressionfact,checkedoutby,Checked out by
+geneticexpressionfact,checkoutdate,Date
+geneticexpressionfact,createdby,Created By
+geneticexpressionfact,createddate,Date
+geneticexpressionfact,expressioncomment,Comment
+geneticexpressionfact,geneticob,** not displayed **
+geneticexpressionfact,godescription,Description
+geneticexpressionfact,goterm,Term
+geneticexpressionfact,lastupdatedby,Last Updated By
+geneticexpressionfact,lastupdateddate,Date
+geneticexpressionfact,lifecyclestage,Life Cycle Stage
+geneticexpressionfact,microarrayexperimentlsid,ID
+geneticexpressionfact,microarrayexperimentresultdescription,Description
+geneticexpressionfact,obid,OBID
+geneticexpressionfact,obkeywords,Keywords
+geneticexpressionfact,obtypeid,Record Type
+geneticexpressionfact,statuscode,** not displayed **
+geneticexpressionfact,tissuetype,Tissue Type
+geneticexpressionfact,voptypeid,** not displayed **
+geneticexpressionfact,xreflsid,LSID
+geneticfact,attributename,Attribute Name
+geneticfact,attributevalue,Attribute Value
+geneticfact,checkedout,Checked Out
+geneticfact,checkedoutby,Checked out by
+geneticfact,checkoutdate,Date
+geneticfact,createdby,Created By
+geneticfact,createddate,Date
+geneticfact,factnamespace,NameSpace
+geneticfact,geneticob,** not displayed **
+geneticfact,lastupdatedby,Last Updated By
+geneticfact,lastupdateddate,Date
+geneticfact,obid,OBID
+geneticfact,obkeywords,Keywords
+geneticfact,obtypeid,Record Type
+geneticfact,statuscode,** not displayed **
+geneticfact,voptypeid,** not displayed **
+geneticfact,xreflsid,LSID
+geneticfunctionfact,checkedout,Checked Out
+geneticfunctionfact,checkedoutby,Checked out by
+geneticfunctionfact,checkoutdate,Date
+geneticfunctionfact,createdby,Created By
+geneticfunctionfact,createddate,Date
+geneticfunctionfact,functioncomment,Comment
+geneticfunctionfact,functiondescription,Description
+geneticfunctionfact,geneticob,** not displayed **
+geneticfunctionfact,godescription,Description
+geneticfunctionfact,goterm,Term
+geneticfunctionfact,lastupdatedby,Last Updated By
+geneticfunctionfact,lastupdateddate,Date
+geneticfunctionfact,obid,OBID
+geneticfunctionfact,obkeywords,Keywords
+geneticfunctionfact,obtypeid,Record Type
+geneticfunctionfact,statuscode,** not displayed **
+geneticfunctionfact,voptypeid,** not displayed **
+geneticfunctionfact,xreflsid,LSID
+geneticlocationfact,biosequenceob,BioSequence
+geneticlocationfact,checkedout,Checked Out
+geneticlocationfact,checkedoutby,Checked out by
+geneticlocationfact,checkoutdate,Date
+geneticlocationfact,chromosomename,Chromosome
+geneticlocationfact,createdby,Created By
+geneticlocationfact,createddate,Date
+geneticlocationfact,entrezgeneid,Entrez GeneID
+geneticlocationfact,evidence,Evidence
+geneticlocationfact,evidencepvalue,Evidence p-value
+geneticlocationfact,evidencescore,Evidence score
+geneticlocationfact,geneticob,** not displayed **
+geneticlocationfact,genetictestfact,Test ID
+geneticlocationfact,lastupdatedby,Last Updated By
+geneticlocationfact,lastupdateddate,Date
+geneticlocationfact,locationdescription,Location Description
+geneticlocationfact,locationstart,Location Start
+geneticlocationfact,locationstop,Location Stop
+geneticlocationfact,locationstring,Location String
+geneticlocationfact,locusname,Locus Name
+geneticlocationfact,locussynonyms,Locus Synonyms
+geneticlocationfact,locustag,Locus Tag
+geneticlocationfact,mapname,Map Name
+geneticlocationfact,maptype,Map Type
+geneticlocationfact,mapunit,Map Unit
+geneticlocationfact,markers,Markers
+geneticlocationfact,obid,OBID
+geneticlocationfact,obkeywords,Keywords
+geneticlocationfact,obtypeid,Record Type
+geneticlocationfact,othermaplocation1,Other Map Location
+geneticlocationfact,regionsize,Region Size
+geneticlocationfact,speciesname,Species
+geneticlocationfact,speciestaxid,Tax ID
+geneticlocationfact,statuscode,** not displayed **
+geneticlocationfact,strand,Strand
+geneticlocationfact,voptypeid,** not displayed **
+geneticlocationfact,xreflsid,LSID
+geneticlocationlist,checkedout,Checked Out
+geneticlocationlist,checkedoutby,Checked out by
+geneticlocationlist,checkoutdate,Date
+geneticlocationlist,createdby,Created By
+geneticlocationlist,createddate,Date
+geneticlocationlist,lastupdatedby,Last Updated By
+geneticlocationlist,lastupdateddate,Date
+geneticlocationlist,listcomment,Comment
+geneticlocationlist,listname,List Name
+geneticlocationlist,maxmembership,Max Membership
+geneticlocationlist,obid,OBID
+geneticlocationlist,obkeywords,Keywords
+geneticlocationlist,obtypeid,Record Type
+geneticlocationlist,statuscode,** not displayed **
+geneticlocationlist,xreflsid,LSID
+geneticlocationlistmembershiplink,addedby,Added By
+geneticlocationlistmembershiplink,addeddate,Date
+geneticlocationlistmembershiplink,geneticlocationfact,Locus
+geneticlocationlistmembershiplink,geneticlocationlist,List ID
+geneticlocationlistmembershiplink,inclusioncomment,Comment
+geneticob,checkedout,Checked Out
+geneticob,checkedoutby,Checked out by
+geneticob,checkoutdate,Date
+geneticob,createdby,Created By
+geneticob,createddate,Date
+geneticob,geneticobdescription,Description
+geneticob,geneticobname,Name
+geneticob,geneticobsymbols,Symbols
+geneticob,geneticobtype,Type
+geneticob,lastupdatedby,Last Updated By
+geneticob,lastupdateddate,Date
+geneticob,obcomment,Comment
+geneticob,obid,OBID
+geneticob,obkeywords,Keywords
+geneticob,obtypeid,Record Type
+geneticob,statuscode,** not displayed **
+geneticob,xreflsid,LSID
+geneticoblist,checkedout,Checked Out
+geneticoblist,checkedoutby,Checked out by
+geneticoblist,checkoutdate,Date
+geneticoblist,createdby,Created By
+geneticoblist,createddate,Date
+geneticoblist,lastupdatedby,Last Updated By
+geneticoblist,lastupdateddate,Date
+geneticoblist,listcomment,Comment
+geneticoblist,listname,List Name
+geneticoblist,maxmembership,Max Membership
+geneticoblist,obid,OBID
+geneticoblist,obkeywords,Keywords
+geneticoblist,obtypeid,Record Type
+geneticoblist,statuscode,** not displayed **
+geneticoblist,xreflsid,LSID
+geneticoblistmembershiplink,addedby,Added By
+geneticoblistmembershiplink,addeddate,Date
+geneticoblistmembershiplink,geneticob,** not displayed **
+geneticoblistmembershiplink,geneticoblist,List
+geneticoblistmembershiplink,inclusioncomment,Comment
+genetictestfact,accession,Accession
+genetictestfact,checkedout,Checked Out
+genetictestfact,checkedoutby,Checked out by
+genetictestfact,checkoutdate,Date
+genetictestfact,createdby,Created By
+genetictestfact,createddate,Date
+genetictestfact,labresourceob,Lab Resource
+genetictestfact,lastupdatedby,Last Updated By
+genetictestfact,lastupdateddate,Date
+genetictestfact,locusname,Locus Name
+genetictestfact,obid,OBID
+genetictestfact,obkeywords,Keywords
+genetictestfact,obtypeid,Record Type
+genetictestfact,snpdescription,Description
+genetictestfact,statuscode,** not displayed **
+genetictestfact,testtype,Type
+genetictestfact,voptypeid,** not displayed **
+genetictestfact,xreflsid,LSID
+genotypeobservation,checkedout,Checked Out
+genotypeobservation,checkedoutby,Checked out by
+genotypeobservation,checkoutdate,Date
+genotypeobservation,createdby,Created By
+genotypeobservation,createddate,Date
+genotypeobservation,finalgenotype,Final Genotype
+genotypeobservation,finalgenotypedescription,Final Genotype Description
+genotypeobservation,genetictestfact,Test ID
+genotypeobservation,genotypeobserved,Observed
+genotypeobservation,genotypeobserveddescription,Description
+genotypeobservation,genotypestudy,Study
+genotypeobservation,lastupdatedby,Last Updated By
+genotypeobservation,lastupdateddate,Date
+genotypeobservation,obid,OBID
+genotypeobservation,obkeywords,Keywords
+genotypeobservation,observationcomment,Comment
+genotypeobservation,observationdate,Date
+genotypeobservation,obtypeid,Record Type
+genotypeobservation,statuscode,** not displayed **
+genotypeobservation,voptypeid,** not displayed **
+genotypeobservation,xreflsid,LSID
+genotypeobservationfact,attributedate,Date
+genotypeobservationfact,attributename,Attribute Name
+genotypeobservationfact,attributevalue,Attribute Value
+genotypeobservationfact,factnamespace,NameSpace
+genotypeobservationfact,genotypeobservation,Observation
+genotypestudy,bioprotocolob,Protocol ID
+genotypestudy,biosamplelist,BioSample List
+genotypestudy,biosampleob,BioSample
+genotypestudy,checkedout,Checked Out
+genotypestudy,checkedoutby,Checked out by
+genotypestudy,checkoutdate,Date
+genotypestudy,createdby,Created By
+genotypestudy,createddate,Date
+genotypestudy,labresourcelist,Lab Resource List
+genotypestudy,labresourceob,Lab Resource
+genotypestudy,lastupdatedby,Last Updated By
+genotypestudy,lastupdateddate,Date
+genotypestudy,obid,OBID
+genotypestudy,obkeywords,Keywords
+genotypestudy,obtypeid,Record Type
+genotypestudy,statuscode,** not displayed **
+genotypestudy,studytype,Study Type
+genotypestudy,voptypeid,** not displayed **
+genotypestudy,xreflsid,LSID
+genotypestudyfact,attributedate,Date
+genotypestudyfact,attributename,Attribute Name
+genotypestudyfact,attributevalue,Attribute Value
+genotypestudyfact,factnamespace,NameSpace
+genotypestudyfact,genotypestudy,Study
+importfunction,checkedout,Checked Out
+importfunction,checkedoutby,Checked out by
+importfunction,checkoutdate,Date
+importfunction,createdby,Created By
+importfunction,createddate,Date
+importfunction,datasourceob,Data Source
+importfunction,functioncomment,Comment
+importfunction,importerrors,** not displayed **
+importfunction,importprocedureob,** not displayed **
+importfunction,lastupdatedby,Last Updated By
+importfunction,lastupdateddate,Date
+importfunction,notificationaddresses,Addresses
+importfunction,ob,OBID
+importfunction,obid,OBID
+importfunction,obkeywords,Keywords
+importfunction,obtypeid,Record Type
+importfunction,processinginstructions,Instructions
+importfunction,statuscode,** not displayed **
+importfunction,submissionreasons,Reasons
+importfunction,voptypeid,** not displayed **
+importfunction,xreflsid,LSID
+importprocedureob,author,Author
+importprocedureob,authordate,Date
+importprocedureob,checkedout,Checked Out
+importprocedureob,checkedoutby,Checked out by
+importprocedureob,checkoutdate,Date
+importprocedureob,createdby,Created By
+importprocedureob,createddate,Date
+importprocedureob,displaydatasourceinvocation,** not displayed **
+importprocedureob,importdatasourceinvocation,** not displayed **
+importprocedureob,lastupdatedby,Last Updated By
+importprocedureob,lastupdateddate,Date
+importprocedureob,obid,OBID
+importprocedureob,obkeywords,Keywords
+importprocedureob,obtypeid,Record Type
+importprocedureob,procedurecomment,Comment
+importprocedureob,procedurename,Name
+importprocedureob,sourcecode,SourceCode
+importprocedureob,statuscode,** not displayed **
+importprocedureob,xreflsid,LSID
+labresourcefact,attributename,Attribute Name
+labresourcefact,attributevalue,Attribute Value
+labresourcefact,factnamespace,NameSpace
+labresourcefact,labresourceob,Lab Resource
+labresourcelist,checkedout,Checked Out
+labresourcelist,checkedoutby,Checked out by
+labresourcelist,checkoutdate,Date
+labresourcelist,createdby,Created By
+labresourcelist,createddate,Date
+labresourcelist,lastupdatedby,Last Updated By
+labresourcelist,lastupdateddate,Date
+labresourcelist,listcomment,Comment
+labresourcelist,listname,List Name
+labresourcelist,maxmembership,Max Membership
+labresourcelist,obid,OBID
+labresourcelist,obkeywords,Keywords
+labresourcelist,obtypeid,Record Type
+labresourcelist,statuscode,** not displayed **
+labresourcelist,xreflsid,LSID
+labresourcelistmembershiplink,addedby,Added By
+labresourcelistmembershiplink,addeddate,Date
+labresourcelistmembershiplink,inclusioncomment,Comment
+labresourcelistmembershiplink,labresourcelist,Lab Resource List
+labresourcelistmembershiplink,labresourceob,Lab Resource
+labresourceob,checkedout,Checked Out
+labresourceob,checkedoutby,Checked out by
+labresourceob,checkoutdate,Date
+labresourceob,createdby,Created By
+labresourceob,createddate,Date
+labresourceob,forwardprimersequence,Forward Primer Sequence
+labresourceob,lastupdatedby,Last Updated By
+labresourceob,lastupdateddate,Date
+labresourceob,obid,OBID
+labresourceob,obkeywords,Keywords
+labresourceob,obtypeid,Record Type
+labresourceob,resourcedate,Date
+labresourceob,resourcedescription,Description
+labresourceob,resourcename,Name
+labresourceob,resourceseqlength,Sequence Length
+labresourceob,resourcesequence,Sequence
+labresourceob,resourcetype,Type
+labresourceob,reverseprimersequence,Reverse Primer Sequence
+labresourceob,statuscode,** not displayed **
+labresourceob,supplier,Supplier
+labresourceob,xreflsid,LSID
+listmembershiplink,comment,Comment
+listmembershiplink,createdby,Created By
+listmembershiplink,createddate,Date
+listmembershiplink,listorder,List Order
+listmembershiplink,ob,OBID
+listmembershiplink,oblist,List
+listmembershiplink,obxreflsid,LSID
+literaturereferencelink,linkcomment,Comment
+literaturereferencelink,literaturereferenceob,Literature Reference
+literaturereferencelink,ob,OBID
+literaturereferenceob,abstract,Reference
+literaturereferenceob,authors,Authors
+literaturereferenceob,checkedout,Checked Out
+literaturereferenceob,checkedoutby,Checked out by
+literaturereferenceob,checkoutdate,Date
+literaturereferenceob,createdby,Created By
+literaturereferenceob,createddate,Date
+literaturereferenceob,journalname,Journal Name
+literaturereferenceob,lastupdatedby,Last Updated By
+literaturereferenceob,lastupdateddate,Date
+literaturereferenceob,obid,OBID
+literaturereferenceob,obkeywords,Keywords
+literaturereferenceob,obtypeid,Record Type
+literaturereferenceob,ourcomments,Comment
+literaturereferenceob,papertitle,Paper Title
+literaturereferenceob,statuscode,** not displayed **
+literaturereferenceob,voldate,Date
+literaturereferenceob,volnumber,Volume Number
+literaturereferenceob,volumename,Volume Name
+literaturereferenceob,xreflsid,LSID
+miamefact,attributename,Attribute Name
+miamefact,attributevalue,Attribute Value
+miamefact,factnamespace,NameSpace
+miamefact,microarraystudy,Study
+microarrayfact,arraycomment,Comment
+microarrayfact,arrayname,Array Name
+microarrayfact,checkedout,Checked Out
+microarrayfact,checkedoutby,Checked out by
+microarrayfact,checkoutdate,Date
+microarrayfact,createdby,Created By
+microarrayfact,createddate,Date
+microarrayfact,gal_block1,Block
+microarrayfact,gal_blockcount,Block Count
+microarrayfact,gal_blocktype,Block Type
+microarrayfact,gal_supplier,Supplier
+microarrayfact,gal_type,Type
+microarrayfact,gal_url,URL
+microarrayfact,labresourceob,Lab Resource
+microarrayfact,lastupdatedby,Last Updated By
+microarrayfact,lastupdateddate,Date
+microarrayfact,obid,OBID
+microarrayfact,obkeywords,Keywords
+microarrayfact,obtypeid,Record Type
+microarrayfact,statuscode,** not displayed **
+microarrayfact,voptypeid,** not displayed **
+microarrayfact,xreflsid,LSID
+microarrayobservation,checkedout,Checked Out
+microarrayobservation,checkedoutby,Checked out by
+microarrayobservation,checkoutdate,Date
+microarrayobservation,createdby,Created By
+microarrayobservation,createddate,Date
+microarrayobservation,gpr_autoflag,Auto Flag
+microarrayobservation,gpr_block,Block
+microarrayobservation,gpr_column,Column
+microarrayobservation,gpr_dye1backgroundmean,Dye 1 Background Mean
+microarrayobservation,gpr_dye1foregroundmean,Dye 1 Foreground Mean
+microarrayobservation,gpr_dye2backgroundmean,Dye 2 Background Mean
+microarrayobservation,gpr_dye2foregroundmean,Dye 2 Foreground Mean
+microarrayobservation,gpr_flags,Flags
+microarrayobservation,gpr_id,ID
+microarrayobservation,gpr_logratio,Log Ratio
+microarrayobservation,gpr_name,Name
+microarrayobservation,gpr_row,Row
+microarrayobservation,lastupdatedby,Last Updated By
+microarrayobservation,lastupdateddate,Date
+microarrayobservation,microarrayspotfact,Spot ID
+microarrayobservation,microarraystudy,Study
+microarrayobservation,norm_dye1intensity,Dye 1 Intensity
+microarrayobservation,norm_dye2intensity,Dye 2 Intensity
+microarrayobservation,norm_logratio,Log Ratio
+microarrayobservation,obid,OBID
+microarrayobservation,obkeywords,Keywords
+microarrayobservation,observationcomment,Comment
+microarrayobservation,obtypeid,Record Type
+microarrayobservation,rawdatarecord,Raw Data Record
+microarrayobservation,statuscode,** not displayed **
+microarrayobservation,voptypeid,** not displayed **
+microarrayobservation,xreflsid,LSID
+microarrayobservationfact,attributename,Attribute Name
+microarrayobservationfact,attributevalue,Attribute Value
+microarrayobservationfact,factnamespace,NameSpace
+microarrayobservationfact,microarrayobservation,Observation
+microarrayspotfact,accession,Accession
+microarrayspotfact,blockcolumn,Block Column
+microarrayspotfact,blocknumber,Block Number
+microarrayspotfact,blockrow,Block Row
+microarrayspotfact,checkedout,Checked Out
+microarrayspotfact,checkedoutby,Checked out by
+microarrayspotfact,checkoutdate,Date
+microarrayspotfact,createdby,Created By
+microarrayspotfact,createddate,Date
+microarrayspotfact,gal_block,Block
+microarrayspotfact,gal_column,Column
+microarrayspotfact,gal_controltype,Control Type
+microarrayspotfact,gal_description,Description
+microarrayspotfact,gal_genename,Gene Name
+microarrayspotfact,gal_id,ID
+microarrayspotfact,gal_name,Name
+microarrayspotfact,gal_refnumber,Ref Number
+microarrayspotfact,gal_row,Row
+microarrayspotfact,gal_tophit,Top Hit
+microarrayspotfact,labresourceob,Lab Resource
+microarrayspotfact,lastupdatedby,Last Updated By
+microarrayspotfact,lastupdateddate,Date
+microarrayspotfact,metacolumn,Meta Column
+microarrayspotfact,metarow,Meta Row
+microarrayspotfact,obid,OBID
+microarrayspotfact,obkeywords,Keywords
+microarrayspotfact,obtypeid,Record Type
+microarrayspotfact,spotcomment,Comment
+microarrayspotfact,statuscode,** not displayed **
+microarrayspotfact,voptypeid,** not displayed **
+microarrayspotfact,xreflsid,LSID
+ob,checkedout,Checked Out
+ob,checkedoutby,Checked out by
+ob,checkoutdate,Date
+ob,createdby,Created By
+ob,createddate,Date
+ob,lastupdatedby,Last Updated By
+ob,lastupdateddate,Date
+ob,obid,OBID
+ob,obkeywords,Keywords
+ob,obtypeid,Record Type
+ob,statuscode,** not displayed **
+ob,xreflsid,LSID
+oblist,bookmark,Bookmark
+oblist,checkedout,Checked Out
+oblist,checkedoutby,Checked out by
+oblist,checkoutdate,Date
+oblist,createdby,Created By
+oblist,createddate,Date
+oblist,currentmembership,Count
+oblist,lastupdatedby,Last Updated By
+oblist,lastupdateddate,Date
+oblist,listcomment,Comment
+oblist,listdefinition,Definition
+oblist,listname,List Name
+oblist,listtype,Type
+oblist,maxmembership,Max Membership
+oblist,obid,OBID
+oblist,obkeywords,Keywords
+oblist,obtypeid,Record Type
+oblist,statuscode,** not displayed **
+oblist,xreflsid,LSID
+obstatus,statuscode,** not displayed **
+obstatus,statusdescription,Status Description
+obstatus,statusname,Status Name
+obtype,displayname,Name
+obtype,displayurl,URL
+obtype,isdynamic,** not displayed **
+obtype,isop,** not displayed **
+obtype,isvirtual,** not displayed **
+obtype,namedinstances,** not displayed **
+obtype,obtypedescription,Description
+obtype,obtypeid,Record Type
+obtype,owner,Owner
+obtype,tablename,Table Name
+obtype,uri,URI
+obtypesignature,mandatoryoptype,** not displayed **
+obtypesignature,obtypeid,Record Type
+ontologyob,checkedout,Checked Out
+ontologyob,checkedoutby,Checked out by
+ontologyob,checkoutdate,Date
+ontologyob,createdby,Created By
+ontologyob,createddate,Date
+ontologyob,lastupdatedby,Last Updated By
+ontologyob,lastupdateddate,Date
+ontologyob,obid,OBID
+ontologyob,obkeywords,Keywords
+ontologyob,obtypeid,Record Type
+ontologyob,ontologycomment,Comment
+ontologyob,ontologydescription,Description
+ontologyob,ontologyname,Name
+ontologyob,statuscode,** not displayed **
+ontologyob,xreflsid,LSID
+ontologytermfact,checkedout,Checked Out
+ontologytermfact,checkedoutby,Checked out by
+ontologytermfact,checkoutdate,Date
+ontologytermfact,createdby,Created By
+ontologytermfact,createddate,Date
+ontologytermfact,lastupdatedby,Last Updated By
+ontologytermfact,lastupdateddate,Date
+ontologytermfact,obid,OBID
+ontologytermfact,obkeywords,Keywords
+ontologytermfact,obtypeid,Record Type
+ontologytermfact,ontologyob,Ontology
+ontologytermfact,statuscode,** not displayed **
+ontologytermfact,termcode,Code
+ontologytermfact,termdescription,Description
+ontologytermfact,termname,Name
+ontologytermfact,unitname,Name
+ontologytermfact,voptypeid,** not displayed **
+ontologytermfact,xreflsid,LSID
+op,checkedout,Checked Out
+op,checkedoutby,Checked out by
+op,checkoutdate,Date
+op,createdby,Created By
+op,createddate,Date
+op,lastupdatedby,Last Updated By
+op,lastupdateddate,Date
+op,obid,OBID
+op,obkeywords,Keywords
+op,obtypeid,Record Type
+op,statuscode,** not displayed **
+op,voptypeid,** not displayed **
+op,xreflsid,LSID
+optypesignature,argobtypeid,** not displayed **
+optypesignature,obtypeid,Record Type
+optypesignature,optablecolumn,Column
+pedigreelink,checkedout,Checked Out
+pedigreelink,checkedoutby,Checked out by
+pedigreelink,checkoutdate,Date
+pedigreelink,createdby,Created By
+pedigreelink,createddate,Date
+pedigreelink,lastupdatedby,Last Updated By
+pedigreelink,lastupdateddate,Date
+pedigreelink,obid,OBID
+pedigreelink,objectob,OBID
+pedigreelink,obkeywords,Keywords
+pedigreelink,obtypeid,Record Type
+pedigreelink,relationship,Relationship
+pedigreelink,relationshipcomment,Comment
+pedigreelink,statuscode,** not displayed **
+pedigreelink,subjectob,Subject
+pedigreelink,voptypeid,** not displayed **
+pedigreelink,xreflsid,LSID
+phenotypeobservation,biosamplelist,BioSample List
+phenotypeobservation,biosampleob,BioSample
+phenotypeobservation,biosubjectob,BioSubject
+phenotypeobservation,checkedout,Checked Out
+phenotypeobservation,checkedoutby,Checked out by
+phenotypeobservation,checkoutdate,Date
+phenotypeobservation,createdby,Created By
+phenotypeobservation,createddate,Date
+phenotypeobservation,lastupdatedby,Last Updated By
+phenotypeobservation,lastupdateddate,Date
+phenotypeobservation,obid,OBID
+phenotypeobservation,obkeywords,Keywords
+phenotypeobservation,observationcomment,Comment
+phenotypeobservation,obtypeid,Record Type
+phenotypeobservation,phenotypeadjustedscore,Phenotype Adjusted Score
+phenotypeobservation,phenotypenamespace,Phenotype NameSpace
+phenotypeobservation,phenotyperawscore,Phenotype Raw Score
+phenotypeobservation,phenotypestudy,Phenotype Study
+phenotypeobservation,phenotypeterm,Phenotype Term
+phenotypeobservation,statuscode,** not displayed **
+phenotypeobservation,voptypeid,** not displayed **
+phenotypeobservation,xreflsid,LSID
+phenotypestudy,checkedout,Checked Out
+phenotypestudy,checkedoutby,Checked out by
+phenotypestudy,checkoutdate,Date
+phenotypestudy,createdby,Created By
+phenotypestudy,createddate,Date
+phenotypestudy,lastupdatedby,Last Updated By
+phenotypestudy,lastupdateddate,Date
+phenotypestudy,obid,OBID
+phenotypestudy,obkeywords,Keywords
+phenotypestudy,obtypeid,Record Type
+phenotypestudy,phenotypeontologyname,Phenotype Ontology Name
+phenotypestudy,statuscode,** not displayed **
+phenotypestudy,studydate,Date
+phenotypestudy,studydescription,Description
+phenotypestudy,studyname,Name
+phenotypestudy,xreflsid,LSID
+predicatelink,checkedout,Checked Out
+predicatelink,checkedoutby,Checked out by
+predicatelink,checkoutdate,Date
+predicatelink,createdby,Created By
+predicatelink,createddate,Date
+predicatelink,lastupdatedby,Last Updated By
+predicatelink,lastupdateddate,Date
+predicatelink,obid,OBID
+predicatelink,objectob,OBID
+predicatelink,obkeywords,Keywords
+predicatelink,obtypeid,Record Type
+predicatelink,predicate,Predicate
+predicatelink,predicatecomment,Comment
+predicatelink,statuscode,** not displayed **
+predicatelink,subjectob,Subject
+predicatelink,voptypeid,** not displayed **
+predicatelink,xreflsid,LSID
+samsongeneticfact,changemagnitude,Change Magnitude
+samsongeneticfact,checkedout,Checked Out
+samsongeneticfact,checkedoutby,Checked out by
+samsongeneticfact,checkoutdate,Date
+samsongeneticfact,createdby,Created By
+samsongeneticfact,createddate,Date
+samsongeneticfact,follicularlocalisation,Follicular Localisation
+samsongeneticfact,genecategory,Gene Category
+samsongeneticfact,genesummarycount,Gene Summary Count
+samsongeneticfact,genesummaryorder,Gene Summary Order
+samsongeneticfact,genesummaryweightedscore,Gene Summary Weighted Score
+samsongeneticfact,geneticob,** not displayed **
+samsongeneticfact,lastupdatedby,Last Updated By
+samsongeneticfact,lastupdateddate,Date
+samsongeneticfact,obid,OBID
+samsongeneticfact,obkeywords,Keywords
+samsongeneticfact,obtypeid,Record Type
+samsongeneticfact,statuscode,** not displayed **
+samsongeneticfact,voptypeid,** not displayed **
+samsongeneticfact,xreflsid,LSID
+sequencealignmentfact,alignlen,Alignment Length
+sequencealignmentfact,alignmentcomment,Alignment Comment
+sequencealignmentfact,bitscore,Bit score
+sequencealignmentfact,checkedout,Checked Out
+sequencealignmentfact,checkedoutby,Checked out by
+sequencealignmentfact,checkoutdate,Date
+sequencealignmentfact,createdby,Created By
+sequencealignmentfact,createddate,Date
+sequencealignmentfact,databasesearchobservation,Hit ID
+sequencealignmentfact,evalue,E-Value
+sequencealignmentfact,hitframe,Frame
+sequencealignmentfact,hitfrom,Start position
+sequencealignmentfact,hitto,Stop position
+sequencealignmentfact,hsphseq,** not displayed **
+sequencealignmentfact,hspmidline,** not displayed **
+sequencealignmentfact,hspqseq,** not displayed **
+sequencealignmentfact,identities,Identies
+sequencealignmentfact,lastupdatedby,Last Updated By
+sequencealignmentfact,lastupdateddate,Date
+sequencealignmentfact,obid,OBID
+sequencealignmentfact,obkeywords,Keywords
+sequencealignmentfact,obtypeid,Record Type
+sequencealignmentfact,positives,Positives
+sequencealignmentfact,queryframe,Frame
+sequencealignmentfact,queryfrom,From
+sequencealignmentfact,queryto,Stop position
+sequencealignmentfact,score,Score
+sequencealignmentfact,statuscode,** not displayed **
+sequencealignmentfact,voptypeid,** not displayed **
+sequencealignmentfact,xreflsid,LSID
+sequencingfact,attributename,Attribute Name
+sequencingfact,attributevalue,Attribute Value
+sequencingfact,factnamespace,NameSpace
+sequencingfact,sequencingfunction,Function
+sequencingfunction,biosampleob,BioSample
+sequencingfunction,biosequenceob,BioSequence
+sequencingfunction,checkedout,Checked Out
+sequencingfunction,checkedoutby,Checked out by
+sequencingfunction,checkoutdate,Date
+sequencingfunction,createdby,Created By
+sequencingfunction,createddate,Date
+sequencingfunction,functioncomment,Comment
+sequencingfunction,labresourcelist,Lab Resource List
+sequencingfunction,labresourceob,Lab Resource
+sequencingfunction,lastupdatedby,Last Updated By
+sequencingfunction,lastupdateddate,Date
+sequencingfunction,obid,OBID
+sequencingfunction,obkeywords,Keywords
+sequencingfunction,obtypeid,Record Type
+sequencingfunction,sequencedby,Sequenced By?
+sequencingfunction,sequencingdate,Date
+sequencingfunction,statuscode,** not displayed **
+sequencingfunction,voptypeid,** not displayed **
+sequencingfunction,xreflsid,LSID
+stafffact,attributename,Attribute Name
+stafffact,attributevalue,Attribute Value
+stafffact,factnamespace,NameSpace
+stafffact,staffob,** not displayed **
+staffob,checkedout,Checked Out
+staffob,checkedoutby,Checked out by
+staffob,checkoutdate,Date
+staffob,createdby,Created By
+staffob,createddate,Date
+staffob,emailaddress,Email Address
+staffob,fullname,Full Name
+staffob,lastupdatedby,Last Updated By
+staffob,lastupdateddate,Date
+staffob,loginname,Login Name
+staffob,mobile,Mobile
+staffob,obid,OBID
+staffob,obkeywords,Keywords
+staffob,obtypeid,Record Type
+staffob,phone,Phone
+staffob,staffcomment,Comment
+staffob,statuscode,** not displayed **
+staffob,xreflsid,LSID
+urilink,createdby,Created By
+urilink,createddate,Date
+urilink,displayorder,Order
+urilink,displaystring,Label
+urilink,iconpath,** not displayed **
+urilink,lastupdatedby,Last Updated By
+urilink,lastupdateddate,Date
+urilink,ob,OBID
+urilink,uricomment,Comment
+urilink,uriob,URI
+uriob,checkedout,Checked Out
+uriob,checkedoutby,Checked out by
+uriob,checkoutdate,Date
+uriob,createdby,Created By
+uriob,createddate,Date
+uriob,lastupdatedby,Last Updated By
+uriob,lastupdateddate,Date
+uriob,obid,OBID
+uriob,obkeywords,Keywords
+uriob,obtypeid,Record Type
+uriob,statuscode,** not displayed **
+uriob,uricomment,Comment
+uriob,uristring,String
+uriob,uritype,Type
+uriob,visibility,Visibility
+uriob,xreflsid,LSID
+workflowlink,checkedout,Checked Out
+workflowlink,checkedoutby,Checked out by
+workflowlink,checkoutdate,Date
+workflowlink,createdby,Created By
+workflowlink,createddate,Date
+workflowlink,fromstage,From
+workflowlink,lastupdatedby,Last Updated By
+workflowlink,lastupdateddate,Date
+workflowlink,obid,OBID
+workflowlink,obkeywords,Keywords
+workflowlink,obtypeid,Record Type
+workflowlink,statuscode,** not displayed **
+workflowlink,tostage,To
+workflowlink,voptypeid,** not displayed **
+workflowlink,workcomment,Comment
+workflowlink,xreflsid,LSID
+workflowmembershiplink,checkedout,Checked Out
+workflowmembershiplink,checkedoutby,Checked out by
+workflowmembershiplink,checkoutdate,Date
+workflowmembershiplink,createdby,Created By
+workflowmembershiplink,createddate,Date
+workflowmembershiplink,lastupdatedby,Last Updated By
+workflowmembershiplink,lastupdateddate,Date
+workflowmembershiplink,membershipcomment,Comment
+workflowmembershiplink,obid,OBID
+workflowmembershiplink,obkeywords,Keywords
+workflowmembershiplink,obtypeid,Record Type
+workflowmembershiplink,statuscode,** not displayed **
+workflowmembershiplink,voptypeid,** not displayed **
+workflowmembershiplink,workflowob,Workflow
+workflowmembershiplink,workflowstageob,Workflow Stage
+workflowmembershiplink,xreflsid,LSID
+workflowob,checkedout,Checked Out
+workflowob,checkedoutby,Checked out by
+workflowob,checkoutdate,Date
+workflowob,createdby,Created By
+workflowob,createddate,Date
+workflowob,lastupdatedby,Last Updated By
+workflowob,lastupdateddate,Date
+workflowob,obid,OBID
+workflowob,obkeywords,Keywords
+workflowob,obtypeid,Record Type
+workflowob,statuscode,** not displayed **
+workflowob,workflowcomment,Comment
+workflowob,workflowdescription,Description
+workflowob,workflowname,Name
+workflowob,xreflsid,LSID
+workflowstageob,checkedout,Checked Out
+workflowstageob,checkedoutby,Checked out by
+workflowstageob,checkoutdate,Date
+workflowstageob,createdby,Created By
+workflowstageob,createddate,Date
+workflowstageob,lastupdatedby,Last Updated By
+workflowstageob,lastupdateddate,Date
+workflowstageob,obid,OBID
+workflowstageob,obkeywords,Keywords
+workflowstageob,obtypeid,Record Type
+workflowstageob,statuscode,** not displayed **
+workflowstageob,workflowstagecomment,Comment
+workflowstageob,workflowstagedescription,Description
+workflowstageob,workflowstagename,Name
+workflowstageob,workflowstagetype,Type
+workflowstageob,xreflsid,LSID
+workstagevisitfact,checkedout,Checked Out
+workstagevisitfact,checkedoutby,Checked out by
+workstagevisitfact,checkoutdate,Date
+workstagevisitfact,createdby,Created By
+workstagevisitfact,createddate,Date
+workstagevisitfact,lastupdatedby,Last Updated By
+workstagevisitfact,lastupdateddate,Date
+workstagevisitfact,obid,OBID
+workstagevisitfact,obkeywords,Keywords
+workstagevisitfact,obtypeid,Record Type
+workstagevisitfact,statuscode,** not displayed **
+workstagevisitfact,voptypeid,** not displayed **
+workstagevisitfact,workcomment,Comment
+workstagevisitfact,workdoneby,Done By
+workstagevisitfact,workdonedate,Date
+workstagevisitfact,workflowstage,Stage
+workstagevisitfact,xreflsid,LSID
