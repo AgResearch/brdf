@@ -2,23 +2,35 @@
 #
 # run brdf on port (10000 + $UID)
 
-CADDYFILE=$PWD/Caddyfile
-CGIDIR=$PWD/cgi-bin
-HTMLDIR=$PWD/html
+caddyfile=$PWD/Caddyfile
+cgidir=$PWD/cgi-bin
+htmldir=$PWD/html
+python_package_src=$PWD/python-packages
+python_package_dst=/usr/lib/python2.7/site-packages
 
-test -r $CADDYFILE -a -r $CGIDIR -a -r $HTMLDIR || {
-    echo >&2 "`basename $0`: must be run from top-level repo dir"
-    exit 1
+check_exists() {
+    test -r "$1" || {
+        echo >&2 "`basename $0`: can't find $1"
+        echo >&2 "run this script from the toplevel repo directory"
+        exit 1
+    }
 }
 
+for dir in $caddyfile $cgidir $htmldir $python_package_src; do
+    check_exists $dir
+done
+
 caddyport=$((10000 + $UID))
+sitepackages=
 docker run --rm \
        --name brdf-$USER \
        --tmpfs /etc/caddycerts \
        --tmpfs /root/.caddy \
-       --mount type=bind,src=$CADDYFILE,dst=/etc/Caddyfile \
-       --mount type=bind,src=$CGIDIR,dst=/srv/cgi-bin \
-       --mount type=bind,src=$HTMLDIR,dst=/srv/html \
+       --mount type=bind,src=$caddyfile,dst=/etc/Caddyfile \
+       --mount type=bind,src=$cgidir,dst=/srv/cgi-bin \
+       --mount type=bind,src=$htmldir,dst=/srv/html \
+       --mount type=bind,src=$python_package_src/brdf.pth,dst=$python_package_dst/brdf.pth \
+       --mount type=bind,src=$python_package_src/brdf,dst=$python_package_dst/brdf \
        --tmpfs /srv/html/tmp \
-       -p 10511:80 \
+       -p $caddyport:80 \
        agresearch/brdf
