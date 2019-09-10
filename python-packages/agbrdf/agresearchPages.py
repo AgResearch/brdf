@@ -41,9 +41,9 @@ jointoopurl=joinfacturl
 addCommentURL="/%s/"%agbrdfConf.CGIPATH + "form.py?context=%s&formname=commentform&formstate=insert&aboutob=%s&aboutlsid=%s"
 addLinkURL="/%s/"%agbrdfConf.CGIPATH + "form.py?context=%s&formname=uriform&formstate=insert&aboutob=%s&aboutlsid=%s"
 #editURL="/%s/"%agbrdfConf.CGIPATH + "form.py?formname=AgResearchSequenceSubmissionForm&formstate=edit&obid=%s"
-editURL=os.path.join(agbrdfConf.PAGEPATH,agbrdfConf.UNDERCONSTRUCTION) # re-set below on a type by type basis
+editURL=os.path.join('/',agbrdfConf.UNDERCONSTRUCTION) # re-set below on a type by type basis
 homeurl="/%s"%agbrdfConf.HOMEPATH
-underConstructionURL=os.path.join(agbrdfConf.PAGEPATH,agbrdfConf.UNDERCONSTRUCTION)
+underConstructionURL=os.path.join('/',agbrdfConf.UNDERCONSTRUCTION)
 waitURL=os.path.join(agbrdfConf.IMAGEURLPATH,agbrdfConf.WAITGLYPH)
 padlockurl="%s%s"%(imageurl,agbrdfConf.PADLOCK)
 
@@ -2354,7 +2354,7 @@ class fetchPage ( page ):
         # UnboundLocalError: local variable 'editURL' referenced before assignment 
         # args = ("local variable 'editURL' referenced before assignment",) 
 
-        editURL=os.path.join(agbrdfConf.PAGEPATH,agbrdfConf.UNDERCONSTRUCTION) # re-set below on a type by type basis
+        editURL=os.path.join('/',agbrdfConf.UNDERCONSTRUCTION) # re-set below on a type by type basis
 
         if self.myObject.databaseFields['tablename'] == 'geneticob':
             self.myObject = geneticOb()

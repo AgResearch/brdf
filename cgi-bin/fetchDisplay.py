@@ -60,7 +60,7 @@ joinfacturl="/%s/"%agbrdfConf.CGIPATH + "join.py?context=%s&fromob=%s&jointype=%
 addCommentURL="/%s/"%agbrdfConf.CGIPATH + "form.py?context=%s&formname=commentform&formstate=insert&aboutob=%s&aboutlsid=%s"
 addLinkURL="/%s/"%agbrdfConf.CGIPATH + "form.py?context=%s&formname=uriform&formstate=insert&aboutob=%s&aboutlsid=%s"
 homeurl="/%s"%agbrdfConf.HOMEPATH
-underConstructionURL=os.path.join(agbrdfConf.PAGEPATH,agbrdfConf.UNDERCONSTRUCTION)
+underConstructionURL=os.path.join('/',agbrdfConf.UNDERCONSTRUCTION)
 
 
 objectDumpURL="/%s/"%agbrdfConf.CGIPATH + "fetch.py?obid=%s&context=%s"

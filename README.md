@@ -9,6 +9,13 @@ within a Docker container, which is built from the bundled Dockerfile.
 
 The script `run-dev-brdf` is run within the top-level directory of
 this repo, and starts the container, listening on port (10000 + UID).
+The following environment variables must be set before running the
+script:
+
+- BRDF_DATABASE
+- BRDF_DATABASE_USER
+- BRDF_DATABASE_PASSWORD
+
 
 ## Schema
 

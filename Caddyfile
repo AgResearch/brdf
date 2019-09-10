@@ -1,7 +1,11 @@
 :80 {
   tls off
   root /srv/html
-  cgi /cgi-bin/*.py /srv/{match}
+  cgi {
+    match /cgi-bin/*.py
+    exec /srv{match}
+    pass_all_env
+  }
 }
 
 :80/node_modules {

@@ -12,19 +12,13 @@ import csv
 import logging
 import os
 
-
-############################
-# Config
-############################
-#LOGPATH="c:/temp"
-LOGPATH="/data/home/seqstore/agbrdf/tiling"
-
+import globalConf
 
 ############################
 # Set up logging
 ############################
 logger = logging.getLogger('tiler')
-hdlr = logging.FileHandler(os.path.join(LOGPATH,'tiler.log'))
+hdlr = logging.FileHandler(os.path.join(globalConf.LOGPATH,'tiler.log'))
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 

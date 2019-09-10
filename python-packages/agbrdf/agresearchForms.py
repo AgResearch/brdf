@@ -94,7 +94,7 @@ imageurl="/%s/"%agbrdfConf.IMAGEURLPATH
 tempimageurl="/%s/"%agbrdfConf.TEMPIMAGEURLPATH
 imagepath=os.path.join(globalConf.IMAGEFILEPATH,agbrdfConf.IMAGEFILEPATH)
 homeurl="/%s"%agbrdfConf.HOMEPATH
-underConstructionURL=os.path.join(agbrdfConf.PAGEPATH,agbrdfConf.UNDERCONSTRUCTION)
+underConstructionURL=os.path.join('/',agbrdfConf.UNDERCONSTRUCTION)
 waitURL=os.path.join(agbrdfConf.IMAGEURLPATH,agbrdfConf.WAITGLYPH)
 padlockurl="%s%s"%(imageurl,agbrdfConf.PADLOCK)
 

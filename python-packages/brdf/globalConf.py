@@ -1,28 +1,11 @@
-#
-# This module provides global variables that may need to be
-# changed on install. Note that there is an include path in
-# some modules that may also need to be changed
+# These global variables used to be changed for different installs,
+# but are now all taken from environment variables.
 
-##### path to image directory #####
-# path for dos dev machine
-#IMAGEFILEPATH="C:/Program Files/Apache Group/Apache2/htdocs/"
-# path for linux dev machine
-#IMAGEFILEPATH="/var/www"
-IMAGEFILEPATH="/tmp"
+from os import environ
 
+IMAGEFILEPATH = environ['BRDF_IMAGEFILEPATH']
 
 ##### path for log files ##########
-# path for dos dev machine
-#LOGPATH="c:/temp"
-# path for linux dev machine
-LOGPATH="/tmp"
-#LOGPATH="/tmp/agbrdfbatch"
-#LOGPATH="/tmp/pgcbatch"
+LOGPATH = environ['BRDF_LOGPATH']
 
-JOIN_ROW_LIMIT=200
-
-
-
-
-
-        
+JOIN_ROW_LIMIT = 200
