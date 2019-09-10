@@ -2,10 +2,6 @@
 # This module provides global variables that may need to be
 # changed on install. Note that there is an include path in
 # some modules that may also need to be changed
-#
-#
-# when running web : 
-INSTALLPATH="/usr/lib64/python2.6/site-packages"
 
 ##### path to image directory #####
 # path for dos dev machine

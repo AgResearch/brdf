@@ -40,15 +40,7 @@ from geneticModule import geneticOb, geneticLocationFact
 from obmodule import getNewObid
 from ontologyModule import ontologyOb
 
-
-# platform dependent module search path. (This can't be done in
-# a .pth because we do not always want this imported)
-#sys.path.append('C:/Python23/lib/site-packages/sheepgenomics')
-
-
-
 import databaseModule
-
 
 import logging
 

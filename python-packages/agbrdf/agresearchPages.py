@@ -25,11 +25,6 @@ import os
 import re
 import string
 
-# platform dependent module search path. (This can't be done in
-# a .pth because we do not always want this imported)
-#sys.path.append('C:/Python23/lib/site-packages/agresearch')
-
-
 # constants - these are to be obtained from a config file 
 fetcher="/%s/fetch.py"%agbrdfConf.CGIPATH
 waiter="/%s/wait.py"%agbrdfConf.CGIPATH

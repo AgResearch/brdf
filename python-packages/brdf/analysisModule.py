@@ -25,7 +25,6 @@ import random
 from datetime import date
 from time import time
 import globalConf
-#import agbrdfConf #<------------------ !!!!!!!!!! for testing only , remove !!!!!!!!!!!!!!!!!!!!
 from obmodule import ob,getObjectRecord,getNewObid
 from opmodule import op
 from htmlModule import tidyout, defaultMenuJS

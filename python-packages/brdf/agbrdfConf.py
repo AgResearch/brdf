@@ -8,9 +8,6 @@ import sys
 import os
 import globalConf
 
-
-sys.path.append(os.path.join(globalConf.INSTALLPATH,'agbrdf'))
-
 # this is the sheepgenomics web image path relative to globalConf.IMAGEPATH
 # Note that different brdf instances must have different image paths -
 # can't use a single image directory, because there may be name

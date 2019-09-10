@@ -24,7 +24,6 @@ import math
 import random
 from datetime import date
 import globalConf
-#import agbrdfConf #<------------------ !!!!!!!!!! for testing only , remove !!!!!!!!!!!!!!!!!!!!
 from brdfExceptionModule import brdfException
 from imageModule import makeOpGlyph, makeBarGraph,getJPEGThumbs,getColourScheme
 from annotationModule import uriOb

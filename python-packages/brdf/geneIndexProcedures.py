@@ -40,19 +40,9 @@ from sequenceModule import bioSequenceOb
 from sequenceFileParsers import FastaParser
 from geneticModule import geneticOb, geneticLocationFact
 
-
-# platform dependent module search path. (This can't be done in
-# a .pth because we do not always want this imported)
-#sys.path.append('C:/Python23/lib/site-packages/sheepgenomics')
-
-
-
 import databaseModule
 
-
 import logging
-
-
 
 
 # set up logger if we want logging

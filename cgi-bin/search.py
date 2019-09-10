@@ -24,9 +24,6 @@ import agbrdfConf
 from types import *
 from os import environ
 
-#sys.path.append('python/sitemodules')
-#sys.path.append('m:\\projects\\brdf\\python\\modules')
-#sys.path.append('C:/Python23/lib/site-packages/nutrigenomics')
 
 from agresearchPages import testPage, searchResultPage
 

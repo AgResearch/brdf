@@ -14,9 +14,6 @@ import logging
 import os
 from datetime import date
 
-# platform dependent module search path. (This can't be done in
-# a .pth because we do not always want this imported)
-#sys.path.append('C:/Python23/lib/site-packages/agbrdf')
 import globalConf
 
 # 8/2009

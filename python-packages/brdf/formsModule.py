@@ -6,7 +6,6 @@ from types import *
 
 
 import globalConf
-import agbrdfConf # !!!!!!! remove - only for testing
 import databaseModule # !!!!!! remove - only for testing
 
 
