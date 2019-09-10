@@ -973,7 +973,7 @@ report_locusreports = """
    AgResearch GBrowse  with selected bovine tracks $CHRNUM:$CHRSTART..$CHRSTOP  http://gbrowse.agresearch.co.nz/cgi-bin/gbrowse/bta3/?start=$CHRSTART;stop=$CHRSTOP;ref=$CHRNUM;width=1024;version=;label=GMAP_BOVINE_REFSEQ-NCBI_GENE-GMAP_HS_REFSEQS_LOW;
    AgResearch GBrowse sequence retrievel $CHRNUM:$CHRSTART..$CHRSTOP  http://gbrowse.agresearch.co.nz/cgi-bin/gbrowse/bta3/?name=$CHRNUM:$CHRSTART..$CHRSTOP;plugin=BatchDumper;BatchDumper.fileformat=fasta;BatchDumper.format=text;plugin_do=Go 
    CSIRO GBrowse $CHRNUM:$CHRSTART..$CHRSTOP http://www.livestockgenomics.csiro.au/perl/gbrowse.cgi/bova3/?name=$CHRNUM:$CHRSTART..$CHRSTOP
-   AgResearch BRDF $LSID http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid=$LSID&context=default&target=ob
+   AgResearch BRDF $LSID /cgi-bin/fetch.py?obid=$LSID&context=default&target=ob
    </textarea>
    <br/>
    $CHRSTART is <select name="startis">
@@ -2099,7 +2099,7 @@ class searchResultPage ( page ):
                 if metaList.obState['ERROR'] == 0:
                     # update the list with fetch URL's for each member. In this case the members are lists and they need
                     # to open themselves in briefsearchsummary mode - the URL looks like 
-                    # http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid=54083355&context=briefsearchsummarypage&bookmark=162375&target=ob&childview=default&page=1
+                    # /cgi-bin/fetch.py?obid=54083355&context=briefsearchsummarypage&bookmark=162375&target=ob&childview=default&page=1
                     # the template being 
                     # listChunkLink="/%s/"%agbrdfConf.CGIPATH + 'fetch.py?obid=%s&context=briefsearchsummarypage&bookmark=%s&target=ob&childview=%s&page=%s'
                     #metaList.databaseFields.update({'listitems' : [tuple + (objectDumpURL%(str(tuple[0]),'briefsearchsummarypage'),) for tuple in metaList.databaseFields['listitems']] })        
@@ -2254,7 +2254,7 @@ class searchResultPage ( page ):
                 if metaList.obState['ERROR'] == 0:
                     # update the list with fetch URL's for each member. In this case the members are lists and they need
                     # to open themselves in briefsearchsummary mode - the URL looks like 
-                    # http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid=54083355&context=briefsearchsummarypage&bookmark=162375&target=ob&childview=default&page=1
+                    # /cgi-bin/fetch.py?obid=54083355&context=briefsearchsummarypage&bookmark=162375&target=ob&childview=default&page=1
                     # the template being 
                     # listChunkLink="/%s/"%agbrdfConf.CGIPATH + 'fetch.py?obid=%s&context=briefsearchsummarypage&bookmark=%s&target=ob&childview=%s&page=%s'
                     #metaList.databaseFields.update({'listitems' : [tuple + (objectDumpURL%(str(tuple[0]),'briefsearchsummarypage'),) for tuple in metaList.databaseFields['listitems']] })        
@@ -2830,7 +2830,7 @@ class fetchPage ( page ):
 
 
     def asGenbank(self):
-        # example : http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid=CS37.231105CS3700262300001&context=genbank&target=ob
+        # example : /cgi-bin/fetch.py?obid=CS37.231105CS3700262300001&context=genbank&target=ob
         agresearchpagemodulelogger.info("handling Genbank request for object type %s"%self.myObject.metadataFields['tablename'])
         gbresult = ''
         if self.myObject.metadataFields['tablename'] == 'bioSequenceOb':
@@ -2872,7 +2872,7 @@ class fetchPage ( page ):
 
 
     def asFASTA(self):
-        # example : http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid=CS37.231105CS3700262300001&context=fasta&target=ob
+        # example : /cgi-bin/fetch.py?obid=CS37.231105CS3700262300001&context=fasta&target=ob
         agresearchpagemodulelogger.info("handling FASTA request for object type %s"%self.myObject.metadataFields['tablename'])
         fastaresult = ''
         if self.myObject.metadataFields['tablename'] == 'bioSequenceOb':
@@ -3452,7 +3452,7 @@ class simpleReportPage ( page ):
                 sql = """
                 select
                    accession,
-                   'http://agbrdf.agresearch.co.nz/cgi-bin/fetch.py?obid='||xreflsid||'&context=default&target=ob' as url,
+                   '/cgi-bin/fetch.py?obid='||xreflsid||'&context=default&target=ob' as url,
                    variation,
                 """
                 for animallist in self.argDict['animallists']:

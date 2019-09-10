@@ -7500,7 +7500,7 @@ class commentForm ( form ):
 #
 # This forms handles submissions of 
 # a form updating source code 
-# example : http://agbrdf.agresearch.co.nz/cgi-bin/form.py?context=default&formname=editAnalysisProcedureForm&formstate=edit&obid=41745371
+# example : /cgi-bin/form.py?context=default&formname=editAnalysisProcedureForm&formstate=edit&obid=41745371
 ######################################################################
 class editAnalysisProcedureForm ( form ):
     """ class for commentForm  """
@@ -7749,7 +7749,7 @@ class editAnalysisProcedureForm ( form ):
 #
 # This forms handles submissions of 
 # a form containing a microarray heatmap definition 
-# example : http://agbrdf.agresearch.co.nz/cgi-bin/form.py?context=default&formname=defineArrayHeatMapForm&formstate=edit&obid=45276430
+# example : /cgi-bin/form.py?context=default&formname=defineArrayHeatMapForm&formstate=edit&obid=45276430
 ######################################################################
 class defineArrayHeatMapForm( form ):
     """ class for define heapmap form  """
