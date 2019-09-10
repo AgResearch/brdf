@@ -27,15 +27,6 @@ import random
 from datetime import date
 import globalConf
 
-# this import is here for testing - usually we only
-# import this in the script that calls this module
-#import nutrigenomicsConf
-import sheepgenomicsConf
-#import agbrdfConf
-#import pgcConf
-#import nutrigenomicsConf
-
-
 from obmodule import getNewObid
 from brdfExceptionModule import brdfException
 from annotationModule import commentOb, uriOb

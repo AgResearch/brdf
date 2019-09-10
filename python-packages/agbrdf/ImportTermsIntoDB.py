@@ -2,7 +2,6 @@
 
 #Import the postgres module
 import csv
-import sheepgenomicsConf
 import databaseModule
 
 connection = databaseModule.getConnection()

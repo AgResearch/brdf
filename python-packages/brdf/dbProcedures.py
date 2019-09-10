@@ -27,16 +27,6 @@ from datetime import date
 import globalConf
 import string
 
-# this import is here for testing - usually we only
-# import this in the script that calls this module
-#import nutrigenomicsConf
-#import sheepgenomicsConf
-#import agbrdfConf
-#import pgcConf
-#import possumbaseConf
-#import isgcdataConf
-
-
 from brdfExceptionModule import brdfException
 from annotationModule import commentOb, uriOb
 from biosubjectmodule import bioSubjectOb, bioSampleOb, bioSampleList
