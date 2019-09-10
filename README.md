@@ -12,7 +12,8 @@ this repo, and starts the container, listening on port (10000 + UID).
 The following environment variables must be set before running the
 script:
 
-- BRDF_DATABASE
+- BRDF_DATABASE_HOST
+- BRDF_DATABASE_NAME
 - BRDF_DATABASE_USER
 - BRDF_DATABASE_PASSWORD
 

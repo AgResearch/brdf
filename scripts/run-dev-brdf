@@ -18,7 +18,7 @@ for dir in $caddyfile $cgidir $htmldir $python_package_src; do
 done
 
 # check environment variables are set
-for e in BRDF_DATABASE BRDF_DATABASE_USER BRDF_DATABASE_PASSWORD; do
+for e in BRDF_DATABASE_HOST BRDF_DATABASE_NAME BRDF_DATABASE_USER BRDF_DATABASE_PASSWORD; do
     test -n "${!e}" || {
         echo >&2 "`basename $0`: missing required environment variable $e"
         exit 1
@@ -38,7 +38,10 @@ docker run --rm \
        --mount type=bind,src=$htmldir,dst=/srv/html \
        --mount type=bind,src=$python_package_src/brdf.pth,dst=$python_package_dst/brdf.pth \
        --mount type=bind,src=$python_package_src/brdf,dst=$python_package_dst/brdf \
-       -e BRDF_DATABASE="$BRDF_DATABASE" \
+       --mount type=bind,src=$python_package_src/agbrdf.pth,dst=$python_package_dst/agbrdf.pth \
+       --mount type=bind,src=$python_package_src/agbrdf,dst=$python_package_dst/agbrdf \
+       -e BRDF_DATABASE_HOST="$BRDF_DATABASE_HOST" \
+       -e BRDF_DATABASE_NAME="$BRDF_DATABASE_NAME" \
        -e BRDF_DATABASE_USER="$BRDF_DATABASE_USER" \
        -e BRDF_DATABASE_PASSWORD="$BRDF_DATABASE_PASSWORD" \
        -e BRDF_CGIPATH=cgi-bin \

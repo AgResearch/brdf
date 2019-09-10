@@ -11,8 +11,9 @@ import psycopg2
 
 # method for returning a connection - using TCP
 def getConnection():
-    connection = psycopg2.connect("dbname='%s' user='%s' password='%s'" % (
-        os.environ['BRDF_DATABASE'],
+    connection = psycopg2.connect("host='%s' dbname='%s' user='%s' password='%s'" % (
+        os.environ['BRDF_DATABASE_HOST'],
+        os.environ['BRDF_DATABASE_NAME'],
         os.environ['BRDF_DATABASE_USER'],
         os.environ['BRDF_DATABASE_PASSWORD'],
     ))
