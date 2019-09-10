@@ -55,7 +55,6 @@ padlockurl="%s%s"%(imageurl,agbrdfConf.PADLOCK)
 
 objectDumpURL="/%s/"%agbrdfConf.CGIPATH + "fetch.py?obid=%s&context=%s"
 listChunkLink="/%s/"%agbrdfConf.CGIPATH + 'fetch.py?obid=%s&context=briefsearchsummarypage&bookmark=%s&target=ob&childview=%s&page=%s'
-#imageurl="http://localhost/nutrigenomics/NuNZWeb/images/"
 
 brdfCSSLink=agbrdfConf.BRDF_CSS_LINK
 
