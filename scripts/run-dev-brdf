@@ -25,17 +25,25 @@ for e in BRDF_DATABASE_HOST BRDF_DATABASE_NAME BRDF_DATABASE_USER BRDF_DATABASE_
     }
 done
 
+# each user gets a different port to run the dev server:
 caddyport=$((10000 + $UID))
+
+# paths have been hard-coded at various places,
+# so beware thinking you may easily change them
+rootfilepath=/var/www/agbrdf
+cgifilepath=$rootfilepath/cgi-bin
+htmlfilepath=$rootfilepath/html
+
 docker run --rm \
        --name brdf-$USER \
        --tmpfs /tmp \
-       --tmpfs /srv/html/tmp \
+       --tmpfs $htmlfilepath/tmp \
        --tmpfs /var/log \
        --tmpfs /etc/caddycerts \
        --tmpfs /root/.caddy \
        --mount type=bind,src=$caddyfile,dst=/etc/Caddyfile \
-       --mount type=bind,src=$cgidir,dst=/srv/cgi-bin \
-       --mount type=bind,src=$htmldir,dst=/srv/html \
+       --mount type=bind,src=$cgidir,dst=$cgifilepath \
+       --mount type=bind,src=$htmldir,dst=$htmlfilepath \
        --mount type=bind,src=$python_package_src/brdf.pth,dst=$python_package_dst/brdf.pth \
        --mount type=bind,src=$python_package_src/brdf,dst=$python_package_dst/brdf \
        --mount type=bind,src=$python_package_src/agbrdf.pth,dst=$python_package_dst/agbrdf.pth \
@@ -44,14 +52,16 @@ docker run --rm \
        -e BRDF_DATABASE_NAME="$BRDF_DATABASE_NAME" \
        -e BRDF_DATABASE_USER="$BRDF_DATABASE_USER" \
        -e BRDF_DATABASE_PASSWORD="$BRDF_DATABASE_PASSWORD" \
-       -e BRDF_CGIPATH=cgi-bin \
+       -e BRDF_ROOTFILEPATH=$rootfilepath \
+       -e BRDF_CGIFILEPATH=$cgifilepath \
+       -e BRDF_HTMLFILEPATH=$htmlfilepath \
        -e BRDF_IMAGEFILEPATH=/tmp \
-       -e BRDF_IMAGEFILEPATH_AGBRDF=/srv/html/tmp \
+       -e BRDF_IMAGEFILEPATH_AGBRDF=$htmlfilepath/tmp \
        -e BRDF_IMAGEURLPATH_AGBRDF=tmp \
        -e BRDF_LOGPATH=/var/log \
        -e BRDF_AGRESEARCH_TRACEDIRECTORY_GET_PATH='\\impala\agbrdfsequencesubmissiondev' \
        -e BRDF_AGRESEARCH_CREATE_FOLDER_SCRIPT=/usr/local/bin/makeseqsubfolder.sh \
-       -e BRDF_BFILE_TEMPFOLDER=/srv/html/tmp \
+       -e BRDF_BFILE_TEMPFOLDER=$htmlfilepath/tmp \
        -e BRDF_BFILE_TEMPURLPATH=/tmp \
        -e BRDF_BFILE_PUTPATH=/data/databases/flatfile/uploads/agbrdf \
        -e BRDF_BFILE_GETPATH='/cgi-bin/getFile.py?FolderName=%s' \

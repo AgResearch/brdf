@@ -17,7 +17,7 @@ TEMPIMAGEURLPATH = environ['BRDF_IMAGEURLPATH_AGBRDF']
 HOMEPATH = "index.html"
 
 ###### CGI path ###########
-CGIPATH = environ['BRDF_CGIPATH']
+CGIPATH = "cgi-bin"
 
 ######  Under construction ######
 UNDERCONSTRUCTION = "zz_contents.htm"

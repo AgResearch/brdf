@@ -1,9 +1,9 @@
 :80 {
   tls off
-  root /srv/html
+  root {$BRDF_HTMLFILEPATH}
   cgi {
     match /cgi-bin/*.py
-    exec /srv{match}
+    exec {$BRDF_ROOTFILEPATH}{match}
     pass_all_env
   }
 }
