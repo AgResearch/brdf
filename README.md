@@ -17,6 +17,10 @@ script:
 - BRDF_DATABASE_USER
 - BRDF_DATABASE_PASSWORD
 
+When running for the first time, the html/tmp directory should be
+populated by hand with any required image files, etc.  Since this is a
+Docker volume, it will persist.
+
 
 ## Containerization
 
