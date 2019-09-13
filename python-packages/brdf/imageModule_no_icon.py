@@ -3,7 +3,7 @@
 # the . It depends on the Python image library - see
 # http://effbot.org/downloads/#imaging
 #
-import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 import os.path
 
 

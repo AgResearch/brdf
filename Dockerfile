@@ -13,7 +13,7 @@ ARG caddy_version
 LABEL maintainer "Simon Guest <simon.guest@tesujimath.org"
 LABEL caddy_version ${caddy_version}
 
-RUN apk add --no-cache python2 py-egenix-mx-base py-imaging py-psycopg2
+RUN apk add --no-cache python2 py-egenix-mx-base py-pillow py-psycopg2
 COPY --from=builder /build/node_modules /srv/node_modules
 
 # as per caddy Dockerfile:

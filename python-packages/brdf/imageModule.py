@@ -4,7 +4,8 @@
 # http://effbot.org/downloads/#imaging
 #
 from types import *
-import Image, ImageDraw, ImageFont, ImageOps, ImageEnhance, PSDraw, os
+from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageEnhance, PSDraw
+import os
 import os.path
 import logging
 import globalConf

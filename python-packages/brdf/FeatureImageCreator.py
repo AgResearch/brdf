@@ -1,4 +1,5 @@
-import Image, ImageFont, os, PSDraw, ImageDraw
+import os
+from PIL import Image, ImageFont, PSDraw, ImageDraw
 
 print "running FeatureImageCreator.py"
 
