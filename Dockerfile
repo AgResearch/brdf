@@ -20,13 +20,14 @@ COPY --from=builder /build/node_modules /srv/node_modules
 COPY Caddyfile /etc/Caddyfile
 
 # install BRDF
-ARG rootfilepath=/var/www/agbrdf
-ARG python_package_dst=/usr/lib/python2.7/site-packages
-RUN mkdir -p $rootfilepath
-COPY cgi-bin html $rootfilepath/
-COPY python-packages/agbrdf* python-packages/brdf* $python_package_dst/
-RUN mkdir -p $rootfilepath/html/tmp
-COPY tmp_images /usr/src/brdf-tmp
+COPY cgi-bin /var/www/agbrdf/cgi-bin/
+COPY html /var/www/agbrdf/html/
+COPY python-packages/agbrdf /usr/lib/python2.7/site-packages/agbrdf/
+COPY python-packages/agbrdf.pth /usr/lib/python2.7/site-packages/
+COPY python-packages/brdf /usr/lib/python2.7/site-packages/brdf/
+COPY python-packages/brdf.pth /usr/lib/python2.7/site-packages/
+RUN mkdir -p /var/www/agbrdf/html/tmp
+COPY tmp_images /usr/src/brdf-tmp/
 
 # entrypoint
 COPY entrypoint.sh /usr/local/bin/
