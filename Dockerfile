@@ -27,11 +27,11 @@ COPY python-packages/agbrdf.pth /usr/lib/python2.7/site-packages/
 COPY python-packages/brdf /usr/lib/python2.7/site-packages/brdf/
 COPY python-packages/brdf.pth /usr/lib/python2.7/site-packages/
 RUN mkdir -p /var/www/agbrdf/html/tmp
-COPY tmp_images /usr/src/brdf-tmp/
+COPY tmp_images /var/www/agbrdf/html/tmp/
 
-# entrypoint
-COPY entrypoint.sh /usr/local/bin/
+# persistent, with initial contents as above
+VOLUME /var/www/agbrdf/html/tmp
 
 # as per caddy Dockerfile:
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["/bin/parent", "caddy", "--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]
+ENTRYPOINT ["/bin/parent", "caddy"]
+CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]

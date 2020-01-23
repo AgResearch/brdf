@@ -71,6 +71,7 @@ docker run --rm \
        --tmpfs /var/log \
        --tmpfs /etc/caddycerts \
        --tmpfs /root/.caddy \
+       --tmpfs /srv \
        $extra_mounts \
        --mount type=volume,src=brdf-$USER-html-tmp,dst=$htmlfilepath/tmp \
        -e BRDF_DATABASE_HOST="$BRDF_DATABASE_HOST" \
