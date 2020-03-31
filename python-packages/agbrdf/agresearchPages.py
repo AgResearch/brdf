@@ -451,6 +451,7 @@ from
    join biosamplelistmembershiplink as m on m.biosampleob = b.obid)
    join biosamplelist as l on 
    l.obid = m.biosamplelist where %s
+   and l.listname like '%%'||g.flowcell||'%%' 
 union
 select
    l.listname as run,
@@ -483,6 +484,7 @@ from
    join biosamplelistmembershiplink as m on m.biosampleob = b.obid)
    join biosamplelist as l on
    l.obid = m.biosamplelist where %s
+   and l.listname like '%%'||g.flowcell||'%%' 
     """,
     'gbsreport2' :
     """
@@ -517,6 +519,7 @@ from
    join biosamplelistmembershiplink as m on m.biosampleob = b.obid)
    join biosamplelist as l on 
    l.obid = m.biosamplelist where %s
+   and l.listname like '%%'||g.flowcell||'%%' 
 union
 select
    l.listname as run,
@@ -549,6 +552,7 @@ from
    join biosamplelistmembershiplink as m on m.biosampleob = b.obid)
    join biosamplelist as l on
    l.obid = m.biosamplelist where %s
+   and l.listname like '%%'||g.flowcell||'%%' 
     """,
    'unblind_report': 
    """
