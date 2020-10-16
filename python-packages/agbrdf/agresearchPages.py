@@ -4829,7 +4829,7 @@ class simpleReportPage ( page ):
                             record+=reduce(lambda x,y: x+'<td>'+str(y)+'</td>', reportFieldValues,'')
                             print(record+'</tr>\n')   
                         elif self.argDict['outputformat'] == 'csv':
-                            record = reduce(lambda x,y: x + '"' + str(y) + '",' , reportFieldValues,'')
+                            record = ','.join(["\"%s\""%str(item) for item in reportFieldValues])
                             print record
                         elif self.argDict['outputformat'] == 'txt':
                             record = '\t'.join([str(item) for item in reportFieldValues])
